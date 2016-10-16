@@ -1,10 +1,8 @@
 ---
-title: API Reference
+title: Duda REST API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
@@ -13,6 +11,7 @@ toc_footers:
 
 includes:
   - errors
+  - mobile
 
 search: true
 ---
