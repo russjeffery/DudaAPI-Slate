@@ -5,7 +5,9 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    <title>Duda REST API Reference</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <title>Duda REST API Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -92,7 +94,9 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
+
+
+  <body class="index" data-languages="[&quot;curl&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -103,8 +107,7 @@
       <img src="images/duda.svg" />
       <div>Duda API Documentation</div>
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="curl">curl</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -122,68 +125,51 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the Duda API REST Documentation. Here you will find APIs for Mobile, Multiscreen (Responsive), Analytics and account management. Duda&rsquo;s REST API is designed to be a management API, which means you can integrate Duda&rsquo;s White Labeled resources (Sites, Accounts, etc..) into your own workflows or services. It is not currently designed to manage individual edits to websites.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Duda&rsquo;s platform has two primary website products: Mobile and Responsive. In the documentation here, the responsive platform, also called Multiscreen, while the Mobile is simply called mobile. Responsive is the primary website builder product that Duda customers use today, while mobile is our legacy product.</p>
+
+<p>The API uses standard RESTful principles to manage resources:</p>
+
+<ul>
+<li>POST verb/method will create or update a resource</li>
+<li>GET verb/method will read an existing resource</li>
+<li>DELETE verb/method will delete an existing resource</li>
+</ul>
 
 <p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
 
-<h1 id="authentication">Authentication</h1>
+<h2 id="access">Access</h2>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>To access the Duda API, you need to request access through your websites dashboard. This can be found under the &lsquo;Account tab&rsquo; at the top of the dashboard navigation. Once you request access, Duda will need to approve the request, which takes upto 48 hours.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+          <h2 id="authentication">Authentication</h2>
+<pre class="highlight shell"><code>curl -X GET -i <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/templates'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M='</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Instead of explicitly setting the Authorization header, you can use the -u &lsquo;APIUser:APIPass&rsquo; command with URL instead.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>The Duda API uses <a href="https://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">basic HTTP authentication</a> to authenticate requests and access resources within your account. As part of getting access to the API, you will get a user name and password combination that is specific to your account. This information should be passed as part of every API request you make to the platform. It is also required that you send this in a preemptive fashion. </p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>To create the HTTP Authorization Header, you should combine your username and password into one string, separated by a colon and then Base64 encode that string. So for example, &#39;exampleUser:be$tp@ss&rsquo; combination would result in the header:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M=</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Make sure to set the authorization header with your unique API username and API password on each request.
 </aside>
 
-<h1 id="kittens">Kittens</h1>
+          <h1 id="kittens">Kittens</h1>
 
 <h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<pre class="highlight plaintext"><code>require 'kittn'
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.get
 </code></pre>
 
 <blockquote>
@@ -350,15 +336,30 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </tbody></table>
 
+          <h1 id="accounts">Accounts</h1>
+
+<aside class="notice">This is the accounts block of code.</aside>
+
+          <h1 id="analytics">Analytics</h1>
+
+<aside class="notice">This is the analytics block of code.</aside>
+
+          <h1 id="responsive-multiscreen-sites-api">Responsive/Multiscreen Sites API</h1>
+
+<aside class="notice">This is the mobile block of code.</aside>
+
           <h1 id="mobile">Mobile</h1>
+
+<aside class="notice">This is the mobile block of code.</aside>
+
+          <h1 id="permission-groups">Permission Groups</h1>
 
 <aside class="notice">This is the mobile block of code.</aside>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="curl">curl</a>
           </div>
       </div>
     </div>
