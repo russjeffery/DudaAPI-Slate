@@ -57,6 +57,7 @@ $examples-width: 50%; // portion of the screen taken up by code examples
 $logo-margin: 20px; // margin between nav items and logo, ignored if search is active
 $main-padding: 28px; // padding to left and right of content & examples
 $nav-padding: 15px; // padding to left and right of navbar
+$nav-padding-top: 5px; //padding to top and bottom of navbar
 $nav-v-padding: 10px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
 $code-annotation-padding: 13px; // padding inside code annotations
@@ -68,9 +69,9 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
-  font-size: 13px;
-}
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+} 
 
 %header-font {
   @extend %default-font;

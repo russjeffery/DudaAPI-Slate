@@ -67,8 +67,8 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 300;
 
   // language selector for mobile devices
   .lang-selector {
@@ -149,7 +149,7 @@ html, body {
 
 
   .tocify-item>a, .toc-footer li {
-    padding: 0 $nav-padding 0 $nav-padding;
+    padding: $nav-padding-top $nav-padding $nav-padding-top $nav-padding;
     display: block;
     overflow-x: hidden;
     white-space: nowrap;
@@ -187,8 +187,10 @@ html, body {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      padding-left: $nav-padding + $nav-indent;
-      font-size: 12px;
+      /*padding-left: $nav-padding + $nav-indent;*/
+      font-size: 14px;
+      font-weight:400;
+      padding: $nav-padding-top 0px $nav-padding-top 30px;
     }
 
     // for embossed look:
@@ -341,7 +343,6 @@ html, body {
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
-    text-shadow: $main-embossed-text-shadow;
 
     @extend %left-col;
   }
