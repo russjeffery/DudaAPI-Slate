@@ -47,12 +47,7 @@ html, body {
 }
 
 @mixin embossed-bg {
-  background:
-    linear-gradient(to bottom, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to top, rgba(#000, 0.2), rgba(#000, 0) 8px),
-    linear-gradient(to bottom, rgba($nav-embossed-border-top, 1), rgba($nav-embossed-border-top, 0) 1.5px),
-    linear-gradient(to top, rgba($nav-embossed-border-bottom, 1), rgba($nav-embossed-border-bottom, 0) 1.5px),
-    $nav-subitem-bg;
+  background: $nav-subitem-bg;
 }
 
 .tocify-wrapper {
@@ -99,7 +94,7 @@ html, body {
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - 30;
       outline: none;
-      color: $nav-text;
+      color: #fff;
       border-radius: 0; /* ios has a default border radius */
     }
 
@@ -107,7 +102,7 @@ html, body {
       position: absolute;
       top: 17px;
       left: $nav-padding;
-      color: $nav-text;
+      color: #fff;
       @extend %icon-search;
     }
   }
@@ -138,7 +133,7 @@ html, body {
     }
 
     a {
-      color: $nav-text;
+      color: #313131;
       text-decoration: none;
 
       &:hover {
@@ -175,9 +170,8 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
-    background-color: $nav-active-bg;
     color: $nav-active-text;
+    font-weight: 500!important;
   }
 
   // Subheaders are the submenus that slide open
@@ -197,7 +191,7 @@ html, body {
     @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
-    }
+    }    
   }
 
   .toc-footer {
@@ -473,7 +467,6 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
@@ -481,12 +474,10 @@ html, body {
 
     &.warning {
       background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
     }
 
     &.success {
       background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
     }
   }
 
@@ -627,4 +618,11 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+ul.tocify-subheader li {
+      color:#313131;
+    }
+.tocify-wrapper p {
+  color:#f2f2f2;
+  text-align:center;
 }
