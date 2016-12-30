@@ -2,21 +2,23 @@
 title: Duda REST API Documentation
 
 language_tabs:
-  - curl
+  - shell: cURL
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>Back to Developer Portal</a>
+  - <a href='#'>Duda API Terms of Service</a>
+  - <a href='https://github.com/tripit/slate' target="_blank">Documentation Powered by Slate</a>
 
 includes:
   - authentication
+  - access
   - kittenexample
   - errors
-  - accounts
-  - analytics
   - multiscreen
   - mobile
+  - accounts
   - permissions
+  - analytics
 
 search: true
 ---
@@ -32,11 +34,5 @@ The API uses standard RESTful principles to manage resources:
 * POST verb/method will create or update a resource
 * GET verb/method will read an existing resource
 * DELETE verb/method will delete an existing resource
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-## Access
-
-To access the Duda API, you need to request access through your websites dashboard. This can be found under the 'Account tab' at the top of the dashboard navigation. Once you request access, Duda will need to approve the request, which takes upto 48 hours.
 
 

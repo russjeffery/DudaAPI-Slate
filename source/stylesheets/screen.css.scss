@@ -27,6 +27,7 @@ html, body {
   color: $main-text;
   padding: 0;
   margin: 0;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @extend %default-font;
@@ -64,6 +65,8 @@ html, body {
   background-color: $nav-bg;
   font-size: 16px;
   font-weight: 300;
+  border-right: 5px solid $nav-active-text;
+  box-sizing: border-box;
 
   // language selector for mobile devices
   .lang-selector {
@@ -355,11 +358,10 @@ html, body {
     font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+    background-color:$h1-bg-color;
+    color:$h1-color;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -370,12 +372,11 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 20px;
-    margin-top: 4em;
-    margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    margin-top: 2em;
+    margin-bottom: 1em;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+    background-color:$h2-bg-color;
   }
 
   // h2s right after h1s should bump right up
@@ -419,6 +420,10 @@ html, body {
 
     td {
       padding: 10px;
+    }
+
+    tr {
+      border-bottom:1px solid $h2-bg-color;
     }
 
     tr:last-child {
