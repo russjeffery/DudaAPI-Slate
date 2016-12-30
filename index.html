@@ -96,7 +96,7 @@
 
 
 
-  <body class="index" data-languages="[&quot;curl&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -107,7 +107,7 @@
       <img src="images/duda.svg" />
       <p>Duda API Documentation</p>
         <div class="lang-selector">
-              <a href="#" data-language-name="curl">curl</a>
+              <a href="#" data-language-name="shell">cURL</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -116,8 +116,9 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='#'>Back to Developer Portal</a></li>
+            <li><a href='#'>Duda API Terms of Service</a></li>
+            <li><a href='https://github.com/tripit/slate' target="_blank">Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -137,20 +138,14 @@
 <li>DELETE verb/method will delete an existing resource</li>
 </ul>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-
-<h2 id="access">Access</h2>
-
-<p>To access the Duda API, you need to request access through your websites dashboard. This can be found under the &lsquo;Account tab&rsquo; at the top of the dashboard navigation. Once you request access, Duda will need to approve the request, which takes upto 48 hours.</p>
-
-          <h2 id="authentication">Authentication</h2>
+          <h1 id="authentication">Authentication</h1>
 <pre class="highlight shell"><code>curl -X GET -i <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/templates'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M='</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
 
 <blockquote>
-<p>Instead of explicitly setting the Authorization header, you can use the -u &lsquo;APIUser:APIPass&rsquo; command with URL instead.</p>
+<p>Instead of explicitly setting the Authorization header, you can use the -u &lsquo;APIUser:APIPass&rsquo; command with cURL instead.</p>
 </blockquote>
 
 <p>The Duda API uses <a href="https://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">basic HTTP authentication</a> to authenticate requests and access resources within your account. As part of getting access to the API, you will get a user name and password combination that is specific to your account. This information should be passed as part of every API request you make to the platform. It is also required that you send this in a preemptive fashion. </p>
@@ -162,6 +157,26 @@
 <aside class="notice">
 Make sure to set the authorization header with your unique API username and API password on each request.
 </aside>
+
+<h2 id="security">Security</h2>
+
+<p>The Duda REST API is available over HTTPS only to ensure data privacy. Unencrypted HTTP is not supported. As of the current version, the Duda REST API is secured with HTTP Basic Authentication only.</p>
+
+<p>Duda recommends requiring a TLS connection instead of SSL. The Duda API does not accept SSLv3 connections, due to the <a href="http://en.wikipedia.org/wiki/POODLE">POODLE venerability</a>.  </p>
+
+          <h1 id="access">Access</h1>
+
+<p>To access the Duda API, you need to request access through your websites dashboard. This can be found under the &lsquo;Account tab&rsquo; at the top of the dashboard navigation. Once you request access, Duda will need to approve the request, which takes upto 48 hours. You will only receive your password via email. Please keep the API Username and Password safe, as anyone with this information can access your account. </p>
+
+<p>The Duda API is free for anyone to access and use. You should take note of the payments section as we currently do not offer free ad-supported sites created via the API.</p>
+
+<h2 id="endpoints">Endpoints</h2>
+
+<p>Duda&rsquo;s primary endpoint for all production work is: </p>
+
+<p><code class="prettyprint">https://api.dudamobile.com/api</code></p>
+
+<p>The documentation here assumes that you will combine the endpoint with the path of the API method. There are some cases where you might have a different endpoint than the one above, such as working with Duda&rsquo;s sandbox environment or a custom setup that Duda provides, although this is rare. </p>
 
           <h1 id="kittens">Kittens</h1>
 
@@ -280,69 +295,85 @@ Remember — a happy kitten is an authenticated kitten!
 
           <h1 id="errors">Errors</h1>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+<blockquote>
+<p>Attempt to get site info for a site that does not exist:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X GET -i <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/badName'</span> <span class="se">\</span>
+    -H <span class="s1">'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M='</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
 
-<p>The Kittn API uses the following error codes:</p>
+<blockquote>
+<p>Duda responds with a 400 HTTP code and the following body:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"error_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ResourceNotExist"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Site with alias 'badName' doesn't exist"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>All API methods will respond with one of the following HTTP response codes:</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>HTTP Code</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>200</td>
+<td>OK &ndash; Your request was successful and the response body contains a JSON representation</td>
+</tr>
+<tr>
+<td>204</td>
+<td>OK - No response. Your request was successful and Duda had no data to return to you</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found - A common redirect response; you can GET the representation at the URI in the Location response header</td>
+</tr>
+<tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request - The data given in the request failed validation. Inspect the response body for details (see Error data structure for details).</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Unauthorized - Duda failed to authenticate your request</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>Not Found &ndash; The specified method / path could not be found</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Method Not Allowed &ndash; You tried to access the method</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>This usually means there was a problem on Duda&rsquo;s end. Double check to make sure your data sent is correct then reach out to Duda for help.</td>
 </tr>
 </tbody></table>
 
-          <h1 id="accounts">Accounts</h1>
+<p>When Duda detects an error in your request, we will respond with a 400 (Bad Request) HTTP response and return a JSON error object:</p>
 
-<aside class="notice">This is the accounts block of code.</aside>
-
-          <h1 id="analytics">Analytics</h1>
-
-<aside class="notice">This is the analytics block of code.</aside>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error_code</td>
+<td>String</td>
+<td>Code of the error: ResourceNotExist, InvalidInput, or InternalError</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+<td>A detailed error message of what went wrong</td>
+</tr>
+</tbody></table>
 
           <h1 id="responsive-multiscreen-sites-api">Responsive/Multiscreen Sites API</h1>
 
@@ -352,14 +383,22 @@ Remember — a happy kitten is an authenticated kitten!
 
 <aside class="notice">This is the mobile block of code.</aside>
 
+          <h1 id="accounts">Accounts</h1>
+
+<aside class="notice">This is the accounts block of code.</aside>
+
           <h1 id="permission-groups">Permission Groups</h1>
 
 <aside class="notice">This is the mobile block of code.</aside>
 
+          <h1 id="analytics">Analytics</h1>
+
+<aside class="notice">This is the analytics block of code.</aside>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="curl">curl</a>
+                <a href="#" data-language-name="shell">cURL</a>
           </div>
       </div>
     </div>
