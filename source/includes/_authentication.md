@@ -1,9 +1,9 @@
-# Authentication
+## Authentication
 
 ```shell
 curl -X GET -i 'https://api.dudamobile.com/api/sites/multiscreen/templates' \
-    -H 'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M=' \ 
-    -H 'Content-Type: application/json'
+	-H 'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M=' \ 
+	-H 'Content-Type: application/json'
 ```
 > Instead of explicitly setting the Authorization header, you can use the -u 'APIUser:APIPass' command with cURL instead.
 
