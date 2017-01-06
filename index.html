@@ -138,7 +138,7 @@
 <li>DELETE verb/method will delete an existing resource</li>
 </ul>
 
-          <h1 id="authentication">Authentication</h1>
+          <h2 id="authentication">Authentication</h2>
 <pre class="highlight shell"><code>curl -X GET -i <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/templates'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M='</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
@@ -164,7 +164,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <p>Duda recommends requiring a TLS connection instead of SSL. The Duda API does not accept SSLv3 connections, due to the <a href="http://en.wikipedia.org/wiki/POODLE">POODLE venerability</a>.  </p>
 
-          <h1 id="access">Access</h1>
+          <h2 id="access">Access</h2>
 
 <p>To access the Duda API, you need to request access through your websites dashboard. This can be found under the &lsquo;Account tab&rsquo; at the top of the dashboard navigation. Once you request access, Duda will need to approve the request, which takes upto 48 hours. You will only receive your password via email. Please keep the API Username and Password safe, as anyone with this information can access your account. </p>
 
@@ -177,6 +177,16 @@ Make sure to set the authorization header with your unique API username and API 
 <p><code class="prettyprint">https://api.dudamobile.com/api</code></p>
 
 <p>The documentation here assumes that you will combine the endpoint with the path of the API method. There are some cases where you might have a different endpoint than the one above, such as working with Duda&rsquo;s sandbox environment or a custom setup that Duda provides, although this is rare. </p>
+
+<h2 id="schema">Schema</h2>
+
+<p>All data passed by the Duda API will be in JSON representation. We currently only support this format of data transfer.</p>
+
+<h2 id="dates">Dates</h2>
+
+<p>There are some Duda APIs that return date time values. Duda formates these in standard universal full date/time pattern in the UTC timezone. The format is: yyyy-mm-ddThh:mm:ss. So for example: 2016-11-15T22:55:53 would be November 11th, 2016 at 10:55:53 PM UTC.</p>
+
+<p>When sending dates to Duda, you can use the full universal format above, or just the YYYY-MM-DD format. If you omit the time &ndash; DUda will default that time to the beginning of the day. </p>
 
           <h1 id="kittens">Kittens</h1>
 
@@ -293,7 +303,7 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </tbody></table>
 
-          <h1 id="errors">Errors</h1>
+          <h2 id="errors">Errors</h2>
 
 <blockquote>
 <p>Attempt to get site info for a site that does not exist:</p>
@@ -346,7 +356,7 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed &ndash; You tried to access the method</td>
+<td>Method Not Allowed &ndash; The GET/POST/DELETE/PUT Method you input is not supported for this path</td>
 </tr>
 <tr>
 <td>500</td>
@@ -494,7 +504,7 @@ Remember — a happy kitten is an authenticated kitten!
 <td>external_uid</td>
 <td>string</td>
 <td>optional</td>
-<td>A flexible string you pass to Duda when creating the site, allows you to store your customer&rsquo;s unique value to reference later. (45 char max)</td>
+<td>A flexible string you pass to Duda when creating the site, allows you to store your customer&rsquo;s unique value to reference later (45 char max). Note that Duda does not enforce uniqueness here.</td>
 </tr>
 <tr>
 <td>business_site_info</td>
@@ -645,17 +655,333 @@ Remember — a happy kitten is an authenticated kitten!
 
 <h3 id="return">Return</h3>
 
-<p>Upon successful creation of a website, Duda will return a site_name. This is a unique value across all Duda websites and will be needed to later access other resources, such as updating the site, getting analytics or granting access. We recommend storing this site_name in your database for later reference.</p>
+<p>Upon successful creation of a website, Duda will return a site_name value along with a <code class="prettyprint">200 OK</code> HTTP response. The site_name is a unique string (usually between 8 and 32 characters) across all Duda websites and will be needed to later access other resources, such as updating the site, getting analytics or granting access. We recommend storing this site_name in your database for later reference.</p>
 
 <h2 id="get-site">Get Site</h2>
 
 <p>Get information about an already existing website. You will need the site_name value that was provided during the create website call. </p>
 
+<aside class="warning">Note that only properties that have values will be returned.</aside>
+
 <p><code class="prettyprint">GET /sites/multiscreen/{site_name}</code></p>
 
 <h3 id="required-uri-parameters">Required URI Parameters</h3>
 
-<p>site_name - URL Prameter</p>
+<p>site_name - URL Prameter. Originally returned when first creating a website.</p>
+
+<blockquote>
+<p>Response JSON from GET Site:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@domain.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"externalReference1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"site_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customDomain1.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"site_business_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Business"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1240 Main ST."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94122"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(415) 123-1234"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@domain.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opentable_info"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"site_alternate_domains"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"domains"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"example1.com"</span><span class="p">,</span><span class="s2">"example2.net"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"is_redirect"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"site_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6c56394c"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20022</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"site_default_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exampleBusiness.multiscreensite.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"preview_site_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://websitebuilder.websitebusiness.com/preview/6c56394c"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_published_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-15T22:55:53"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"first_published_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-03T04:36:54"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_reset_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex@dudamobile.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"force_https"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"certificate_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"publish_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUBLISHED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="properties">Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>template_id</td>
+<td>String</td>
+<td>The current template_id of the template in use on the site</td>
+</tr>
+<tr>
+<td>site_domain</td>
+<td>String</td>
+<td>The primary domain currently assigned to the site</td>
+</tr>
+<tr>
+<td>site_default_domain</td>
+<td>String</td>
+<td>Will return the default sub-domain of the site. This value will look like: <site_name>.dudaone.com or <site_name>.mutliscreensite.com (partners only). This will be returned even if the site is not published, the site is only accessible on this domain if it is published</td>
+</tr>
+<tr>
+<td>site_name</td>
+<td>String</td>
+<td>The unique site name of the site, should be the same as the site_name returned during the creation of the site</td>
+</tr>
+<tr>
+<td>account_name</td>
+<td>String</td>
+<td>The name (usually an email address) of the account that owns the site</td>
+</tr>
+<tr>
+<td>preview_site_url</td>
+<td>String</td>
+<td>A direct URL to a the three-screen preview of the website in it&rsquo;s current state while in design. This white labeled URL non-authenticated and can be accessed by anyone online</td>
+</tr>
+<tr>
+<td>last_published_date</td>
+<td>date time</td>
+<td>The date of the most recent publication of the website.</td>
+</tr>
+<tr>
+<td>first_published_date</td>
+<td>date time</td>
+<td>The date of when this website was first published. Note that if you unpublish the website and republish it, the first_published_date will not change</td>
+</tr>
+<tr>
+<td>publish_status</td>
+<td>String</td>
+<td>The current status of the website.  There are three possible values. (1) PUBLISHED: The website is live, published and being paid for. (2) UNPUBLISHED: The website was once published, but is now canceled and not available online. (3) NOT_YET_PUBLISHED: Means the site has never been published before</td>
+</tr>
+<tr>
+<td>business_site_info</td>
+<td>Object</td>
+<td><a href="#site_business_info-object">See above (in the create site section) for details of the business_info returned</a>. Duda will only return data that it has about the site</td>
+</tr>
+<tr>
+<td>external_uid</td>
+<td>String</td>
+<td>Optional placeholder to be used to reference/link the created Site to some unique identifier origin from external system</td>
+</tr>
+<tr>
+<td>force_https</td>
+<td>Bool</td>
+<td>If the website is redirecting all traffic to a secure (HTTPS) connection. If true, all traffic is sent to a secure connection</td>
+</tr>
+<tr>
+<td>last_reset_by</td>
+<td>String</td>
+<td>The account name that has most recently reset the website.</td>
+</tr>
+<tr>
+<td>cetrtificate_status</td>
+<td>String</td>
+<td>The status of SSL certificate generation. Has three possible values: &ldquo;COMPLETE&rdquo;, &ldquo;IN PROGRESS&rdquo;, or &ldquo;FAILED&rdquo;</td>
+</tr>
+<tr>
+<td>site_alternate_domains</td>
+<td>Object</td>
+<td><a href="#site_alternate_domain-object">See the section above</a> to get the full reference for the site_alternate_domain object.</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell"><code>curl -X GET https://api.dudamobile.com/api/sites/multiscreen/57b6506a <span class="se">\</span>
+    -u <span class="s1">'APIpassword:APIusername'</span> <span class="se">\</span>
+    -H <span class="s1">'Content-Type: application/json'</span> 
+</code></pre>
+
+<h2 id="get-sites-by-external-id">Get Sites by External ID</h2>
+
+<p>This will return a list of all site ID&rsquo;s that have the external ID value provided  when creating or updating the website. The external ID value is not a unique value in the Duda system &ndash; so multiple sites can have the same external ID value. </p>
+
+<p><code class="prettyprint">GET /sites/multiscreen/byexternalid/{external_uid}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>external_uid - URL parameter</li>
+</ul>
+
+<h3 id="return">Return</h3>
+
+<p>Duda will return an array of site_names for each website that has the matching external ID value. </p>
+
+<p>You should expect a 200 HTTP responce code with the array of site names in the body of the response. </p>
+
+<blockquote>
+<p>Example return: </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"6c56394c"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"e714b0ba"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h2 id="update-site">Update site</h2>
+
+<p>You can use this call to update properties about a site that is already created. The most common use for this would be to update the site_domain of an already created site. Please note that only values listed here can be updated. Not all values in the get site info can be updated. </p>
+
+<h3 id="method-and-path">Method and Path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/update/{site_name}</code></p>
+
+<h3 id="required-parameters">Required Parameters</h3>
+
+<ul>
+<li>Site Name - URI Prameter</li>
+</ul>
+
+<blockquote>
+<p>Example JSON to send: </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"site_domain"</span><span class="p">:</span><span class="s2">"example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"default_domain_prefix"</span><span class="p">:</span><span class="s2">"new-domain-prefix"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_uid"</span><span class="p">:</span><span class="s2">"5123161232"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"site_alternate_domains"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"domains"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"alternatedomain1.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"alternatedomain1.net"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"is_redirect"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="prameters-to-send">Prameters to send</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>site_domain</td>
+<td>String (<a href="https://en.wikipedia.org/wiki/Fully_qualified_domain_name">FQDN</a>)</td>
+<td>The domain of the site you want to use. Note that the domain value is unique across the entire Duda system.</td>
+</tr>
+<tr>
+<td>default_domain_prefix</td>
+<td>String</td>
+<td>Change the sub-domain prefix that you want to use. This must be a unique value and not used on other sites.</td>
+</tr>
+<tr>
+<td>external_uid</td>
+<td>String</td>
+<td>Placeholder for external system identifier. (max 45 chars)</td>
+</tr>
+<tr>
+<td>site_alternate_domains</td>
+<td>Object</td>
+<td>Set alternate domains for the site. The alternate domain values will be redirected to the primary domain.</td>
+</tr>
+<tr>
+<td>force_https</td>
+<td>bool</td>
+<td>If true, all website traffic will be redirected to a secure (HTTPS) enabled site. Only can be set if an SSL certificate is successfully generated. Defaults to true.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example CURL to Update Site:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/update/57b6506a'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+    -d <span class="s1">'{"site_domain":"www.uniquedomain.com"}'</span>
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>A <code class="prettyprint">204 No Content</code> HTTP code will be returned upon successful call. </p>
+
+<h2 id="delete-site">Delete Site</h2>
+
+<p>This will immediately and permanently delete the site and cancel any subscription associated with the site. Please note that after deleting a site there is no way to bring the site back. Deleting a site will also cancel any active subscription/payment associated with the site. </p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">DELETE /sites/multiscreen/{site_name}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>Site Name: URI Prameter</li>
+</ul>
+
+<blockquote>
+<p>CURL Example to delete a site:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/57b6506a'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> 
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>Duda will return a <code class="prettyprint">204 No Content</code> HTTP code for successful calls. </p>
+
+<h2 id="publish-site">Publish site</h2>
+
+<p>Takes the development version of the site and copies it to a live state. Publishing a site for the first time will also charge your account and create a new subscription unless you have included the test parameter. You can publish a site at any time, which will overwrite the current published version of the site with the current development version.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/publish/{site_name}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>Site Name - URI Prameter</li>
+</ul>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/publish/57b6506a'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> 
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>Duda will return a <code class="prettyprint">204 No Content</code> HTTP code for successful calls. </p>
+
+<h2 id="unpublish-site">Unpublish site</h2>
+
+<p>Removes the site from the production environment. This is good for disabling the site or taking it down temporarily so no one can access it.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/unpublish/{site_name}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>Site Name - URI Prameter</li>
+</ul>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/publish/57b6506a'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> 
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>Duda will return a <code class="prettyprint">204 No Content</code> HTTP code for successful calls. </p>
 
           <h1 id="mobile">Mobile</h1>
 
