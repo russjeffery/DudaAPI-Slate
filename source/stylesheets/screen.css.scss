@@ -134,6 +134,7 @@ html, body {
     li {
       margin: 1em $nav-padding;
       line-height: 1;
+      color:$main-text;
     }
 
     a {
@@ -166,7 +167,7 @@ html, body {
   }
 
   li {
-    /*color: $nav-text;*/
+    color: $nav-text;
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 230ms;
@@ -175,7 +176,7 @@ html, body {
   // This is the currently selected ToC entry
   .tocify-focus {
     color: $nav-active-text;
-    /*background-color:#f1f1f1;*/
+    background-color:$nav-active-bg;
   }
 
   // Subheaders are the submenus that slide open
@@ -191,8 +192,8 @@ html, body {
       padding: $nav-padding-top 0px $nav-padding-top 30px;
     }
 
-    .tocify-focus {
-    background-color:#f1f1f1;
+    li:not(.tocify-focus) {
+      color:$main-text;
     }
 
     // for embossed look:
@@ -627,9 +628,6 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
-ul.tocify-subheader li {
-      color:#313131;
-    }
 .tocify-wrapper p {
   color:#f2f2f2;
   text-align:center;

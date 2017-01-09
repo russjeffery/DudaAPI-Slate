@@ -30,3 +30,13 @@ There are some parts of the API where Duda returns real world content to display
 Language | Language Code
 --------- | -------
 English | en
+Spanish LATAM | es
+German | de
+Portuguese | pt
+Turkish | tr
+English UK | en_gb
+Italian | it
+Dutch | nl
+French | fr
+Indonesian | id
+Polish | pl
