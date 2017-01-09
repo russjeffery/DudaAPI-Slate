@@ -118,7 +118,7 @@
         <ul class="toc-footer">
             <li><a href='#'>Back to Developer Portal</a></li>
             <li><a href='#'>Duda API Terms of Service</a></li>
-            <li><a href='https://github.com/tripit/slate' target="_blank">Documentation Powered by Slate</a></li>
+            <li><a href='https://github.com/lord/slate' target="_blank">Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -187,121 +187,6 @@ Make sure to set the authorization header with your unique API username and API 
 <p>There are some Duda APIs that return date time values. Duda formates these in standard universal full date/time pattern in the UTC timezone. The format is: yyyy-mm-ddThh:mm:ss. So for example: 2016-11-15T22:55:53 would be November 11th, 2016 at 10:55:53 PM UTC.</p>
 
 <p>When sending dates to Duda, you can use the full universal format above, or just the YYYY-MM-DD format. If you omit the time &ndash; DUda will default that time to the beginning of the day. </p>
-
-          <h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight plaintext"><code>require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
 
           <h2 id="errors">Errors</h2>
 
@@ -982,6 +867,345 @@ Remember — a happy kitten is an authenticated kitten!
 <h3 id="return">Return</h3>
 
 <p>Duda will return a <code class="prettyprint">204 No Content</code> HTTP code for successful calls. </p>
+
+<h2 id="duplicate-site">Duplicate site</h2>
+
+<p>Create a duplicate of a single multiscreen site. The new site will not be published and/or will lose the site_domain value provided to the previous site. Any customizations done on the site, within the website builder, will be copied to the new version of the site.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/duplicate/{site_name}</code></p>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/duplicate/57b6506a'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
+    -d <span class="s1">'{"new_default_domain_prefix":"bobspizza"}'</span>
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>Site_Name: URI Parameter</li>
+</ul>
+
+<p>The following prameters can be sent in the body for the new website that will be created. They are all optional</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>new_default_domain_prefix</td>
+<td>String</td>
+<td>If the data set is included, it will set the default prefix domain of the newly duplicated site. For example, if you send bobspizza, the default domain will be: bobspizza.dudaone.com (or bobspizza.multiscreensite.com for partners). This must be a unique value across the system.</td>
+</tr>
+<tr>
+<td>new_external_uid</td>
+<td>String</td>
+<td>Specify a new external_uid (external user id) to the site when duplicating it.</td>
+</tr>
+</tbody></table>
+
+<h3 id="return">Return</h3>
+
+<p>Duda will respond with a <code class="prettyprint">200 OK</code> HTTP status and return a new site_name.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"site_name"</span><span class="p">:</span><span class="s2">"a6119858"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="get-sites-created-between">Get sites created between</h2>
+
+<p>Will return an array of site names created during the given time period. If no from parameter is specified, sites created in the past 7 days will be returned. Will return an array of site names. Please see the section about <a href="#dates">handling dates, above.</a></p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /sites/multiscreen/created?from=2016-03-01&amp;to=2016-03-31</code></p>
+
+<blockquote>
+<p>JSON Return:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="s2">"c27cdebf"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"1aadcb7c"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"0c2b5c42"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"83729462"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"287185af"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"ff82ddc4"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"a6119858"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"57b6506a"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"5876c248"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"6f45aed8"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="url-query-parameters">URL Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Query String</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>Date</td>
+<td>Optional</td>
+<td>Start date to query sites for. If not supllied, defaults to 7 days ago, from the current time.</td>
+</tr>
+<tr>
+<td>to</td>
+<td>Date</td>
+<td>Optional</td>
+<td>End date of when to search for. If not supplied, will default to today.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/created?from=2016-03-01&amp;to=2016-03-09'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> 
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> HTTP code along with an array of site names to be returned for the specified time frame. </p>
+
+<h2 id="get-multiple-sites">Get multiple sites</h2>
+
+<p>Get site details for many sites at once. You can send an array of site names you can retrieve information about multiple sites at once. This is much quicker than calling the retrieve site multiple times. A maximum of 50 sites can be retrieved at once.</p>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/get-many'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+    -d <span class="s1">'[{"site_name":"fb8b8ced"},{"site_name":"76ed3209"}]'</span>
+</code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/get-many</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p>An array of site name strings should be sent in the body of the request. </p>
+
+<h3 id="return">Return</h3>
+
+<blockquote>
+<p>JSON Return Example: </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"sites"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@domain.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"site_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example12.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"site_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"76ed3209"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20022</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"site_default_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"russ12.dudaone.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"preview_site_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://websitebuilder.company.com/preview/76ed3209"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_published_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-23T17:52:14"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_published_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-06-24T17:13:42"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"force_https"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"publish_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUBLISHED"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@domain.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"site_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example3.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"site_business_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pacific Coast Well Drilling"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"75 N Main St"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Templeton"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"93465-5101"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(805) 434-3121"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example@domain.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"opentable_info"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"site_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fb8b8ced"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"site_default_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"russ257.multiscreensite.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"preview_site_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://websitebuilder.company.com/preview/fb8b8ced"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_published_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-05T19:17:17"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_published_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-10T01:02:16"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"force_https"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"certificate_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"publish_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUBLISHED"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Duda will return a sites object with an array of sites. The details of then site values returned will be the exact same as the <a href="#get-site">get site example above</a>, please see there for details about values returned.</p>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response code. </p>
+
+<h2 id="get-all-templates">Get all templates</h2>
+
+<p>Get an array of objects for all templates available to your account. Each template has a set of data associated with it, including the template_id, which is required to create new sites from. Both Duda default templates and custom templates that you create will be returned by this API call. </p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /sites/multiscreen/templates</code></p>
+
+<blockquote>
+<p>Example of returned template data:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yellow Brick Road"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...heme-20004-263"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dd-cdn.multiscreensite.com/t...brick-road.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20004</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Popsicle"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...heme-20002-263"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dd-cdn.multiscreensite.com/t...w/popsicle.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20002</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...heme-20021-263"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dd-cdn.multiscreensite.com/t...ew/medical.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20021</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom2 Template"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...eview/f8b71a68"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dp-cdn.multiscreensite.com/t...nd=[B@676f0be9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000410</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="optional-uri-prameter">Optional URI Prameter</h3>
+
+<p>You can add a <code class="prettyprint">?lang=en</code> URL prameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here.</p>
+
+<h3 id="properties">Properties</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>template_name</td>
+<td>String</td>
+<td>The name of the template.</td>
+</tr>
+<tr>
+<td>preview_url</td>
+<td>URL String</td>
+<td>A direct URL to preview the template. This URL is publically available and does not require authentication.</td>
+</tr>
+<tr>
+<td>thumbnail_url</td>
+<td>URL String</td>
+<td>A direct URL to a JPG image displaying the template. This would be good to use to show in a template selection page.</td>
+</tr>
+<tr>
+<td>template_id</td>
+<td>Int</td>
+<td>A unique number associated with this template. This is used to create the template from.</td>
+</tr>
+<tr>
+<td>template_properties</td>
+<td>Object</td>
+<td>Contains proprieties of the templates. Currently this only contains can_build_from_url</td>
+</tr>
+<tr>
+<td>can_build_from_url</td>
+<td>Bool</td>
+<td>Will be either true or false. If it is false, this means that the template is a custom template which cannot pull content from an external URL while creating the site.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>CURL Example to Get All Templates:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/templates'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response along with the all of the template data (in an array of objects) shown here.</p>
+
+<h2 id="get-template-info">Get template info</h2>
+
+<p>Get the name, preview URL, thumbnail_url, and template ID of a single template. You can use this to get particular images or preview URLs of templates to display to your users. This will allow them to see the variety of templates to choose from. If you want to see the full list of template ID&rsquo;s available, please use the <a href="#get-all-templates">get all templates call</a>.</p>
+
+<blockquote>
+<p>JSON Data Returned:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Italiano"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.com/preview/dm-theme-20012-263"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dd-cdn.multiscreensite.com/themes-panel/preview/italiano.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /sites/multiscreen/templates/{template_id}</code></p>
+
+<h3 id="parameters">Parameters:</h3>
+
+<ul>
+<li>template_id: The specific ID associated with this template. Originally returned via the get all templates API call. </li>
+</ul>
+
+<h3 id="optional-uri-prameter">Optional URI Prameter</h3>
+
+<p>You can add a <code class="prettyprint">?lang=en</code> URL prameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here</p>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/templates/20012'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>You an expect a <code class="prettyprint">200 OK</code> response along with an JSON object that describes the given template. </p>
 
           <h1 id="mobile">Mobile</h1>
 
