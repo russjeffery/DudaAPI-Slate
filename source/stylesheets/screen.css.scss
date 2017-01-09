@@ -124,8 +124,9 @@ html, body {
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
     &.visible {
-      height: 30%;
+      height: auto;
       margin-bottom: 1em;
+      max-height: 230px;
     }
 
     @include embossed-bg;
@@ -165,7 +166,7 @@ html, body {
   }
 
   li {
-    color: $nav-text;
+    /*color: $nav-text;*/
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 230ms;
@@ -174,7 +175,7 @@ html, body {
   // This is the currently selected ToC entry
   .tocify-focus {
     color: $nav-active-text;
-    font-weight: 500!important;
+    /*background-color:#f1f1f1;*/
   }
 
   // Subheaders are the submenus that slide open
@@ -188,6 +189,10 @@ html, body {
       font-size: 14px;
       font-weight:400;
       padding: $nav-padding-top 0px $nav-padding-top 30px;
+    }
+
+    .tocify-focus {
+    background-color:#f1f1f1;
     }
 
     // for embossed look:
@@ -509,8 +514,7 @@ html, body {
     margin: -2px;
     border-radius: 4px;
     border: 1px solid #F7E633;
-    text-shadow: 1px 1px 0 #666;
-    background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
+    background: #F7E633;
   }
 }
 

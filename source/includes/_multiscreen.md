@@ -321,7 +321,7 @@ curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/publish/57b650
 Duda will return a `204 No Content` HTTP code for successful calls. 
 
 ## Unpublish site
-Removes the site from the production environment. This is good for disabling the site or taking it down temporarily so no one can access it.
+Removes the site from the production environment. This is good for disabling the site or taking it down temporarily so no one can access it. This will not delete the website. The website will still exist adn can be published later. 
 
 ### Method and path
 `POST /sites/multiscreen/unpublish/{site_name}`
@@ -340,4 +340,286 @@ curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/publish/57b650
 
 ### Return
 Duda will return a `204 No Content` HTTP code for successful calls. 
+
+## Duplicate site
+
+Create a duplicate of a single multiscreen site. The new site will not be published and/or will lose the site_domain value provided to the previous site. Any customizations done on the site, within the website builder, will be copied to the new version of the site.
+
+### Method and path
+
+`POST /sites/multiscreen/duplicate/{site_name}`
+
+> CURL Example:
+
+```shell
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/duplicate/57b6506a' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'	\ 
+	-d '{"new_default_domain_prefix":"bobspizza"}'
+```
+
+### Parameters 
+- Site_Name: URI Parameter
+
+The following prameters can be sent in the body for the new website that will be created. They are all optional
+
+Property | Type | Description
+---------- | ---------- | ----------
+new_default_domain_prefix | String | If the data set is included, it will set the default prefix domain of the newly duplicated site. For example, if you send bobspizza, the default domain will be: bobspizza.dudaone.com (or bobspizza.multiscreensite.com for partners). This must be a unique value across the system.
+new_external_uid | String | Specify a new external_uid (external user id) to the site when duplicating it. 
+
+### Return
+Duda will respond with a `200 OK` HTTP status and return a new site_name.
+
+```json
+{
+	"site_name":"a6119858"
+}
+```
+
+## Get sites created between
+
+Will return an array of site names created during the given time period. If no from parameter is specified, sites created in the past 7 days will be returned. Will return an array of site names. Please see the section about [handling dates, above.](#dates)
+
+### Method and path
+`GET /sites/multiscreen/created?from=2016-03-01&to=2016-03-31`
+
+> JSON Return:
+
+```json
+[
+   "c27cdebf",
+   "1aadcb7c",
+   "0c2b5c42",
+   "83729462",
+   "287185af",
+   "ff82ddc4",
+   "a6119858",
+   "57b6506a",
+   "5876c248",
+   "6f45aed8"
+]
+```
+
+### URL Query Parameters
+Query String | Type | Required | Description
+---------- | ---------- | ---------- | ----------
+from | Date | Optional | Start date to query sites for. If not supllied, defaults to 7 days ago, from the current time. 
+to | Date | Optional | End date of when to search for. If not supplied, will default to today.
+
+> CURL Example:
+
+```shell
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/created?from=2016-03-01&to=2016-03-09' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'	
+```
+
+### Return
+You can expect a `200 OK` HTTP code along with an array of site names to be returned for the specified time frame. 
+
+## Get multiple sites
+
+Get site details for many sites at once. You can send an array of site names you can retrieve information about multiple sites at once. This is much quicker than calling the retrieve site multiple times. A maximum of 50 sites can be retrieved at once.
+
+> CURL Example:
+
+```shell
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/get-many' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'	\
+	-d '[{"site_name":"fb8b8ced"},{"site_name":"76ed3209"}]'
+```
+
+### Method and path
+
+`POST /sites/multiscreen/get-many`
+
+### Parameters 
+An array of site name strings should be sent in the body of the request. 
+
+### Return
+
+> JSON Return Example: 
+
+```json
+{
+  "sites": [
+    {
+      "account_name": "example@domain.com",
+      "site_domain": "example12.com",
+      "site_name": "76ed3209",
+      "template_id": 20022,
+      "site_default_domain": "russ12.dudaone.com",
+      "preview_site_url": "http://websitebuilder.company.com/preview/76ed3209",
+      "last_published_date": "2015-10-23T17:52:14",
+      "first_published_date": "2014-06-24T17:13:42",
+      "force_https": false,
+      "publish_status": "PUBLISHED"
+    },
+    {
+      "account_name": "example@domain.com",
+      "site_domain": "example3.com",
+      "site_business_info": {
+        "business_name": "Pacific Coast Well Drilling",
+        "address": {
+          "street": "75 N Main St",
+          "city": "Templeton",
+          "state": "CA",
+          "country": "United States",
+          "zip_code": "93465-5101"
+        },
+        "phone_number": "(805) 434-3121",
+        "email": "Example@domain.com",
+        "opentable_info": []
+      },
+      "site_name": "fb8b8ced",
+      "template_id": 20012,
+      "site_default_domain": "russ257.multiscreensite.com",
+      "preview_site_url": "http://websitebuilder.company.com/preview/fb8b8ced",
+      "last_published_date": "2016-07-05T19:17:17",
+      "first_published_date": "2015-08-10T01:02:16",
+      "force_https": true,
+      "certificate_status": "COMPLETE",
+      "publish_status": "PUBLISHED"
+    }
+  ]
+}
+```
+
+Duda will return a sites object with an array of sites. The details of then site values returned will be the exact same as the [get site example above](#get-site), please see there for details about values returned.
+
+You can expect a `200 OK` response code. 
+
+## Get all templates
+
+Get an array of objects for all templates available to your account. Each template has a set of data associated with it, including the template_id, which is required to create new sites from. Both Duda default templates and custom templates that you create will be returned by this API call. 
+
+### Method and path
+
+`GET /sites/multiscreen/templates`
+
+> Example of returned template data:
+
+```json
+[
+	{
+		"template_name": "Yellow Brick Road",
+		"preview_url": "http://example.mobilewebsiteserver.c...heme-20004-263",
+		"thumbnail_url": "https://dd-cdn.multiscreensite.com/t...brick-road.jpg",
+		"template_id": 20004,
+		"template_properties": {
+			"can_build_from_url": true
+		}
+	},
+	{
+		"template_name": "Popsicle",
+		"preview_url": "http://example.mobilewebsiteserver.c...heme-20002-263",
+		"thumbnail_url": "https://dd-cdn.multiscreensite.com/t...w/popsicle.jpg",
+		"template_id": 20002,
+		"template_properties": {
+			"can_build_from_url": true
+		}
+	},
+	{
+		"template_name": "Medical",
+		"preview_url": "http://example.mobilewebsiteserver.c...heme-20021-263",
+		"thumbnail_url": "https://dd-cdn.multiscreensite.com/t...ew/medical.jpg",
+		"template_id": 20021,
+		"template_properties": {
+			"can_build_from_url": true
+		}
+	},
+	{
+		"template_name": "Custom2 Template",
+		"preview_url": "http://example.mobilewebsiteserver.c...eview/f8b71a68",
+		"thumbnail_url": "https://dp-cdn.multiscreensite.com/t...nd=[B@676f0be9",
+		"template_id": 1000410,
+		"template_properties": {
+			"can_build_from_url": false
+		}
+	}
+]
+```
+
+### Optional URI Prameter
+
+You can add a `?lang=en` URL prameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here.
+
+### Properties
+
+Property | Type | Description
+---------- | ---------- | ----------
+template_name | String | The name of the template.
+preview_url | URL String | A direct URL to preview the template. This URL is publically available and does not require authentication.
+thumbnail_url | URL String | A direct URL to a JPG image displaying the template. This would be good to use to show in a template selection page. 
+template_id | Int | A unique number associated with this template. This is used to create the template from. 
+template_properties | Object | Contains proprieties of the templates. Currently this only contains can_build_from_url
+can_build_from_url | Bool | Will be either true or false. If it is false, this means that the template is a custom template which cannot pull content from an external URL while creating the site. 
+
+> CURL Example to Get All Templates:
+
+```shell
+curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/templates' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+### Return
+
+You can expect a `200 OK` response along with the all of the template data (in an array of objects) shown here.
+
+## Get template info
+
+Get the name, preview URL, thumbnail_url, and template ID of a single template. You can use this to get particular images or preview URLs of templates to display to your users. This will allow them to see the variety of templates to choose from. If you want to see the full list of template ID's available, please use the [get all templates call](#get-all-templates).
+
+> JSON Data Returned:
+
+```json
+{
+	"template_name": "Italiano",
+	"preview_url": "http://example.mobilewebsiteserver.com/preview/dm-theme-20012-263",
+	"thumbnail_url": "https://dd-cdn.multiscreensite.com/themes-panel/preview/italiano.jpg",
+	"template_id": 20012,
+	"template_properties": {
+		"can_build_from_url": true
+	}
+}
+```
+
+### Method and path
+
+`GET /sites/multiscreen/templates/{template_id}`
+
+### Parameters: 
+
+- template_id: The specific ID associated with this template. Originally returned via the get all templates API call. 
+
+### Optional URI Prameter
+
+You can add a `?lang=en` URL prameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here
+
+> CURL Example:
+
+```shell
+curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/templates/20012' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+### Return
+
+You an expect a `200 OK` response along with an JSON object that describes the given template. 
+
+## Create template from site
+
+Take an existing website and turn it into a template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and also be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).
+
+### Method and path
+
+`POST /sites/multiscreen/template/fromsite`
+
+### Parameters
+
+Send the following 
 

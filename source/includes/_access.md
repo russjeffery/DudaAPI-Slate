@@ -14,10 +14,19 @@ The documentation here assumes that you will combine the endpoint with the path 
 
 ## Schema
 
-All data passed by the Duda API will be in JSON representation. We currently only support this format of data transfer.
+All data passed to and from the Duda API will be in JSON representation. We currently only support this format of data transfer.
 
 ## Dates
 
 There are some Duda APIs that return date time values. Duda formates these in standard universal full date/time pattern in the UTC timezone. The format is: yyyy-mm-ddThh:mm:ss. So for example: 2016-11-15T22:55:53 would be November 11th, 2016 at 10:55:53 PM UTC.
 
 When sending dates to Duda, you can use the full universal format above, or just the YYYY-MM-DD format. If you omit the time -- DUda will default that time to the beginning of the day. 
+
+## Langauges
+
+There are some parts of the API where Duda returns real world content to display to users. As part of this, we are able to deliver localized content. Below you will see a full list of languages that the Duda platform (UI) is localized for along with their corresponding language codes. 
+
+
+Language | Language Code
+--------- | -------
+English | en
