@@ -180,13 +180,69 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h2 id="schema">Schema</h2>
 
-<p>All data passed by the Duda API will be in JSON representation. We currently only support this format of data transfer.</p>
+<p>All data passed to and from the Duda API will be in JSON representation. We currently only support this format of data transfer.</p>
 
 <h2 id="dates">Dates</h2>
 
 <p>There are some Duda APIs that return date time values. Duda formates these in standard universal full date/time pattern in the UTC timezone. The format is: yyyy-mm-ddThh:mm:ss. So for example: 2016-11-15T22:55:53 would be November 11th, 2016 at 10:55:53 PM UTC.</p>
 
 <p>When sending dates to Duda, you can use the full universal format above, or just the YYYY-MM-DD format. If you omit the time &ndash; DUda will default that time to the beginning of the day. </p>
+
+<h2 id="langauges">Langauges</h2>
+
+<p>There are some parts of the API where Duda returns real world content to display to users. As part of this, we are able to deliver localized content. Below you will see a full list of languages that the Duda platform (UI) is localized for along with their corresponding language codes. </p>
+
+<table><thead>
+<tr>
+<th>Language</th>
+<th>Language Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>English</td>
+<td>en</td>
+</tr>
+<tr>
+<td>Spanish LATAM</td>
+<td>es</td>
+</tr>
+<tr>
+<td>German</td>
+<td>de</td>
+</tr>
+<tr>
+<td>Portuguese</td>
+<td>pt</td>
+</tr>
+<tr>
+<td>Turkish</td>
+<td>tr</td>
+</tr>
+<tr>
+<td>English UK</td>
+<td>en_gb</td>
+</tr>
+<tr>
+<td>Italian</td>
+<td>it</td>
+</tr>
+<tr>
+<td>Dutch</td>
+<td>nl</td>
+</tr>
+<tr>
+<td>French</td>
+<td>fr</td>
+</tr>
+<tr>
+<td>Indonesian</td>
+<td>id</td>
+</tr>
+<tr>
+<td>Polish</td>
+<td>pl</td>
+</tr>
+</tbody></table>
 
           <h2 id="errors">Errors</h2>
 
@@ -844,7 +900,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h2 id="unpublish-site">Unpublish site</h2>
 
-<p>Removes the site from the production environment. This is good for disabling the site or taking it down temporarily so no one can access it.</p>
+<p>Removes the site from the production environment. This is good for disabling the site or taking it down temporarily so no one can access it. This will not delete the website. The website will still exist adn can be published later. </p>
 
 <h3 id="method-and-path">Method and path</h3>
 
@@ -1206,6 +1262,550 @@ Make sure to set the authorization header with your unique API username and API 
 <h3 id="return">Return</h3>
 
 <p>You an expect a <code class="prettyprint">200 OK</code> response along with an JSON object that describes the given template. </p>
+
+<h2 id="create-template-from-site">Create template from site</h2>
+
+<p>Take an existing website and turn it into a template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and also be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/template/fromsite</code></p>
+
+<blockquote>
+<p>Example JSON to send:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"site_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"66cbb9b7"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"new_template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Template"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<p>Send the following parameters when creating a new template: </p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>site_name</td>
+<td>String</td>
+<td>Required</td>
+<td>A valid site name of an existing website. Originally returned after creating the website.</td>
+</tr>
+<tr>
+<td>new_template_name</td>
+<td>String</td>
+<td>Required</td>
+<td>A name for the template you are creating.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example to create template: </p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/template/fromsite'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
+    -d <span class="s1">'{"site_name": "66cbb9b7","new_template_name": "Example Template"}'</span>
+</code></pre>
+
+<h3 id="response">Response:</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response code along side a template object that describes the new template.</p>
+
+<blockquote>
+<p>JSON Return:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Template"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...eview/365dd849"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dp-cdn.multiscreensite.com/t...nd=[B@311b938d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000408</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<aside class="notice">Often when first creating a template, the thumbnail_url returned is a generic placeholder image. Duda will automatically generate a thumbnail image of the template as an asynchronous process that is often available a while after the initial template creation.</aside>
+
+<h2 id="create-template-from-template">Create template from template</h2>
+
+<p>Take an existing template and turn it into a new template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and also be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/template/fromtemplate</code></p>
+
+<blockquote>
+<p>Example JSON to send:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000410</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"new_template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Template"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<p>Send the following parameters when creating a new template: </p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>template_id</td>
+<td>Int</td>
+<td>Required</td>
+<td>An ID of an already existing website template.</td>
+</tr>
+<tr>
+<td>new_template_name</td>
+<td>String</td>
+<td>Required</td>
+<td>A name for the template you are creating.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example to create template: </p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/template/fromtemplate'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
+    -d <span class="s1">'{"template_id":20012,"new_template_name": "Example Template"}'</span>
+</code></pre>
+
+<h3 id="response">Response:</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response code along side a template object that describes the new template.</p>
+
+<blockquote>
+<p>JSON Return:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Template"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...eview/365dd849"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dp-cdn.multiscreensite.com/t...nd=[B@311b938d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000410</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<aside class="notice">Often when first creating a template, the thumbnail_url returned is a generic placeholder image. Duda will automatically generate a thumbnail image of the template as an asynchronous process that is often available a while after the initial template creation.</aside>
+
+<h2 id="delete-custom-template">Delete custom template</h2>
+
+<p>Delete a previously created custom template. This will not delete any sites that have been created from the template, but it will remove it from your list of available templates.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">DELETE /sites/multiscreen/templates/{template_id}</code></p>
+
+<h3 id="uri-parameters">URI Parameters:</h3>
+
+<ul>
+<li>template_id: The unique ID of the template; </li>
+</ul>
+<pre class="highlight shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/template/100041'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>Upon successful deletion a <code class="prettyprint">204 No Content</code> HTTP code will be returned. </p>
+
+<h2 id="update-custom-template">Update custom template</h2>
+
+<p>Update the name of an existing custom template.</p>
+
+<blockquote>
+<p>Example JSON to send:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"new_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New template name"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/templates/{template_id}</code></p>
+
+<h3 id="uri-parameters">URI Parameters</h3>
+
+<ul>
+<li>new_name: A string that contains a new name you want for the template.</li>
+</ul>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/template/100041'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+    -d <span class="s1">'{"new_name":"New template name"}'</span>
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>Upon successful update a <code class="prettyprint">204 No Content</code> HTTP response code will be returned.</p>
+
+<h2 id="get-recently-published-sties">Get recently published sties</h2>
+
+<p>Get a list of recently published websites in your account, for a specific amount of days. This returns results of all sites that have been published recently, either for an ongoing website update or for the first time. This can be used in conjunction with the get site to see the status of the website for billing reasons. You can call this API to get recently published websites, then get the actual status of the website by calling the get site to see if it is published, unpublished or has never been published.</p>
+
+<p>If you do not pass a lastDays value, then Duda will return results for the last 7 days by default.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /sites/multiscreen/published</code></p>
+
+<blockquote>
+<p>JSON Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w"> 
+</span><span class="s2">"a75b4ddc"</span><span class="p">,</span><span class="w"> 
+</span><span class="s2">"d2f8eded"</span><span class="w"> 
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="uri-parameters">URI Parameters:</h3>
+
+<ul>
+<li>lastDays: The number of days in which you would like get sites that have been published. </li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>Duda will return a <code class="prettyprint">200 OK</code> response code along with an array of strings that are Duda Site_name values. </p>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/published?lastDays=30'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h2 id="get-recently-unpublished-sties">Get recently unpublished sties</h2>
+
+<p>Get a list of recently unpublished websites in your account, for a specific amount of days. This returns results of all sites that have been unpublished recently, which usually means the website was canceled. This can be used in conjunction with the get site to see the status of the website for billing reasons. You can call this API to get recently unpublished websites, then get the actual status of the website by calling the get site to see if it is published or unpublished.</p>
+
+<p>If you do not pass a lastDays value, then we will return results for the last 7 days by default.</p>
+
+<blockquote>
+<p>JSON Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w"> 
+</span><span class="s2">"a75b4ddc"</span><span class="p">,</span><span class="w"> 
+</span><span class="s2">"d2f8eded"</span><span class="w"> 
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /sites/multiscreen/unpublished</code></p>
+
+<h3 id="uri-parameters">URI Parameters:</h3>
+
+<ul>
+<li>lastDays: The number of days in which you would like get sites that have been published. </li>
+</ul>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/unpublished?lastDays=30'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>Duda will return a <code class="prettyprint">200 OK</code> response code along with an array of strings that are Duda Site_name values. </p>
+
+<h2 id="get-contact-form-data">Get Contact Form Data</h2>
+
+<p>Get all the contact form submissions that happened on this site. This call will return an array of each contact form submission.</p>
+
+<blockquote>
+<p>Example JSON Response: </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"form_title"</span><span class="p">:</span><span class="s2">"Contact Us"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"Name"</span><span class="p">:</span><span class="s2">"test3"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Phone"</span><span class="p">:</span><span class="s2">"123-123-1234"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Dropdown"</span><span class="p">:</span><span class="s2">"Option 2"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Email"</span><span class="p">:</span><span class="s2">"test@test.com"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Message"</span><span class="p">:</span><span class="s2">"test message"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Radio button"</span><span class="p">:</span><span class="s2">"Option 2"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Date"</span><span class="p">:</span><span class="s2">"02/05/2014"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Check box"</span><span class="p">:</span><span class="s2">"Option 2"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2014-05-08T23:12:06"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"form_title"</span><span class="p">:</span><span class="s2">"Contact Us"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"Name"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Phone"</span><span class="p">:</span><span class="s2">"abcc"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Email"</span><span class="p">:</span><span class="s2">"test@test.com"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"Message"</span><span class="p">:</span><span class="s2">"123"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2014-05-08T22:34:50"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /sites/multiscreen/get-forms/{site_name}</code></p>
+
+<h3 id="required-parameters">Required Parameters:</h3>
+
+<ul>
+<li>site_name</li>
+</ul>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<p>You can add on additional <em>to</em> or <em>from</em> URL parameters onto the full URL to decide which date range you would like to get contact form details from. These should be in <a href="#dates">standard date format</a>.</p>
+
+<aside class="notice">Duda will return all contact form messages that have been submitted to the site. Each form on the site has a *form title*, controlled in the Duda Editor, which will allow you to tell which contact form on the site this is from.</aside>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/get-forms/b4ra2g?from=2017-01-01&amp;to=2017-01-30'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h2 id="generate-ssl-certificate">Generate SSL Certificate</h2>
+
+<p>Generate a SSL certificate for a specific website. This will enable a HTTPS connection between site visitors and the Duda platform. It usually takes 15-30 minutes to successfully generate a SSL certificate for a website. You can get the status of the SSL certificate by calling the <a href="#get-site">GET site API</a> and checking the certificate_status parameter. Once the certificate is successfully generated, all website visitors will be redirected to the HTTPS connection. This can be disabled on by updating the site force_https value to false. You do not need to worry about renewing the certificate, as Duda will do this automatically.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/{site_name}/certificate</code></p>
+
+<p>URI Parameter:
+- site_name</p>
+
+<h3 id="return">Return</h3>
+
+<p>Upon success, Duda will return a <code class="prettyprint">204 No Content</code> HTTP code.</p>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/b4ra2g/certificate'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<aside class="warning">Before sending this API call, it&rsquo;s important that the domain is succesfully pointed to Duda&rsquo;s servers. We only currently offer Domain Verified (DV) certificates. As part of the API call, Duda will verify that the domain is correctly pointing at the platform. If it is not, Duda will return an error.</aside>
+
+<h2 id="delete-ssl-certificate">Delete SSL Certificate</h2>
+
+<p>Delete a certificate that has been gerneated for a website. This will ensure that the website is served over only a HTTP (unsecure) connection and will delete the generated certificate.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">DELETE /sites/multiscreen/{site_name}/certificate</code></p>
+
+<p>URI Parameter:
+- site_name</p>
+
+<h3 id="return">Return</h3>
+
+<p>Upon success, Duda will return a <code class="prettyprint">204 No Content</code> HTTP code.</p>
+<pre class="highlight shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/b4ra2g/certificate'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h2 id="create-site-backup">Create Site Backup</h2>
+
+<p>Create a new backup of a site. This is used for saving the existing state of a site. Good for saving a restore point before a user starts to edit a site or after work has been completeled.</p>
+
+<aside class="notice">Each site can have a maximum of 10 manually created backup versions and 20 that are automatically created upon each publish of the site (30 in total). Backups that are automatically created will have a name such as: sitename_Auto_4</aside>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/backups/{site_name}/create</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>site_name</li>
+</ul>
+
+<blockquote>
+<p>Example JSON to send:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"QA-Complete"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="body-parameters">Body Parameters</h3>
+
+<p>You can define the name of the backup:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Optional</td>
+<td>Set the name of the backup you are creating.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+    -d <span class="s1">'{"name":"QA-Complete"}''
+</span></code></pre>
+
+<blockquote>
+<p>Returned data:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"backup_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QA-Complete"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<aside class="warning">The name of the backup cannot contain a space.</aside>
+
+<h3 id="return">Return</h3>
+
+<p>Upon success, Duda will return a <code class="prettyprint">200 OK</code> HTTP response code along with the backup_name of the created backup. </p>
+
+<h2 id="get-site-backups">Get Site Backups</h2>
+
+<p>Get an array of existing site backups/versions. A backup can be created from inside of the editor (or by API) and is also automatically created every time the site is published. </p>
+
+<blockquote>
+<p>Example JSON return:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2014-06-07T11:18:51"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"russ7_Auto_3"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2014-06-07T11:19:02"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"russ7_Auto_4"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2014-06-07T11:19:13"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"russ7_Auto_5"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2014-06-07T11:19:21"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"russ7_Auto_6"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2014-06-07T11:29:49"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"russ7_Auto_7"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2014-06-07T11:33:21"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"ManualBackup_1"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /sites/multiscreen/backups/{site_name}</code></p>
+
+<h3 id="uri-parameters">URI Parameters:</h3>
+
+<ul>
+<li>site_name</li>
+</ul>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>Upon succesfull call, Duda will return a <code class="prettyprint">200 OK</code> response code along with the array of data objects in the body. </p>
+
+<h2 id="restore-site">Restore Site</h2>
+
+<p>Restore a site from an existing backup. This will fully restore the site back to the state it was in at the time of the backup creation. When restoring a site, a backup is automatically made of the site before restoring the backup. You will be able to see the backup that is created via the Get Site Backups call.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /sites/multiscreen/backups/{site_name}/restore/{backup_name}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>site_name</li>
+<li>backup_name - Obtained from the get backup name API call</li>
+</ul>
+
+<blockquote>
+<p>Example: </p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>Upon success, Duda will return a <code class="prettyprint">204 No Content</code> HTTP status code. </p>
+
+<h2 id="delete-site-backup">Delete Site Backup</h2>
+
+<p>Permanently delete a site backup. There is no way to restore or gain access to deleted site backups.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">DELETE /sites/multiscreen/backups/{site_name}/restore/{backup_name}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>site_name</li>
+<li>backup_name - Obtained from the get backup name API call</li>
+</ul>
+
+<blockquote>
+<p>Example: </p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>Upon success, Duda will return a <code class="prettyprint">204 No Content</code> HTTP status code. </p>
 
           <h1 id="mobile">Mobile</h1>
 
