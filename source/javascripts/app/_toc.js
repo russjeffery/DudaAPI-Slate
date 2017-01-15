@@ -13,14 +13,14 @@
   var makeToc = function() {
     global.toc = $("#toc").tocify({
       selectors: 'h1, h2',
-      extendPage: false,
+      extendPage: true,
       theme: 'none',
       smoothScroll: false,
       showEffectSpeed: 0,
       hideEffectSpeed: 180,
       ignoreSelector: '.toc-ignore',
       highlightOffset: 60,
-      scrollTo: -1,
+      scrollTo: 0,
       scrollHistory: true,
       hashGenerator: function (text, element) {
         return element.prop('id');
@@ -35,6 +35,15 @@
 
     $(".page-wrapper").click(closeToc);
     $(".tocify-item").click(closeToc);
+
+    //Russ - Prevent background body scrolling when scrolling TOC
+    $(".tocify-wrapper").mouseenter( 
+      function(){
+        document.body.style.overflowY="hidden"
+      }).mouseleave( 
+      function(){
+        document.body.style.overflowY="auto"
+      });
   };
 
   // Hack to make already open sections to start opened,
@@ -54,4 +63,3 @@
     });
   });
 })(window);
-

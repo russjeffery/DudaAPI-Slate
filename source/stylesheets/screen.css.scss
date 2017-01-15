@@ -176,7 +176,7 @@ html, body {
   // This is the currently selected ToC entry
   .tocify-focus {
     color: $nav-active-text;
-    background-color:$nav-active-bg;
+    font-weight: 500;
   }
 
   // Subheaders are the submenus that slide open
@@ -190,6 +190,11 @@ html, body {
       font-size: 14px;
       font-weight:400;
       padding: $nav-padding-top 0px $nav-padding-top 30px;
+    }
+
+    .tocify-focus {
+      background-color:$nav-active-bg;
+      font-weight: 400;
     }
 
     li:not(.tocify-focus) {
@@ -631,4 +636,37 @@ html, body {
 .tocify-wrapper p {
   color:#f2f2f2;
   text-align:center;
+}
+
+.tocify-subheader {
+  li::before{
+    font-size: 14px;
+    font-weight: 300;
+    color: #ccc;
+    padding: 5px 0 5px 20px;
+    background-color: #fff;
+    display: block;
+  }
+  li[data-unique='get-all-templates']::before {
+    content:"Templates";
+  }
+  li[data-unique='create-site']::before {
+    content:"Sites";
+  }
+  li[data-unique='get-recently-published-sties']::before {
+    content:"Reporting";
+  }
+  li[data-unique='generate-ssl-certificate']::before {
+    content:"SSL Certificates";
+  }
+  li[data-unique='create-site-backup']::before {
+    content:"Backups";
+  }
+  li[data-unique='get-pages']::before {
+    content:"Pages";
+  }
+  li[data-unique='inject-content']::before {
+    content:"Content";
+  }
+
 }

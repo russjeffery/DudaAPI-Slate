@@ -32,7 +32,7 @@ Call the DudaAPI to create a new multiscreen site. This site will be created in 
 				"street": "1 Market Street",
 				"zip_code": "94111"
 			},
-			"opentable_info":[
+			"opentable_info": [
 				{
 					"restaurant_id":"55123",
 					"location":"Downtown",
@@ -58,7 +58,7 @@ Call the DudaAPI to create a new multiscreen site. This site will be created in 
 Property | Type | Required | Description
 ---------- | ---------- | ---------- | ----------
 template_id | Int | Required | Template ID of the template you want to base your new Responsive site on. You can see the API to get available templates [here](#get-templates).
-url | String | optional | Have Duda import content into the new site based off of an existing website. You may use an existing website address or Facebook business page. 
+url | String | optional | Have Duda import content into the new site based from an existing website. You may use an existing website address or Facebook business page. 
 default_domain_prefix | String | optional | Set the default sub-domain for your site. This controls the <sub-domain-prefix>.dudaone.com address. 
 site_data | Object | optional | JSON object containing additional site data. See below for the options and properties.
 site_alternate_domain | Object | optional | Set alternate domains for the site. The alternate domain values will be redirected to the primary domain (set in the site_data object). 
@@ -72,7 +72,7 @@ external_uid | string | optional | A flexible string you pass to Duda when creat
 business_site_info | Object | optional | Pass Duda detailed information about this business / website.
 
 ###site_business_info object
-Provides structured data about a website or business. Duda will use this information to help populate the website with this data and fill the [content library](https://help.dudamobile.com/hc/en-us/articles/229790908-Manage-Content-Library) with data. All of the data fields are optional.
+Provides structured data about a website or business. Duda will use this information to help populate the website with this data and fill the [content library](https://help.dudamobile.com/hc/en-us/articles/229790908-Manage-Content-Library) with data. All data fields are optional.
 
 <aside class="notice">If you pass business_site_info during site create, this will trigger Duda's content import algorithm and we will attempt to import content from across the web based on the input data. This might result in a longer response time to create the website.</aside>
 
@@ -89,7 +89,7 @@ Providing an address helps the site creation process by giving Duda more informa
 
 Property | Type | Description
 ---------- | ---------- | ----------
-Street | String | A street level line location (e.g. 123 Main Strett)
+Street | String | A street level line location (e.g. 123 Main Street)
 State | String | The state of where the business is located
 Country | String | The country of where the business is located
 zip_code | String | The Zip Code or Postal Code of the business
@@ -101,7 +101,7 @@ Property | Type | Description
 ---------- | ---------- | ----------
 restaurant_id | String | The unique OpenTable Restaurant ID. (e.g. 55123)
 location | String | A description of the location (e.g. Downtown)
-country | String | Two digit country location (e.g. US, DE, JA)
+country | String | Two-digit country location (e.g. US, DE, JA)
 
 ### Site_alternate_domain object 
 Allows you to define alternate or secondary domains associated with this site. By default, these domains will be 301 redirected to the primary domain. If you change the is_redirect value to false, the alternate domains will resolve the website instead of performing the redirect. Each alternate domain will need to have its DNS settings configured the same way as the primary domain, read here for how to set these up. 
@@ -139,7 +139,7 @@ Get information about an already existing website. You will need the site_name v
 `GET /sites/multiscreen/{site_name}`
 
 ### Required URI Parameters
-site_name - URL Prameter. Originally returned when first creating a website.
+site_name - URL Parameter. Originally returned when first creating a website.
 
 > Response JSON from GET Site:
 
@@ -188,9 +188,9 @@ site_domain | String | The primary domain currently assigned to the site
 site_default_domain | String | Will return the default sub-domain of the site. This value will look like: <site_name>.dudaone.com or <site_name>.mutliscreensite.com (partners only). This will be returned even if the site is not published, the site is only accessible on this domain if it is published
 site_name | String | The unique site name of the site, should be the same as the site_name returned during the creation of the site
 account_name | String | The name (usually an email address) of the account that owns the site
-preview_site_url | String | A direct URL to a the three-screen preview of the website in it's current state while in design. This white labeled URL non-authenticated and can be accessed by anyone online
+preview_site_url | String | A direct URL to a the three-screen preview of the website in its current state while in design. This white labeled URL non-authenticated and can be accessed by anyone online
 last_published_date | date time | The date of the most recent publication of the website. 
-first_published_date | date time | The date of when this website was first published. Note that if you unpublish the website and republish it, the first_published_date will not change
+first_published_date | date time | The date of when this website was first published. Note that if you unpublished the website and republish it, the first_published_date will not change
 publish_status | String | The current status of the website.  There are three possible values. (1) PUBLISHED: The website is live, published and being paid for. (2) UNPUBLISHED: The website was once published, but is now canceled and not available online. (3) NOT_YET_PUBLISHED: Means the site has never been published before
 business_site_info | Object | [See above (in the create site section) for details of the business_info returned](#site_business_info-object). Duda will only return data that it has about the site
 external_uid | String | Optional placeholder to be used to reference/link the created Site to some unique identifier origin from external system
@@ -205,8 +205,8 @@ curl -X GET https://api.dudamobile.com/api/sites/multiscreen/57b6506a \
 	-H 'Content-Type: application/json' 
 ```
 
-## Get Sites by External ID
-This will return a list of all site ID's that have the external ID value provided  when creating or updating the website. The external ID value is not a unique value in the Duda system -- so multiple sites can have the same external ID value. 
+## Get sites by external id
+This will return a list of all site ID's that have the external ID value provided when creating or updating the website. The external ID value is not a unique value in the Duda system -- so multiple sites can have the same external ID value. 
 
 `GET /sites/multiscreen/byexternalid/{external_uid}`
 
@@ -218,7 +218,7 @@ This will return a list of all site ID's that have the external ID value provide
 
 Duda will return an array of site_names for each website that has the matching external ID value. 
 
-You should expect a 200 HTTP responce code with the array of site names in the body of the response. 
+You should expect a 200 HTTP response code with the array of site names in the body of the response. 
 
 > Example return: 
 
@@ -237,7 +237,7 @@ You can use this call to update properties about a site that is already created.
 
 ### Required Parameters
 
-- Site Name - URI Prameter
+- Site Name - URI Parameter
 
 > Example JSON to send: 
 
@@ -256,7 +256,7 @@ You can use this call to update properties about a site that is already created.
 }
 ```
 
-### Prameters to send
+### Parameters to send
 Property | Type | Description
 ---------- | ---------- | ----------
 site_domain | String ([FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)) | The domain of the site you want to use. Note that the domain value is unique across the entire Duda system. 
@@ -285,7 +285,7 @@ This will immediately and permanently delete the site and cancel any subscriptio
 `DELETE /sites/multiscreen/{site_name}`
 
 ### Parameters
-- Site Name: URI Prameter
+- Site Name: URI Parameter
 
 > CURL Example to delete a site:
 
@@ -307,7 +307,7 @@ Takes the development version of the site and copies it to a live state. Publish
 
 ### Parameters
 
-- Site Name - URI Prameter
+- Site Name - URI Parameter
 
 > CURL Example:
 
@@ -321,14 +321,14 @@ curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/publish/57b650
 Duda will return a `204 No Content` HTTP code for successful calls. 
 
 ## Unpublish site
-Removes the site from the production environment. This is good for disabling the site or taking it down temporarily so no one can access it. This will not delete the website. The website will still exist adn can be published later. 
+Removes the site from the production environment. This is good for disabling the site or taking it down temporarily so no one can access it. This will not delete the website. The website will still exist and can be published later. 
 
 ### Method and path
 `POST /sites/multiscreen/unpublish/{site_name}`
 
 ### Parameters
 
-- Site Name - URI Prameter
+- Site Name - URI Parameter
 
 > CURL Example:
 
@@ -361,7 +361,7 @@ curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/duplicate/57b6
 ### Parameters 
 - Site_Name: URI Parameter
 
-The following prameters can be sent in the body for the new website that will be created. They are all optional
+The following parameters can be sent in the body for the new website that will be created. They are all optional
 
 Property | Type | Description
 ---------- | ---------- | ----------
@@ -487,7 +487,7 @@ An array of site name strings should be sent in the body of the request.
 }
 ```
 
-Duda will return a sites object with an array of sites. The details of then site values returned will be the exact same as the [get site example above](#get-site), please see there for details about values returned.
+Duda will return a sites object with an array of sites. The details of the site values returned will be the exact same as the [get site example above](#get-site), please see there for details about values returned.
 
 You can expect a `200 OK` response code. 
 
@@ -542,9 +542,9 @@ Get an array of objects for all templates available to your account. Each templa
 ]
 ```
 
-### Optional URI Prameter
+### Optional URI Parameter
 
-You can add a `?lang=en` URL prameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here.
+You can add a `?lang=en` URL parameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here.
 
 ### Properties
 
@@ -567,7 +567,7 @@ curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/templates' \
 
 ### Return
 
-You can expect a `200 OK` response along with the all of the template data (in an array of objects) shown here.
+You can expect a `200 OK` response along with the all the template data (in an array of objects) shown here.
 
 ## Get template info
 
@@ -595,9 +595,9 @@ Get the name, preview URL, thumbnail_url, and template ID of a single template. 
 
 - template_id: The specific ID associated with this template. Originally returned via the get all templates API call. 
 
-### Optional URI Prameter
+### Optional URI Parameter
 
-You can add a `?lang=en` URL prameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here
+You can add a `?lang=en` URL parameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here
 
 > CURL Example:
 
@@ -609,17 +609,805 @@ curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/templates/20012
 
 ### Return
 
-You an expect a `200 OK` response along with an JSON object that describes the given template. 
+You can expect a `200 OK` response along with an JSON object that describes the given template. 
 
 ## Create template from site
 
-Take an existing website and turn it into a template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and also be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).
+Take an existing website and turn it into a template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).
 
 ### Method and path
 
 `POST /sites/multiscreen/template/fromsite`
 
+> Example JSON to send:
+
+```json
+{
+    "site_name": "66cbb9b7",
+    "new_template_name": "Example Template"
+}
+```
+
 ### Parameters
 
-Send the following 
+Send the following parameters when creating a new template: 
 
+Property | Type | Required | Description
+---------- | ---------- | ---------- | ----------
+site_name | String | Required | A valid site name of an existing website. Originally returned after creating the website. 
+new_template_name | String | Required | A name for the template you are creating. 
+
+> Example to create template: 
+
+```shell
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/template/fromsite' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json' \ 
+	-d '{"site_name": "66cbb9b7","new_template_name": "Example Template"}'
+```
+### Response:
+You can expect a `200 OK` response code alongside a template object that describes the new template.
+
+> JSON Return:
+
+```json
+{
+    "template_name": "Example Template",
+    "preview_url": "http://example.mobilewebsiteserver.c...eview/365dd849",
+    "thumbnail_url": "https://dp-cdn.multiscreensite.com/t...nd=[B@311b938d",
+    "template_id": 1000408,
+    "template_properties": {
+        "can_build_from_url": false
+    }
+}
+```
+
+<aside class="notice">Often when first creating a template, the thumbnail_url returned is a generic placeholder image. Duda will automatically generate a thumbnail image of the template as an asynchronous process that is often available a while after the initial template creation.</aside>
+
+## Create template from template
+
+Take an existing template and turn it into a new template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).
+
+### Method and path
+
+`POST /sites/multiscreen/template/fromtemplate`
+
+> Example JSON to send:
+
+```json
+{
+    "template_id": 1000410,
+    "new_template_name": "Example Template"
+}
+```
+
+### Parameters
+
+Send the following parameters when creating a new template: 
+
+Property | Type | Required | Description
+---------- | ---------- | ---------- | ----------
+template_id | Int | Required | An ID of an already existing website template.
+new_template_name | String | Required | A name for the template you are creating. 
+
+> Example to create template: 
+
+```shell
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/template/fromtemplate' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json' \ 
+	-d '{"template_id":20012,"new_template_name": "Example Template"}'
+```
+### Response:
+You can expect a `200 OK` response code alongside a template object that describes the new template.
+
+> JSON Return:
+
+```json
+{
+    "template_name": "Example Template",
+    "preview_url": "http://example.mobilewebsiteserver.c...eview/365dd849",
+    "thumbnail_url": "https://dp-cdn.multiscreensite.com/t...nd=[B@311b938d",
+    "template_id": 1000410,
+    "template_properties": {
+        "can_build_from_url": false
+    }
+}
+```
+
+<aside class="notice">Often when first creating a template, the thumbnail_url returned is a generic placeholder image. Duda will automatically generate a thumbnail image of the template as an asynchronous process that is often available a while after the initial template creation.</aside>
+
+## Delete custom template
+
+Delete a previously created custom template. This will not delete any sites that have been created from the template, but it will remove it from your list of available templates.
+
+### Method and path
+
+`DELETE /sites/multiscreen/templates/{template_id}`
+
+### URI Parameters:
+- template_id: The unique ID of the template; 
+
+```shell
+curl -X DELETE -k 'https://api.dudamobile.com/api/sites/multiscreen/template/100041' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+### Response
+
+Upon successful deletion, a `204 No Content` HTTP code will be returned. 
+
+## Update custom template 
+
+Update the name of an existing custom template.
+
+> Example JSON to send:
+
+```json
+{
+    "new_name": "New template name"
+}
+```
+
+### Method and path
+
+`POST /sites/multiscreen/templates/{template_id}`
+
+### URI Parameters
+
+- new_name: A string that contains a new name you want the template.
+
+```shell 
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/template/100041' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json' \
+	-d '{"new_name":"New template name"}'
+```
+### Return 
+
+Upon successful update a `204 No Content` HTTP response code will be returned.
+
+## Get pages
+
+Get all pages that exist within the website. Returns an array of objects that describes each page of the site. 
+
+### Method and path
+
+`GET /api/sites/multiscreen/site/{site_name}/pages`
+
+> CURL Example:
+
+```shell
+curl -X GET -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+> JSON Representation:
+
+```json
+[
+	{
+		"page_name": "home",
+		"page_title": "Home"
+	},
+	{
+		"page_name": "services111",
+		"page_title": "Services"
+	},
+	{
+		"page_name": "contact",
+		"page_title": "Contact"
+	}
+]
+```
+### Properties required
+- site_name - Internal Site Reference
+
+### Properties returned
+
+Property | Type | Description
+---------- | ---------- | ----------
+page_name | String | The internal name/reference for the page. This value is also the URL where this page will be available once the site is published. 
+page_title | String | The title of the page in the navigation of the site and also in the pages menu. 
+
+### Return
+
+You can expect a `200 OK` response code with an array of JSON objects describing each page. 
+
+## Update page
+
+Update an existing page on the website. You need to pass the page_title (returned via the [GET Pages](#get-pages) API Call). 
+
+### Method and path
+
+`POST /api/sites/multiscreen/site/{siteName}/pages/{pageName}/update`
+
+### Required Properties
+- site_name - The name of the site, returned when it was originally created
+- page_name - The name of the page, returned from the get page(s) API call
+
+> Example:
+
+```shell
+curl -X POST -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact/update' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json' \ 
+	-d '{ "page_name":"contact1","page_title":"contact 1"}'
+```
+### Return
+
+You can expect a `204 No Content` HTTP response for a successful call.
+
+<aside class="warning">You cannot update the page_name of the home page.</aside>
+
+## Get page
+
+Get the details of an individual page of the site. Currently, this is only useful to get the title of a page you know the name of already.
+
+>Example
+
+```shell
+curl -X GET -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+### Method and path
+
+`GET /api/sites/multiscreen/site/{site_name}/pages/{page_name}`
+
+> JSON Return
+
+```json
+{
+	"page_name": "contact",
+	"page_title": "contact 1"
+}
+```
+
+### Required URI inputs
+- site_name - Name of the site, originally returned when the site was created.
+- page_name - Name of the page, originally returned via the [Get Sites API call](#get-sites).
+
+### Return
+You can expect a `200 OK` response HTTP code for a successful call. 
+
+## Delete page
+
+Delete a page of your website. This cannot be undone.
+
+> Example
+
+```shell
+curl -X DELETE -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+### Method and path
+
+`DELETE /api/sites/multiscreen/site/{site_name}/pages/{page_name}/delete`
+
+### Required URI Inputs
+- site_name - Name of the site, originally returned when creating the website. 
+- page_name - Name of the page, originally returned when getting the pages of the site. 
+
+### Return
+
+You can expect a `204 No Content` HTTP code upon success. 
+
+## Inject content
+
+> Basic structure of inject content data
+
+```json
+[
+  {
+    "type": "INNERHTML",
+    "key": "dataInjectValueToSearchFor",
+    "value": "valueToReplaceContentWith"
+  },
+  {
+    "type": "DOMATTR",
+    "key": "dataInjectValueToSearchFor",
+    "value": "attributeValueToAddToRefs",
+    "refs": [
+      "placeholderKeyToAddOrRepace1","placeholderKeyToAddOrRepace2"
+    ]
+  },
+  {
+    "type": "CSS",
+    "key": "dataInjectValueToSearchFor",
+    "value": "cssValueToAddToBlock:rgba(0,0,0,1)",
+    "refs": [
+      "cssPropertiesToAddOrReplace1","background-color","background"
+    ]
+  }
+]
+```
+
+Content injection allows you to change a website via API (text, images, CSS, etc..) direclty on an existing website or template. You can update CSS values, InnerHTML of an elemnt or an attribute on an element. For the InnerHTML and Attr types, you must have the `data-inject=value` set on the element. For the CSS type, you must have a `data-inject:value` CSS property set within a declaration block. 
+
+This feature primarily works by sending the `type` value to alter the markup or styling in multiple ways. Should pass Duda an array of JSON objects. For a full example of content injection, [please see this guide](#NEEDS-LINK).
+
+
+### Method and path
+
+`POST /api/sites/multiscreen/inject-content/{siteName}`
+
+### Types of injection
+
+Below you will see the three types of injection available: `CSS`, `DOMATTR`, and `INNERHTML` along with how Duda expects each one to be sent.
+
+> Example
+
+```shell
+# If you have this HTML & CSS block within the website:
+#
+# <a class="u_1454453128 dmNewParagraph email-css" data-inject="email" id="1454453128" href="mailto:oldEmail@domain.com">oldEmail@domain.com</a>
+#
+# .email-css {
+#	data-inject: email-css;
+#	color: #474747;
+# }
+#
+# And run this: 
+curl -X POST -k 'https://api.dudamobile.com/api/api/sites/inject-content/b4ra2g' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json' \
+	-d '[
+			{
+				"type": "INNERHTML",
+				"key": "email",
+				"value": "newEmail@domain.com"
+			},
+			{
+				"type": "DOMATTR",
+				"key": "email",
+				"value": "mailto:newEmail@domain.com",
+				"refs": [
+					"href"
+				]
+			},
+			{
+				"type": "CSS",
+				"key": "email-css",
+				"value": "#000000",
+				"refs": [
+					"color"
+				]
+			}
+		]'
+# The code will be updated to:
+# <a class="u_1454453128 dmNewParagraph email-css" data-inject="email" id="1454453128" href="mailto:newEmail@domain.com">newEmail@domain.com</a>
+#
+# .email-css {
+#	data-inject: email-css;
+#	color: #000000;
+# }
+```
+
+### INNERHTML 
+
+Property | Type | Description
+---------- | ---------- | ----------
+type | String | **INNERHTML**: Replaces all content (HTML, text, etc..) within this element. 
+key | String | The value of the `data-inject` attribute on the element. For example, if you have `data-inject=email` you should place `email` as the value. Duda will then search through every page of the site and replace the innerHTML of all elements that contain the `data-inject=email` attribute.
+value | String | The content you want to be placed within the element. Can be static text, HTML, etc.
+
+### DOMATTR
+Property | Type | Description
+---------- | ---------- | ----------
+type | String | **DOMATTR**: Allows you to add or update the attributes of the element. 
+key | String | The value of the `data-inject` attribute on the element. For example, if you have `data-inject=email` you should place `email` as the value. Duda will then search through every page of the site and add or replace the DOM attributes of all elements that contain the `data-inject=email` attribute.
+value | String | The value of the attribute you are wanting to add. For example, if you want to change the `src` of an image, you would place the direct URL of the image as the value. 
+refs | Array of Strings | The keys of the attributes you want to add or replace. For example, if you want to alter the `src` of an image, you would place `src` as a string here. 
+
+### CSS
+Property | Type | Description
+---------- | ---------- | ----------
+type | String | **CSS**: Allows you to add or update CSS values within the block that the CSS value `data-inject:name` is present.
+key | String | The value of the `data-inject` attribute within the CSS block. For example, if you have `data-inject:email-css` you should place `email-css` as the value here. Duda will then search through every CSS file of the site and replace the values of the reference strings you pass.
+value | String | The CSS value you want to update. This could be `none` for the display property, a URL for background-image or a color code (HEX or RGB) for color values, for example. 
+refs | Array of Strings | The property of the CSS you want to update. This will find the property you pass here and update with the value above.
+
+
+### Return 
+
+Duda will return a `204 No Content` HTTP response code.
+
+<aside class="notice">The inject content API only updates the development version of the website. If you'd like to see these changes on the live website, make sure that you publish the website after making these updates.</aside>
+
+## Upload resources
+Upload resources to the website from an external source. Today, this only supports images, but might be extended in the future for other types of media. This will upload the resource to the CDN that Duda uses and make it available to anyone building the website. This API is commonly used in conjunction with the [inject content API]( #inject-content) to insert new images directly into the website.
+
+### Method and path
+
+`POST /api/sites/multiscreen/resources/{site_name}/upload`
+
+> Input example:
+
+```json
+[
+  {
+    "src": "http://www.dudasupport.com/test/beach.jpg",
+    "recource_type": "IMAGE"
+  },
+  {
+    "src": "http://www.dudasupport.com/test/field.jpeg",
+    "recource_type": "IMAGE"
+  }
+]
+```
+
+### Input parameters
+Duda expects an array of JSON objects that contain a source (src) and resource_type attribute. 
+
+Property | Type | Required |Description
+---------- | ---------- | ---------- | ----------
+src | URL String | Required | A public URL for the resource. This must be publically available so that Duda can copy it to our CDN / storage associated with the website.
+resource_type | String | Required | The type of resource being uploaded. Today, the only allowed value is IMAGE.
+
+> Example
+
+```shell
+curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/published?lastDays=30' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json' \
+	-d '[{"src":"http://www.dudasupport.com/test/beach.jpg","recource_type": "IMAGE"},{"src": "http://www.dudasupport.com/test/field.jpeg","recource_type": "IMAGE"}]'
+```
+> JSON Return
+
+```json
+{
+  "n_failures": 0,
+  "uploaded_resources": [
+    {
+      "original_url": "http://www.dudasupport.com/test/beach.jpg",
+      "new_url": "https://irt-cdn.multiscreensite.com/a60fe88591064282a20cdb63a8ca5740/beach.jpg",
+      "status": "UPLOADED"
+    },
+    {
+      "original_url": "http://www.dudasupport.com/test/field.jpeg",
+      "new_url": "https://irt-cdn.multiscreensite.com/a60fe88591064282a20cdb63a8ca5740/field.jpeg",
+      "status": "UPLOADED"
+    }
+  ]
+}
+```
+### Return 
+
+Duda will return a `200 OK` response code along with the following data:
+
+Property | Type | Description
+---------- | ---------- | ----------
+n_failures | int | The number of failed resource that failed to upload. 
+uploaded_resources | Array of Objects | An array of objects describing each resource uploaded. This contains an original URL, new URL (in the Duda system) and a status. 
+original_url | URL String | The original URL/soruce of the resource that was uploaded. 
+new_url | URL String | A direct URL link to the resource, uploaded to the website. 
+status | String | The status of the upload. This can be *NOT_FOUND* if Duda could not access the resource or *UPLOADED* for a successful upload.
+
+<aside class="notice">Since Duda must download the image, multi-size them and finally compress images uploaded through this API, it can often take several seconds to respond, depending on the number of images. If possible, we recommend you perform this action asynchronously.</aside>
+
+## Get recently published sties
+
+Get a list of recently published websites in your account, for a specific amount of days. This returns results of all sites that have been published recently, either for an ongoing website update or for the first time. This can be used in conjunction with the get site to see the status of the website for billing reasons. You can call this API to get recently published websites, then get the actual status of the website by calling the get site to see if it is published, unpublished or has never been published.
+
+If you do not pass a lastDays value, then Duda will return results for the last 7 days by default.
+
+### Method and path
+
+`GET /sites/multiscreen/published`
+
+> JSON Response:
+
+```json
+[ 
+"a75b4ddc", 
+"d2f8eded" 
+]
+```
+
+### URI Parameters:
+- lastDays: The number of days in which you would like get sites that have been published. 
+
+### Response
+
+Duda will return a `200 OK` response code along with an array of strings that are Duda Site_name values. 
+
+>CURL Example:
+
+```shell
+curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/published?lastDays=30' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+## Get recently unpublished sties
+
+Get a list of recently unpublished websites in your account, for a specific amount of days. This returns results of all sites that have been unpublished recently, which usually means the website was canceled. This can be used in conjunction with the get site to see the status of the website for billing reasons. You can call this API to get recently unpublished websites, then get the actual status of the website by calling the get site to see if it is published or unpublished.
+
+If you do not pass a lastDays value, then we will return results for the last 7 days by default.
+
+> JSON Response:
+
+```json
+[ 
+"a75b4ddc", 
+"d2f8eded" 
+]
+```
+
+### Method and path
+
+`GET /sites/multiscreen/unpublished`
+
+### URI Parameters:
+- lastDays: The number of days in which you would like get sites that have been published. 
+
+>CURL Example:
+
+```shell
+curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/unpublished?lastDays=30' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+### Response
+
+Duda will return a `200 OK` response code along with an array of strings that are Duda Site_name values. 
+
+## Get contact form data
+
+Get all the contact form submissions that happened on this site. This call will return an array of each contact form submission.
+
+> Example JSON Response: 
+
+```json
+[
+   {
+      "form_title":"Contact Us",
+      "message":{
+         "Name":"test3",
+         "Phone":"123-123-1234",
+         "Dropdown":"Option 2",
+         "Email":"test@test.com",
+         "Message":"test message",
+         "Radio button":"Option 2",
+         "Date":"02/05/2014",
+         "Check box":"Option 2"
+      },
+      "date":"2014-05-08T23:12:06"
+   },
+   {
+      "form_title":"Contact Us",
+      "message":{
+         "Name":"test",
+         "Phone":"abcc",
+         "Email":"test@test.com",
+         "Message":"123"
+      },
+      "date":"2014-05-08T22:34:50"
+   }
+]
+```
+
+### Method and path
+
+`GET /sites/multiscreen/get-forms/{site_name}`
+
+### Required Parameters:
+- site_name
+
+### URL Parameters
+
+You can add on additional *to* or *from* URL parameters onto the full URL to decide which date range you would like to get contact form details from. These should be in [standard date format](#dates).
+
+<aside class="notice">Duda will return all contact form messages that have been submitted to the site. Each form on the site has a *form title*, controlled in the Duda Editor, which will allow you to tell which contact form on the site this is from.</aside>
+
+```shell
+curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/get-forms/b4ra2g?from=2017-01-01&to=2017-01-30' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+## Generate SSL Certificate
+
+Generate a SSL certificate for a specific website. This will enable a HTTPS connection between site visitors and the Duda platform. It usually takes 15-30 minutes to successfully generate a SSL certificate for a website. You can get the status of the SSL certificate by calling the [GET site API](#get-site) and checking the certificate_status parameter. Once the certificate is successfully generated, all website visitors will be redirected to the HTTPS connection. This can be disabled on by updating the site force_https value to false. You do not need to worry about renewing the certificate, as Duda will do this automatically.
+
+### Method and path
+
+`POST /sites/multiscreen/{site_name}/certificate`
+
+URI Parameter:
+- site_name
+
+### Return
+
+Upon success, Duda will return a `204 No Content` HTTP code.
+
+```shell
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/b4ra2g/certificate' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+<aside class="warning">Before sending this API call, it's important that the domain is successfully pointed to Duda's servers. We only currently offer Domain Verified (DV) certificates. As part of the API call, Duda will verify that the domain is correctly pointing at the platform. If it is not, Duda will return an error.</aside>
+
+
+## Delete SSL Certificate
+
+Delete a certificate that has been generated for a website. This will ensure that the website is served over only a HTTP (unsecure) connection and will delete the generated certificate.
+
+### Method and path
+
+`DELETE /sites/multiscreen/{site_name}/certificate`
+
+URI Parameter:
+- site_name
+
+### Return
+
+Upon success, Duda will return a `204 No Content` HTTP code.
+
+```shell
+curl -X DELETE -k 'https://api.dudamobile.com/api/sites/multiscreen/b4ra2g/certificate' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+## Create site backup
+
+Create a new backup of a site. This is used for saving the existing state of a site. Good for saving a restore point before a user starts to edit a site or after work has been completed.
+
+<aside class="notice">Each site can have a maximum of 10 manually created backup versions and 20 that are automatically created upon each publish of the site (30 in total). Backups that are automatically created will have a name such as: sitename_Auto_4</aside>
+
+### Method and path
+
+`POST /sites/multiscreen/backups/{site_name}/create`
+
+### Parameters
+
+- site_name
+
+> Example JSON to send:
+
+```json
+{
+   "name":"QA-Complete"
+}
+```
+
+### Body Parameters
+
+You can define the name of the backup:
+
+Property | Type | Required | Description
+---------- | ---------- | ---------- | ----------
+name | String | Optional | Set the name of the backup you are creating. 
+
+> Example
+
+```shell
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json' \
+	-d '{"name":"QA-Complete"}''
+```
+> Returned data:
+
+```json
+{
+  "backup_name": "QA-Complete"
+}
+```
+
+<aside class="warning">The name of the backup cannot contain a space.</aside>
+
+### Return
+
+Upon success, Duda will return a `200 OK` HTTP response code along with the backup_name of the created backup. 
+
+
+## Get site backups
+
+Get an array of existing site backups/versions. A backup can be created from inside of the editor (or by API) and is also automatically created every time the site is published. 
+
+> Example JSON return:
+
+```json
+[
+   {
+      "date":"2014-06-07T11:18:51",
+      "name":"russ7_Auto_3"
+   },
+   {
+      "date":"2014-06-07T11:19:02",
+      "name":"russ7_Auto_4"
+   },
+   {
+      "date":"2014-06-07T11:19:13",
+      "name":"russ7_Auto_5"
+   },
+   {
+      "date":"2014-06-07T11:19:21",
+      "name":"russ7_Auto_6"
+   },
+   {
+      "date":"2014-06-07T11:29:49",
+      "name":"russ7_Auto_7"
+   },
+   {
+      "date":"2014-06-07T11:33:21",
+      "name":"ManualBackup_1"
+   }
+]
+```
+
+### Method and path
+`GET /sites/multiscreen/backups/{site_name}`
+
+### URI Parameters:
+- site_name
+
+> CURL Example:
+
+```shell
+curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+### Return
+
+Upon successful call, Duda will return a `200 OK` response code along with the array of data objects in the body. 
+
+## Restore site
+
+Restore a site from an existing backup. This will fully restore the site back to the state it was in at the time of the backup creation. When restoring a site, a backup is automatically made of the site before restoring the backup. You will be able to see the backup that is created via the Get Site Backups call.
+
+### Method and path
+
+`POST /sites/multiscreen/backups/{site_name}/restore/{backup_name}`
+
+### Parameters
+
+- site_name
+- backup_name - Obtained from the get backup name API call
+
+> Example: 
+
+```shell
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+### Return
+
+Upon success, Duda will return a `204 No Content` HTTP status code. 
+
+## Delete Site Backup
+
+ Permanently delete a site backup. There is no way to restore or gain access to deleted site backups.
+
+### Method and path
+
+`DELETE /sites/multiscreen/backups/{site_name}/restore/{backup_name}`
+
+### Parameters
+
+* site_name
+* backup_name - Obtained from the get backup name API call
+
+> Example: 
+
+```shell
+curl -X DELETE -k 'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'
+```
+
+### Return
+
+Upon success, Duda will return a `204 No Content` HTTP status code.

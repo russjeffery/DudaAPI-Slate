@@ -327,6 +327,7 @@
 
                 // Highlights the current list item that was clicked
                 elem.addClass(self.focusClass);
+                
 
                 // If the showAndHide option is true
                 if(self.options.showAndHide) {
@@ -707,14 +708,14 @@
 
                             // Scroll to highlighted element's header
                             var tocifyWrapper = self.tocifyWrapper;
-                            var scrollToElem = $(elem).closest('.tocify-header');
+                            var scrollToElem = $(elem).closest('.tocify-item');
 
                             var elementOffset = scrollToElem.offset().top,
                                 wrapperOffset = tocifyWrapper.offset().top;
                             var offset = elementOffset - wrapperOffset;
 
                             if (offset >= $(window).height()) {
-                              var scrollPosition = offset + tocifyWrapper.scrollTop();
+                              var scrollPosition = offset - tocifyWrapper.scrollTop() - 50;
                               tocifyWrapper.scrollTop(scrollPosition);
                             } else if (offset < 0) {
                               tocifyWrapper.scrollTop(0);

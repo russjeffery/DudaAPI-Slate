@@ -33,6 +33,7 @@
     content = $('.content');
     searchResults = $('.search-results');
 
+    //Throttle search event, to prevent multiple searches on every keyinput while typing fast
     $('#input-search').on('keyup', debounce(search,250));
     //$('#input-search').on('keyup', search);
   }
@@ -74,6 +75,7 @@
     content.unhighlight(highlightOpts);
   }
 
+  //generic debounce function via: https://davidwalsh.name/function-debounce
   function debounce(func, wait, immediate) {
     var timeout;
     return function() {
