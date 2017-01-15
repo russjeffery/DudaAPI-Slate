@@ -362,7 +362,7 @@ Make sure to set the authorization header with your unique API username and API 
                 </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 Market Street"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94111"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"opentable_info"</span><span class="p">:[</span><span class="w">
+            </span><span class="nt">"opentable_info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nt">"restaurant_id"</span><span class="p">:</span><span class="s2">"55123"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"location"</span><span class="p">:</span><span class="s2">"Downtown"</span><span class="p">,</span><span class="w">
@@ -403,7 +403,7 @@ Make sure to set the authorization header with your unique API username and API 
 <td>url</td>
 <td>String</td>
 <td>optional</td>
-<td>Have Duda import content into the new site based off of an existing website. You may use an existing website address or Facebook business page.</td>
+<td>Have Duda import content into the new site based from an existing website. You may use an existing website address or Facebook business page.</td>
 </tr>
 <tr>
 <td>default_domain_prefix</td>
@@ -457,7 +457,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h3 id="site_business_info-object">site_business_info object</h3>
 
-<p>Provides structured data about a website or business. Duda will use this information to help populate the website with this data and fill the <a href="https://help.dudamobile.com/hc/en-us/articles/229790908-Manage-Content-Library">content library</a> with data. All of the data fields are optional.</p>
+<p>Provides structured data about a website or business. Duda will use this information to help populate the website with this data and fill the <a href="https://help.dudamobile.com/hc/en-us/articles/229790908-Manage-Content-Library">content library</a> with data. All data fields are optional.</p>
 
 <aside class="notice">If you pass business_site_info during site create, this will trigger Duda&rsquo;s content import algorithm and we will attempt to import content from across the web based on the input data. This might result in a longer response time to create the website.</aside>
 
@@ -504,7 +504,7 @@ Make sure to set the authorization header with your unique API username and API 
 <tr>
 <td>Street</td>
 <td>String</td>
-<td>A street level line location (e.g. 123 Main Strett)</td>
+<td>A street level line location (e.g. 123 Main Street)</td>
 </tr>
 <tr>
 <td>State</td>
@@ -547,7 +547,7 @@ Make sure to set the authorization header with your unique API username and API 
 <tr>
 <td>country</td>
 <td>String</td>
-<td>Two digit country location (e.g. US, DE, JA)</td>
+<td>Two-digit country location (e.g. US, DE, JA)</td>
 </tr>
 </tbody></table>
 
@@ -608,7 +608,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h3 id="required-uri-parameters">Required URI Parameters</h3>
 
-<p>site_name - URL Prameter. Originally returned when first creating a website.</p>
+<p>site_name - URL Parameter. Originally returned when first creating a website.</p>
 
 <blockquote>
 <p>Response JSON from GET Site:</p>
@@ -686,7 +686,7 @@ Make sure to set the authorization header with your unique API username and API 
 <tr>
 <td>preview_site_url</td>
 <td>String</td>
-<td>A direct URL to a the three-screen preview of the website in it&rsquo;s current state while in design. This white labeled URL non-authenticated and can be accessed by anyone online</td>
+<td>A direct URL to a the three-screen preview of the website in its current state while in design. This white labeled URL non-authenticated and can be accessed by anyone online</td>
 </tr>
 <tr>
 <td>last_published_date</td>
@@ -696,7 +696,7 @@ Make sure to set the authorization header with your unique API username and API 
 <tr>
 <td>first_published_date</td>
 <td>date time</td>
-<td>The date of when this website was first published. Note that if you unpublish the website and republish it, the first_published_date will not change</td>
+<td>The date of when this website was first published. Note that if you unpublished the website and republish it, the first_published_date will not change</td>
 </tr>
 <tr>
 <td>publish_status</td>
@@ -739,9 +739,9 @@ Make sure to set the authorization header with your unique API username and API 
     -H <span class="s1">'Content-Type: application/json'</span> 
 </code></pre>
 
-<h2 id="get-sites-by-external-id">Get Sites by External ID</h2>
+<h2 id="get-sites-by-external-id">Get sites by external id</h2>
 
-<p>This will return a list of all site ID&rsquo;s that have the external ID value provided  when creating or updating the website. The external ID value is not a unique value in the Duda system &ndash; so multiple sites can have the same external ID value. </p>
+<p>This will return a list of all site ID&rsquo;s that have the external ID value provided when creating or updating the website. The external ID value is not a unique value in the Duda system &ndash; so multiple sites can have the same external ID value. </p>
 
 <p><code class="prettyprint">GET /sites/multiscreen/byexternalid/{external_uid}</code></p>
 
@@ -755,7 +755,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <p>Duda will return an array of site_names for each website that has the matching external ID value. </p>
 
-<p>You should expect a 200 HTTP responce code with the array of site names in the body of the response. </p>
+<p>You should expect a 200 HTTP response code with the array of site names in the body of the response. </p>
 
 <blockquote>
 <p>Example return: </p>
@@ -777,7 +777,7 @@ Make sure to set the authorization header with your unique API username and API 
 <h3 id="required-parameters">Required Parameters</h3>
 
 <ul>
-<li>Site Name - URI Prameter</li>
+<li>Site Name - URI Parameter</li>
 </ul>
 
 <blockquote>
@@ -797,7 +797,7 @@ Make sure to set the authorization header with your unique API username and API 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h3 id="prameters-to-send">Prameters to send</h3>
+<h3 id="parameters-to-send">Parameters to send</h3>
 
 <table><thead>
 <tr>
@@ -857,7 +857,7 @@ Make sure to set the authorization header with your unique API username and API 
 <h3 id="parameters">Parameters</h3>
 
 <ul>
-<li>Site Name: URI Prameter</li>
+<li>Site Name: URI Parameter</li>
 </ul>
 
 <blockquote>
@@ -883,7 +883,7 @@ Make sure to set the authorization header with your unique API username and API 
 <h3 id="parameters">Parameters</h3>
 
 <ul>
-<li>Site Name - URI Prameter</li>
+<li>Site Name - URI Parameter</li>
 </ul>
 
 <blockquote>
@@ -900,7 +900,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h2 id="unpublish-site">Unpublish site</h2>
 
-<p>Removes the site from the production environment. This is good for disabling the site or taking it down temporarily so no one can access it. This will not delete the website. The website will still exist adn can be published later. </p>
+<p>Removes the site from the production environment. This is good for disabling the site or taking it down temporarily so no one can access it. This will not delete the website. The website will still exist and can be published later. </p>
 
 <h3 id="method-and-path">Method and path</h3>
 
@@ -909,7 +909,7 @@ Make sure to set the authorization header with your unique API username and API 
 <h3 id="parameters">Parameters</h3>
 
 <ul>
-<li>Site Name - URI Prameter</li>
+<li>Site Name - URI Parameter</li>
 </ul>
 
 <blockquote>
@@ -947,7 +947,7 @@ Make sure to set the authorization header with your unique API username and API 
 <li>Site_Name: URI Parameter</li>
 </ul>
 
-<p>The following prameters can be sent in the body for the new website that will be created. They are all optional</p>
+<p>The following parameters can be sent in the body for the new website that will be created. They are all optional</p>
 
 <table><thead>
 <tr>
@@ -1107,7 +1107,7 @@ Make sure to set the authorization header with your unique API username and API 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Duda will return a sites object with an array of sites. The details of then site values returned will be the exact same as the <a href="#get-site">get site example above</a>, please see there for details about values returned.</p>
+<p>Duda will return a sites object with an array of sites. The details of the site values returned will be the exact same as the <a href="#get-site">get site example above</a>, please see there for details about values returned.</p>
 
 <p>You can expect a <code class="prettyprint">200 OK</code> response code. </p>
 
@@ -1162,9 +1162,9 @@ Make sure to set the authorization header with your unique API username and API 
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<h3 id="optional-uri-prameter">Optional URI Prameter</h3>
+<h3 id="optional-uri-parameter">Optional URI Parameter</h3>
 
-<p>You can add a <code class="prettyprint">?lang=en</code> URL prameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here.</p>
+<p>You can add a <code class="prettyprint">?lang=en</code> URL parameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here.</p>
 
 <h3 id="properties">Properties</h3>
 
@@ -1217,7 +1217,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h3 id="return">Return</h3>
 
-<p>You can expect a <code class="prettyprint">200 OK</code> response along with the all of the template data (in an array of objects) shown here.</p>
+<p>You can expect a <code class="prettyprint">200 OK</code> response along with the all the template data (in an array of objects) shown here.</p>
 
 <h2 id="get-template-info">Get template info</h2>
 
@@ -1247,9 +1247,9 @@ Make sure to set the authorization header with your unique API username and API 
 <li>template_id: The specific ID associated with this template. Originally returned via the get all templates API call. </li>
 </ul>
 
-<h3 id="optional-uri-prameter">Optional URI Prameter</h3>
+<h3 id="optional-uri-parameter">Optional URI Parameter</h3>
 
-<p>You can add a <code class="prettyprint">?lang=en</code> URL prameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here</p>
+<p>You can add a <code class="prettyprint">?lang=en</code> URL parameter onto the template API path call to get the templates for specific languages. You can see the languages available via the API here</p>
 
 <blockquote>
 <p>CURL Example:</p>
@@ -1261,11 +1261,11 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h3 id="return">Return</h3>
 
-<p>You an expect a <code class="prettyprint">200 OK</code> response along with an JSON object that describes the given template. </p>
+<p>You can expect a <code class="prettyprint">200 OK</code> response along with an JSON object that describes the given template. </p>
 
 <h2 id="create-template-from-site">Create template from site</h2>
 
-<p>Take an existing website and turn it into a template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and also be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).</p>
+<p>Take an existing website and turn it into a template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).</p>
 
 <h3 id="method-and-path">Method and path</h3>
 
@@ -1317,7 +1317,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h3 id="response">Response:</h3>
 
-<p>You can expect a <code class="prettyprint">200 OK</code> response code along side a template object that describes the new template.</p>
+<p>You can expect a <code class="prettyprint">200 OK</code> response code alongside a template object that describes the new template.</p>
 
 <blockquote>
 <p>JSON Return:</p>
@@ -1337,7 +1337,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h2 id="create-template-from-template">Create template from template</h2>
 
-<p>Take an existing template and turn it into a new template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and also be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).</p>
+<p>Take an existing template and turn it into a new template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).</p>
 
 <h3 id="method-and-path">Method and path</h3>
 
@@ -1389,7 +1389,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h3 id="response">Response:</h3>
 
-<p>You can expect a <code class="prettyprint">200 OK</code> response code along side a template object that describes the new template.</p>
+<p>You can expect a <code class="prettyprint">200 OK</code> response code alongside a template object that describes the new template.</p>
 
 <blockquote>
 <p>JSON Return:</p>
@@ -1427,7 +1427,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h3 id="response">Response</h3>
 
-<p>Upon successful deletion a <code class="prettyprint">204 No Content</code> HTTP code will be returned. </p>
+<p>Upon successful deletion, a <code class="prettyprint">204 No Content</code> HTTP code will be returned. </p>
 
 <h2 id="update-custom-template">Update custom template</h2>
 
@@ -1448,7 +1448,7 @@ Make sure to set the authorization header with your unique API username and API 
 <h3 id="uri-parameters">URI Parameters</h3>
 
 <ul>
-<li>new_name: A string that contains a new name you want for the template.</li>
+<li>new_name: A string that contains a new name you want the template.</li>
 </ul>
 <pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/template/100041'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
@@ -1459,6 +1459,467 @@ Make sure to set the authorization header with your unique API username and API 
 <h3 id="return">Return</h3>
 
 <p>Upon successful update a <code class="prettyprint">204 No Content</code> HTTP response code will be returned.</p>
+
+<h2 id="get-pages">Get pages</h2>
+
+<p>Get all pages that exist within the website. Returns an array of objects that describes each page of the site. </p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /api/sites/multiscreen/site/{site_name}/pages</code></p>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<blockquote>
+<p>JSON Representation:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"home"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Home"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"services111"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Services"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="properties-required">Properties required</h3>
+
+<ul>
+<li>site_name - Internal Site Reference</li>
+</ul>
+
+<h3 id="properties-returned">Properties returned</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page_name</td>
+<td>String</td>
+<td>The internal name/reference for the page. This value is also the URL where this page will be available once the site is published.</td>
+</tr>
+<tr>
+<td>page_title</td>
+<td>String</td>
+<td>The title of the page in the navigation of the site and also in the pages menu.</td>
+</tr>
+</tbody></table>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response code with an array of JSON objects describing each page. </p>
+
+<h2 id="update-page">Update page</h2>
+
+<p>Update an existing page on the website. You need to pass the page_title (returned via the <a href="#get-pages">GET Pages</a> API Call). </p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /api/sites/multiscreen/site/{siteName}/pages/{pageName}/update</code></p>
+
+<h3 id="required-properties">Required Properties</h3>
+
+<ul>
+<li>site_name - The name of the site, returned when it was originally created</li>
+<li>page_name - The name of the page, returned from the get page(s) API call</li>
+</ul>
+
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact/update'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
+    -d <span class="s1">'{ "page_name":"contact1","page_title":"contact 1"}'</span>
+</code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">204 No Content</code> HTTP response for a successful call.</p>
+
+<aside class="warning">You cannot update the page_name of the home page.</aside>
+
+<h2 id="get-page">Get page</h2>
+
+<p>Get the details of an individual page of the site. Currently, this is only useful to get the title of a page you know the name of already.</p>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /api/sites/multiscreen/site/{site_name}/pages/{page_name}</code></p>
+
+<blockquote>
+<p>JSON Return</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact 1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="required-uri-inputs">Required URI inputs</h3>
+
+<ul>
+<li>site_name - Name of the site, originally returned when the site was created.</li>
+<li>page_name - Name of the page, originally returned via the <a href="#get-sites">Get Sites API call</a>.</li>
+</ul>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response HTTP code for a successful call. </p>
+
+<h2 id="delete-page">Delete page</h2>
+
+<p>Delete a page of your website. This cannot be undone.</p>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">DELETE /api/sites/multiscreen/site/{site_name}/pages/{page_name}/delete</code></p>
+
+<h3 id="required-uri-inputs">Required URI Inputs</h3>
+
+<ul>
+<li>site_name - Name of the site, originally returned when creating the website. </li>
+<li>page_name - Name of the page, originally returned when getting the pages of the site. </li>
+</ul>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">204 No Content</code> HTTP code upon success. </p>
+
+<h2 id="inject-content">Inject content</h2>
+
+<blockquote>
+<p>Basic structure of inject content data</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INNERHTML"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dataInjectValueToSearchFor"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"valueToReplaceContentWith"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOMATTR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dataInjectValueToSearchFor"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attributeValueToAddToRefs"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"placeholderKeyToAddOrRepace1"</span><span class="p">,</span><span class="s2">"placeholderKeyToAddOrRepace2"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CSS"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dataInjectValueToSearchFor"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cssValueToAddToBlock:rgba(0,0,0,1)"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"refs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"cssPropertiesToAddOrReplace1"</span><span class="p">,</span><span class="s2">"background-color"</span><span class="p">,</span><span class="s2">"background"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Content injection allows you to change a website via API (text, images, CSS, etc..) direclty on an existing website or template. You can update CSS values, InnerHTML of an elemnt or an attribute on an element. For the InnerHTML and Attr types, you must have the <code class="prettyprint">data-inject=value</code> set on the element. For the CSS type, you must have a <code class="prettyprint">data-inject:value</code> CSS property set within a declaration block. </p>
+
+<p>This feature primarily works by sending the <code class="prettyprint">type</code> value to alter the markup or styling in multiple ways. Should pass Duda an array of JSON objects. For a full example of content injection, <a href="#NEEDS-LINK">please see this guide</a>.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /api/sites/multiscreen/inject-content/{siteName}</code></p>
+
+<h3 id="types-of-injection">Types of injection</h3>
+
+<p>Below you will see the three types of injection available: <code class="prettyprint">CSS</code>, <code class="prettyprint">DOMATTR</code>, and <code class="prettyprint">INNERHTML</code> along with how Duda expects each one to be sent.</p>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># If you have this HTML &amp; CSS block within the website:</span>
+<span class="c">#</span>
+<span class="c"># &lt;a class="u_1454453128 dmNewParagraph email-css" data-inject="email" id="1454453128" href="mailto:oldEmail@domain.com"&gt;oldEmail@domain.com&lt;/a&gt;</span>
+<span class="c">#</span>
+<span class="c"># .email-css {</span>
+<span class="c">#   data-inject: email-css;</span>
+<span class="c">#   color: #474747;</span>
+<span class="c"># }</span>
+<span class="c">#</span>
+<span class="c"># And run this: </span>
+curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/api/sites/inject-content/b4ra2g'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+    -d <span class="s1">'[
+            {
+                "type": "INNERHTML",
+                "key": "email",
+                "value": "newEmail@domain.com"
+            },
+            {
+                "type": "DOMATTR",
+                "key": "email",
+                "value": "mailto:newEmail@domain.com",
+                "refs": [
+                    "href"
+                ]
+            },
+            {
+                "type": "CSS",
+                "key": "email-css",
+                "value": "#000000",
+                "refs": [
+                    "color"
+                ]
+            }
+        ]'</span>
+<span class="c"># The code will be updated to:</span>
+<span class="c"># &lt;a class="u_1454453128 dmNewParagraph email-css" data-inject="email" id="1454453128" href="mailto:newEmail@domain.com"&gt;newEmail@domain.com&lt;/a&gt;</span>
+<span class="c">#</span>
+<span class="c"># .email-css {</span>
+<span class="c">#   data-inject: email-css;</span>
+<span class="c">#   color: #000000;</span>
+<span class="c"># }</span>
+</code></pre>
+
+<h3 id="innerhtml">INNERHTML</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td><strong>INNERHTML</strong>: Replaces all content (HTML, text, etc..) within this element.</td>
+</tr>
+<tr>
+<td>key</td>
+<td>String</td>
+<td>The value of the <code class="prettyprint">data-inject</code> attribute on the element. For example, if you have <code class="prettyprint">data-inject=email</code> you should place <code class="prettyprint">email</code> as the value. Duda will then search through every page of the site and replace the innerHTML of all elements that contain the <code class="prettyprint">data-inject=email</code> attribute.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>String</td>
+<td>The content you want to be placed within the element. Can be static text, HTML, etc.</td>
+</tr>
+</tbody></table>
+
+<h3 id="domattr">DOMATTR</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td><strong>DOMATTR</strong>: Allows you to add or update the attributes of the element.</td>
+</tr>
+<tr>
+<td>key</td>
+<td>String</td>
+<td>The value of the <code class="prettyprint">data-inject</code> attribute on the element. For example, if you have <code class="prettyprint">data-inject=email</code> you should place <code class="prettyprint">email</code> as the value. Duda will then search through every page of the site and add or replace the DOM attributes of all elements that contain the <code class="prettyprint">data-inject=email</code> attribute.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>String</td>
+<td>The value of the attribute you are wanting to add. For example, if you want to change the <code class="prettyprint">src</code> of an image, you would place the direct URL of the image as the value.</td>
+</tr>
+<tr>
+<td>refs</td>
+<td>Array of Strings</td>
+<td>The keys of the attributes you want to add or replace. For example, if you want to alter the <code class="prettyprint">src</code> of an image, you would place <code class="prettyprint">src</code> as a string here.</td>
+</tr>
+</tbody></table>
+
+<h3 id="css">CSS</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td><strong>CSS</strong>: Allows you to add or update CSS values within the block that the CSS value <code class="prettyprint">data-inject:name</code> is present.</td>
+</tr>
+<tr>
+<td>key</td>
+<td>String</td>
+<td>The value of the <code class="prettyprint">data-inject</code> attribute within the CSS block. For example, if you have <code class="prettyprint">data-inject:email-css</code> you should place <code class="prettyprint">email-css</code> as the value here. Duda will then search through every CSS file of the site and replace the values of the reference strings you pass.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>String</td>
+<td>The CSS value you want to update. This could be <code class="prettyprint">none</code> for the display property, a URL for background-image or a color code (HEX or RGB) for color values, for example.</td>
+</tr>
+<tr>
+<td>refs</td>
+<td>Array of Strings</td>
+<td>The property of the CSS you want to update. This will find the property you pass here and update with the value above.</td>
+</tr>
+</tbody></table>
+
+<h3 id="return">Return</h3>
+
+<p>Duda will return a <code class="prettyprint">204 No Content</code> HTTP response code.</p>
+
+<aside class="notice">The inject content API only updates the development version of the website. If you&rsquo;d like to see these changes on the live website, make sure that you publish the website after making these updates.</aside>
+
+<h2 id="upload-resources">Upload resources</h2>
+
+<p>Upload resources to the website from an external source. Today, this only supports images, but might be extended in the future for other types of media. This will upload the resource to the CDN that Duda uses and make it available to anyone building the website. This API is commonly used in conjunction with the <a href="#inject-content">inject content API</a> to insert new images directly into the website.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /api/sites/multiscreen/resources/{site_name}/upload</code></p>
+
+<blockquote>
+<p>Input example:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.dudasupport.com/test/beach.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"recource_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMAGE"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"src"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.dudasupport.com/test/field.jpeg"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"recource_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMAGE"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="input-parameters">Input parameters</h3>
+
+<p>Duda expects an array of JSON objects that contain a source (src) and resource_type attribute. </p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>src</td>
+<td>URL String</td>
+<td>Required</td>
+<td>A public URL for the resource. This must be publically available so that Duda can copy it to our CDN / storage associated with the website.</td>
+</tr>
+<tr>
+<td>resource_type</td>
+<td>String</td>
+<td>Required</td>
+<td>The type of resource being uploaded. Today, the only allowed value is IMAGE.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/published?lastDays=30'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+    -d <span class="s1">'[{"src":"http://www.dudasupport.com/test/beach.jpg","recource_type": "IMAGE"},{"src": "http://www.dudasupport.com/test/field.jpeg","recource_type": "IMAGE"}]'</span>
+</code></pre>
+
+<blockquote>
+<p>JSON Return</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"n_failures"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"uploaded_resources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"original_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.dudasupport.com/test/beach.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"new_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irt-cdn.multiscreensite.com/a60fe88591064282a20cdb63a8ca5740/beach.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPLOADED"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"original_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.dudasupport.com/test/field.jpeg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"new_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irt-cdn.multiscreensite.com/a60fe88591064282a20cdb63a8ca5740/field.jpeg"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPLOADED"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="return">Return</h3>
+
+<p>Duda will return a <code class="prettyprint">200 OK</code> response code along with the following data:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>n_failures</td>
+<td>int</td>
+<td>The number of failed resource that failed to upload.</td>
+</tr>
+<tr>
+<td>uploaded_resources</td>
+<td>Array of Objects</td>
+<td>An array of objects describing each resource uploaded. This contains an original URL, new URL (in the Duda system) and a status.</td>
+</tr>
+<tr>
+<td>original_url</td>
+<td>URL String</td>
+<td>The original URL/soruce of the resource that was uploaded.</td>
+</tr>
+<tr>
+<td>new_url</td>
+<td>URL String</td>
+<td>A direct URL link to the resource, uploaded to the website.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>The status of the upload. This can be <em>NOT_FOUND</em> if Duda could not access the resource or <em>UPLOADED</em> for a successful upload.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Since Duda must download the image, multi-size them and finally compress images uploaded through this API, it can often take several seconds to respond, depending on the number of images. If possible, we recommend you perform this action asynchronously.</aside>
 
 <h2 id="get-recently-published-sties">Get recently published sties</h2>
 
@@ -1534,7 +1995,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <p>Duda will return a <code class="prettyprint">200 OK</code> response code along with an array of strings that are Duda Site_name values. </p>
 
-<h2 id="get-contact-form-data">Get Contact Form Data</h2>
+<h2 id="get-contact-form-data">Get contact form data</h2>
 
 <p>Get all the contact form submissions that happened on this site. This call will return an array of each contact form submission.</p>
 
@@ -1608,11 +2069,11 @@ Make sure to set the authorization header with your unique API username and API 
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
 
-<aside class="warning">Before sending this API call, it&rsquo;s important that the domain is succesfully pointed to Duda&rsquo;s servers. We only currently offer Domain Verified (DV) certificates. As part of the API call, Duda will verify that the domain is correctly pointing at the platform. If it is not, Duda will return an error.</aside>
+<aside class="warning">Before sending this API call, it&rsquo;s important that the domain is successfully pointed to Duda&rsquo;s servers. We only currently offer Domain Verified (DV) certificates. As part of the API call, Duda will verify that the domain is correctly pointing at the platform. If it is not, Duda will return an error.</aside>
 
 <h2 id="delete-ssl-certificate">Delete SSL Certificate</h2>
 
-<p>Delete a certificate that has been gerneated for a website. This will ensure that the website is served over only a HTTP (unsecure) connection and will delete the generated certificate.</p>
+<p>Delete a certificate that has been generated for a website. This will ensure that the website is served over only a HTTP (unsecure) connection and will delete the generated certificate.</p>
 
 <h3 id="method-and-path">Method and path</h3>
 
@@ -1629,9 +2090,9 @@ Make sure to set the authorization header with your unique API username and API 
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
 
-<h2 id="create-site-backup">Create Site Backup</h2>
+<h2 id="create-site-backup">Create site backup</h2>
 
-<p>Create a new backup of a site. This is used for saving the existing state of a site. Good for saving a restore point before a user starts to edit a site or after work has been completeled.</p>
+<p>Create a new backup of a site. This is used for saving the existing state of a site. Good for saving a restore point before a user starts to edit a site or after work has been completed.</p>
 
 <aside class="notice">Each site can have a maximum of 10 manually created backup versions and 20 that are automatically created upon each publish of the site (30 in total). Backups that are automatically created will have a name such as: sitename_Auto_4</aside>
 
@@ -1696,7 +2157,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <p>Upon success, Duda will return a <code class="prettyprint">200 OK</code> HTTP response code along with the backup_name of the created backup. </p>
 
-<h2 id="get-site-backups">Get Site Backups</h2>
+<h2 id="get-site-backups">Get site backups</h2>
 
 <p>Get an array of existing site backups/versions. A backup can be created from inside of the editor (or by API) and is also automatically created every time the site is published. </p>
 
@@ -1751,9 +2212,9 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h3 id="return">Return</h3>
 
-<p>Upon succesfull call, Duda will return a <code class="prettyprint">200 OK</code> response code along with the array of data objects in the body. </p>
+<p>Upon successful call, Duda will return a <code class="prettyprint">200 OK</code> response code along with the array of data objects in the body. </p>
 
-<h2 id="restore-site">Restore Site</h2>
+<h2 id="restore-site">Restore site</h2>
 
 <p>Restore a site from an existing backup. This will fully restore the site back to the state it was in at the time of the backup creation. When restoring a site, a backup is automatically made of the site before restoring the backup. You will be able to see the backup that is created via the Get Site Backups call.</p>
 
@@ -1805,7 +2266,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h3 id="return">Return</h3>
 
-<p>Upon success, Duda will return a <code class="prettyprint">204 No Content</code> HTTP status code. </p>
+<p>Upon success, Duda will return a <code class="prettyprint">204 No Content</code> HTTP status code.</p>
 
           <h1 id="mobile">Mobile</h1>
 
