@@ -37,13 +37,13 @@
     $(".tocify-item").click(closeToc);
 
     //Russ - Prevent background body scrolling when scrolling TOC
-    $(".tocify-wrapper").mouseenter( 
+    /*$(".tocify-wrapper").mouseenter( 
       function(){
         document.body.style.overflowY="hidden"
       }).mouseleave( 
       function(){
         document.body.style.overflowY="auto"
-      });
+      });*/
   };
 
   // Hack to make already open sections to start opened,
