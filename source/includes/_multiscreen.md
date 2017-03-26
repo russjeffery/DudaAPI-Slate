@@ -2,8 +2,6 @@
 
 A site instance resource represents a single Duda site. There are two main types of Duda sites: mobile and multiscreen. Mobile represents a DudaMobile site and multiscreen represents a Responsive site. Below, you will see the API resources available for the multiscreen (DudaOne) sites only.
 
-<aside class="notice">Pewpew</aside>
-
 ## Create site
 
 Call the DudaAPI to create a new multiscreen site. This site will be created in the master account associated with the API key you are using. Creating a site will return a unique site name to reference this site resource.  Please note that sites created using this call will be set to Business+ status by default, but will not begin charging you until they are published. Please review the Payments and Publishing section for details.
@@ -71,7 +69,7 @@ site_domain | String | optional | Set the domain of the site. This will be: www.
 external_uid | string | optional | A flexible string you pass to Duda when creating the site, allows you to store your customer's unique value to reference later (45 char max). Note that Duda does not enforce uniqueness here.
 business_site_info | Object | optional | Pass Duda detailed information about this business / website.
 
-###site_business_info object
+### site_business_info object
 Provides structured data about a website or business. Duda will use this information to help populate the website with this data and fill the [content library](https://help.dudamobile.com/hc/en-us/articles/229790908-Manage-Content-Library) with data. All data fields are optional.
 
 <aside class="notice">If you pass business_site_info during site create, this will trigger Duda's content import algorithm and we will attempt to import content from across the web based on the input data. This might result in a longer response time to create the website.</aside>
@@ -376,6 +374,42 @@ Duda will respond with a `200 OK` HTTP status and return a new site_name.
 	"site_name":"a6119858"
 }
 ```
+## Reset Site
+
+Reset and choose a new template for this site. This allows you to keep an existing site_name -- but perform a reset on the site via API. 
+
+### Method and Path
+
+`POST /sites/multiscreen/reset/{site_name}`
+
+### Parameters
+
+- You must pass the site_name value as part of the POST request
+
+> Example of additional input:
+
+```json
+{
+  "template_id": "20001",
+  "site_data": {
+    "removeBizInfos": true
+  }
+}
+```
+
+### Input Arguments
+
+As part of the body request, you can pass any data that is available in the standard [create website](#create-site) API call. There is one additional option you can pass to Duda as part of the create site JSON:
+
+Property | Type | Required | Description
+---------- | ---------- | ---------- | ----------
+removeBizInfos | Bool | Optional | If passed as true, resetting the site will remove all business information that exists within the content library. By default, Duda keeps business information in the content library when resetting the website. 
+
+
+
+### Return 
+
+You can expect a `204 No Content` response code for a successful reset call.
 
 ## Get sites created between
 
