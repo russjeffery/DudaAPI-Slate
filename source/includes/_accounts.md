@@ -10,6 +10,7 @@ Create a new Duda account in which you can grant a customer or staff permissions
 `POST /accounts/create`
 
 > JSON example to send:
+
 ```json
 {
 	"account_name": "uniqueAcctReference",
@@ -19,6 +20,14 @@ Create a new Duda account in which you can grant a customer or staff permissions
 	"email": "example@domain.com",
 	"account_type": "CUSTOMER"
 }
+```
+
+> cURL Example
+
+```shell 
+curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' \
+-X POST -i -k https://api.dudamobile.com/api/accounts/create \
+-d '{"account_name":"email@email.com", "first_name":"john", "last_name":"doe"}'
 ```
 
 ### Parameters:
@@ -34,13 +43,6 @@ lang | String | Optional | [Two digit language code](#langauges). Sets what lang
 ### Return
 
 You can expect a `204 No Content` response code for a successful create account call.
-
-> cURL Example
-
-```shell curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' \
--X POST -i -k https://api.dudamobile.com/api/accounts/create \
--d '{"account_name":"email@email.com", "first_name":"john", "last_name":"doe"}'
-```
 
 ## Get Account 
 
@@ -129,42 +131,6 @@ You can update any property documented in the [create account call](#create-acco
 
 You can expect a `204 No Content` response code for a successful delete account call.
 
-## Generate Single Sign-on Token
-
-> cURL Example
-
-```shell
-curl -S -u 'APIusername:APIpassword' \
--H 'Content-Type: application/json' \
--X GET \
--k https://api.dudamobile.com/api/accounts/sso/johnsmith@gmail.com/token​
-```
-
-<aside class="notice">We recommend using the generate SSO Link API instead of the Generate SSO Token. It is easier to use.</aside>
-
-Generate a token that will grant sub-accounts access to your white label portal. By calling this API, Duda will return a token that you can be append to the end of your SSO Endpoint in order to authenticate a sub-account directly into your white label account. To generate a Single Sign-On Token for a specific site, you must first give access to a specific site for the Sub-account you want to access that site. Duda will return a URL Parameter with a key and a value. Use this key value pair to append the Token on to the SSO Endpoint URL.
-
-### Method and path
-`GET /accounts/sso/{account_name}/token`
-
-### Parameters:</strong> 
-
-- account_name - URL Parameter - Account name
-
-### Return:
-
-HTTP Code: 200 OK 
-
-> JSON Response example:
-
-```json
-{  
-	"url_parameter" : {  
-		"name" : "dm_sso",
-		"value" : "2|eyJyZXFVdWlkIjoiYTZjMGRjNGU0MTZiNDdiM2FmZGIyNTkzOGYxMjk4ODYifQ"
-	}
-}
-```
 ## Generate SSO Link
 Generate a Single Sign-On link that will send a user to a specific page in the platform. You can generate a link to: The dashboard, the editor, stats page or to reset a site. If you are sending the user to the stats, editor or reset pages, you will need to pass the site_name and target as a parameter on the request URL. After generating the link, you should direct the users browser to this URL.
 
@@ -202,6 +168,43 @@ Dashboard | (none) | (none) | Send the user directly into their website dashboar
 Stats | "TARGET" | "STATS" | Send the user directly into the website statistics URL. 
 Site Editor | "TARGET" | "EDITOR" | Send the user directly into the white labeled website builder.
 Stats | "TARGET" | "RESET_SITE" | Send the user directly to the select new template / reset site page. Note that if the user does reset the site, all existing website edits will be lost and the site will be reset to a new template that is selected. 
+
+## Generate Single Sign-on Token
+
+> cURL Example
+
+```shell
+curl -S -u 'APIusername:APIpassword' \
+-H 'Content-Type: application/json' \
+-X GET \
+-k https://api.dudamobile.com/api/accounts/sso/johnsmith@gmail.com/token​
+```
+
+<aside class="notice">We recommend using the generate SSO Link API instead of the Generate SSO Token. It is easier to use.</aside>
+
+Generate a token that will grant sub-accounts access to your white label portal. By calling this API, Duda will return a token that you can be append to the end of your SSO Endpoint in order to authenticate a sub-account directly into your white label account. To generate a Single Sign-On Token for a specific site, you must first give access to a specific site for the Sub-account you want to access that site. Duda will return a URL Parameter with a key and a value. Use this key value pair to append the Token on to the SSO Endpoint URL.
+
+### Method and path
+`GET /accounts/sso/{account_name}/token`
+
+### Parameters:</strong> 
+
+- account_name - URL Parameter - Account name
+
+### Return:
+
+HTTP Code: 200 OK 
+
+> JSON Response example:
+
+```json
+{  
+	"url_parameter" : {  
+		"name" : "dm_sso",
+		"value" : "2|eyJyZXFVdWlkIjoiYTZjMGRjNGU0MTZiNDdiM2FmZGIyNTkzOGYxMjk4ODYifQ"
+	}
+}
+```
 
 ## Grant Customer Access to a Site
 

@@ -5,9 +5,9 @@ language_tabs:
   - shell: cURL
 
 toc_footers:
-  - <a href='#'>Back to Developer Portal</a>
-  - <a href='#'>Duda API Terms of Service</a>
-  - <a href='https://github.com/lord/slate' target="_blank">Documentation Powered by Slate</a>
+  - <a href='/developers/'>Back to Developer Portal</a>
+  - <a href='/developers/rest-api/api-terms'>Duda API Terms of Service</a>
+  - <a href='https://help.dudamobile.com/' target="_blank">View Duda Support Docs</a>
 
 includes:
   - intro

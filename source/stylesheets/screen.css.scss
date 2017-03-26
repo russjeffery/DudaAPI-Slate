@@ -65,7 +65,6 @@ html, body {
   background-color: $nav-bg;
   font-size: 16px;
   font-weight: 300;
-  border-right: 5px solid $nav-active-text;
   box-sizing: border-box;
 
   // language selector for mobile devices
@@ -84,28 +83,30 @@ html, body {
     max-width:120px;
     margin:10px auto;
   }
+  &>p {
+  text-align:center;
+  }
 
   &>.search {
     position: relative;
 
     input {
-      background: $nav-bg;
-      border-width: 0 0 1px 0;
-      border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
+      background: #fff;
+      padding: 6px 0 6px 30px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - 30;
       outline: none;
-      color: #fff;
+      color: #313131;
       border-radius: 0; /* ios has a default border radius */
+      border:none;
     }
 
     &:before {
       position: absolute;
       top: 17px;
-      left: $nav-padding;
-      color: #fff;
+      left: 20px;
+      color: #727272;
       @extend %icon-search;
     }
   }
@@ -285,7 +286,7 @@ html, body {
   // half of the content always this background color.
   .dark-box {
     width: $examples-width;
-    background-color: $examples-bg;
+    background-color: #fff;
     position: absolute;
     right: 0;
     top: 0;
@@ -633,10 +634,6 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
-.tocify-wrapper p {
-  color:#f2f2f2;
-  text-align:center;
-}
 
 .tocify-subheader {
   li::before{
@@ -668,5 +665,12 @@ html, body {
   li[data-unique='inject-content']::before {
     content:"Content";
   }
+  li[data-unique='create-account']::before {
+    content:"Account Management";
+  }
+  li[data-unique='generate-sso-link']::before {
+    content:"Single Sign-On";
+  }
+  
 
 }
