@@ -263,7 +263,7 @@ RESET | EDIT | Reset a site, will allow the customer to pick a new template for 
 PUSH_NOTIFICATION | EDIT | Ability to send push notifications to visitors who have subscribed to notifications on the website.
 LIMITED_EDITING | (None) | Allow the customer to only edit widget content already in the site. They cannot move, delete or add widgets or change the design. Note that any permission that has the EDIT requirement cannot be used in conjunction with limited editing.
 
-## Get Available Multiscreen Site Permissions
+## Get Multiscreen Site Permissions
 
 Get a list of available permissions for a Customer account when granting access to a multiscreen website. This list will be updated in the future as new features are released, so it is best to check regularly for updates.
 
@@ -298,137 +298,69 @@ curl -S -u 'APIusername:APIpassword' \
 -k https://api.dudamobile.com/api/accounts/permissions/multiscreen
 ```
 
+## Get Site Permissions for a Customer
 
-</table>
- <strong>Mobile Permissions:</strong> 
-<table border="1" cellspacing="1" cellpadding="1">
-<thead>
-<tr>
-<th>Permission Name</th>
-<th>Dependency</th>
-<th>Description of Permission</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>STATS_TAB</td>
-<td><em>(None)</em></td>
-<td>Access to statistics for this  site. </td>
-</tr>
-<tr>
-<td>EDIT</td>
-<td><em>(None)</em></td>
-<td>Add elements, manage pages, edit design, control site settings.</td>
-</tr>
-<tr>
-<td>HTML_CSS</td>
-<td>EDIT</td>
-<td>Directly access HTML/CSS of the site.</td>
-</tr>
-<tr>
-<td>SEO</td>
-<td>EDIT</td>
-<td>Configure SEO settings on a site or page level.</td>
-</tr>
-<tr>
-<td>CUSTOM_DOMAIN</td>
-<td>EDIT</td>
-<td>Edit the site's domain.</td>
-</tr>
-<tr>
-<td>REPUBLISH</td>
-<td>EDIT</td>
-<td>Update the live site with all changes made in the editor.</td>
-</tr>
-<tr>
-<td>PUBLISH</td>
-<td>REPUBLISH</td>
-<td>Publish the site for the first time. <em>Note: When publishing a site for the first time, the account will be automatically charged.</em></td>
-</tr>
-<tr>
-<td>BACKUPS</td>
-<td>EDIT</td>
-<td>Create, restore and delete backups.</td>
-</tr>
-</tbody>
-</table>
-<div class="api-code">POST /accounts/{account_name}/sites/{site_name}/permissions</div>
- <strong>URI Parameters:</strong> 
-<ul>
-<li>account_name - An existing Duda account that exists under your account</li>
-<li>site_name - An existing site. Can be a multiscreen or mobile site</li>
-</ul>
- <strong>Data structure (body)</strong> 
- If you have specific permissions you want this customer to have access to, pass a permissions object with an array of specific permission strings. 
- <em>JSON example:</em> 
-<pre>{
-          "permissions": ["EDIT", "DEV_MODE", "STATS_TAB"]
-      }</pre>
- <strong>Expected Return:</strong> 
- Http Status Code: 204 No Content 
- <strong>Possible Errors:</strong> 
-<div class="api-error">AccessForbidden</div>
-<div class="api-error">ResourceNotExist</div>
-<div class="api-error">ResourceAlreadyExist</div>
-<div class="api-error">InvalidInput</div>
- <strong>CURL Example:</strong> 
-<pre><span class="nowiki">curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' -X POST -i -k https://api.dudamobile.comhttps://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions -d '{"permissions":["EDIT","DEV_MODE","STATS_TAB"]}'</span></pre>
-<a class="backToTopLink" href="#">Back to Top</a></div>
-</li>
-<li class="get-access-permissions">
-<h3 id="get-access-permissions">Get Site Permissions for a Customer</h3>
-<div class="hidden-content" style="">
- Get the permissions that a customer has been granted for a specific site. Each site that a customer is granted access to can have different permissions, so each association can potentially have different permissions. Permissions can be returned for either mobile or multiscreen websites.  
-<div class="api-code">GET /accounts/{account_name}/sites/{site_name}/permissions</div>
- <strong>Expected Return:</strong> 
- Http Status Code: 200 
- <em>JSON:</em> 
-<pre><span class="sBrace structure-1">{
-      "permissions":["STATS_TAB","EDIT","PUBLISH","REPUBLISH","STATS_EMAIL","SEO","CUSTOM_DOMAIN","BACKUPS"]
-      }
-      </span></pre>
- <strong>Possible Errors:</strong> 
-<div class="api-error">AccessForbidden</div>
- <strong>CURL Example:</strong> 
-<pre>curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' -X GET -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions</pre>
-<a class="backToTopLink" href="#">Back to Top</a></div>
-</li>
-<li class="get-permissions">
-<h3 id="get-permissions">Get Customer Site Access</h3>
-<div class="hidden-content" style="">
- See which permissions a customer has access to for a specific site. Can be a mobile or multiscreensite. 
-<div class="api-code">GET /accounts/{account_name}/sites/{site_name}/permissions</div>
- <strong>Expected Return:</strong> 
- HTTP Status Code: 200 OK 
- <em>JSON:</em> 
-<pre>{
-          "permissions": ["EDIT", "DEV_MODE", "STATS_TAB"]
-      }
-      </pre>
- <strong>Possible Errors:</strong> 
-<div class="api-error">AccessForbidden</div>
-<div class="api-error">ResourceNotExist</div>
- <strong>CURL Example:</strong> 
-<pre>curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' -X GET -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions</pre>
-<a class="backToTopLink" href="#">Back to Top</a></div>
-</li>
-<li class="delete-permissions">
-<h3 id="delete-permissions">Remove Customer Access to Site</h3>
-<div class="hidden-content" style="">
- Remove/delete access that a customer has to a specific mobile or multiscreen site. 
-<div class="api-code">DELETE /accounts/{account_name}/sites/{site_name}/permissions</div>
- <strong>URI Parameters:</strong> 
-<ul>
-<li>account_name - An existing Duda account that exists under your account</li>
-<li>site_name - An existing site. Can be a multiscreen or mobile site</li>
-</ul>
- <strong>Expected Return:</strong> 
- HTTP Status Code: 204 No Content 
- <strong>Possible Errors:</strong> 
-<div class="api-error">AccessForbidden</div>
-<div class="api-error">ResourceNotExist</div>
- <strong>CURL Example:</strong> 
-<pre>curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' -X DELETE -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions</pre>
+Get the permissions that a customer has been granted for a specific site. Each site that a customer is granted access to can have different permissions, so each association can potentially have different permissions. Permissions can be returned for either mobile or multiscreen websites.  
+
+### Method and path
+`GET /accounts/{account_name}/sites/{site_name}/permissions`
+
+### Return
+You can expect a `200 OK` response code for a successful delete account call.
+ 
+> JSON Example
+
+```json
+{
+	"permissions": [
+		"STATS_TAB",
+		"EDIT",
+		"PUBLISH",
+		"REPUBLISH",
+		"STATS_EMAIL",
+		"SEO",
+		"CUSTOM_DOMAIN",
+		"BACKUPS"
+	]
+}
+```
+```shell
+curl -S -u 'APIusername:APIpassword' \
+-H 'Content-Type: application/json' \
+-X GET \
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
+```
+
+## Remove Customer Access to Site
+
+Remove/delete access that a customer has to a specific mobile or multiscreen site. 
+
+### Method and path
+`DELETE /accounts/{account_name}/sites/{site_name}/permissions`
+
+```shell
+curl -S -u 'APIusername:APIpassword' \
+-H 'Content-Type: application/json' \
+-X DELETE \
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
+```
+ 
+### URI Parameters:
+
+- account_name - An existing Duda account that exists under your account
+- site_name - An existing site. Can be a multiscreen or mobile site
+
+### Return:
+
+You can expect a `204 No Content` response code for a successful create account call.
+
+```shell
+curl -S -u 'APIusername:APIpassword' \
+-H 'Content-Type: application/json' \
+-X DELETE \
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
+```
+<!-- 
 <a class="backToTopLink" href="#">Back to Top</a></div>
 </li>
 <li class="get-multiscreen">
@@ -643,4 +575,4 @@ curl -S -u 'APIusername:APIpassword' \
 <script type="text/javascript">// <![CDATA[
 
 // ]]></script>
-                  </div>
+                  </div> -->
