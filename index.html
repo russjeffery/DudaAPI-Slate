@@ -116,9 +116,9 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Back to Developer Portal</a></li>
-            <li><a href='#'>Duda API Terms of Service</a></li>
-            <li><a href='https://github.com/lord/slate' target="_blank">Documentation Powered by Slate</a></li>
+            <li><a href='/developers/'>Back to Developer Portal</a></li>
+            <li><a href='/developers/rest-api/api-terms'>Duda API Terms of Service</a></li>
+            <li><a href='https://help.dudamobile.com/' target="_blank">View Duda Support Docs</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -2333,18 +2333,25 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/api/sites/injec
 <p><code class="prettyprint">POST /accounts/create</code></p>
 
 <blockquote>
-<p>JSON example to send:
-<code class="prettyprint">json
-{
-    &quot;account_name&quot;: &quot;uniqueAcctReference&quot;,
-    &quot;first_name&quot;: &quot;Joann&quot;,
-    &quot;last_name&quot;: &quot;Smith&quot;,
-    &quot;lang&quot;: &quot;en&quot;,
-    &quot;email&quot;: &quot;example@domain.com&quot;,
-    &quot;account_type&quot;: &quot;CUSTOMER&quot;
-}
-</code></p>
+<p>JSON example to send:</p>
 </blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uniqueAcctReference"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Joann"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@domain.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"account_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>cURL Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X POST -i -k https://api.dudamobile.com/api/accounts/create <span class="se">\</span>
+-d <span class="s1">'{"account_name":"email@email.com", "first_name":"john", "last_name":"doe"}'</span>
+</code></pre>
 
 <h3 id="parameters">Parameters:</h3>
 
@@ -2391,15 +2398,6 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/api/sites/injec
 <h3 id="return">Return</h3>
 
 <p>You can expect a <code class="prettyprint">204 No Content</code> response code for a successful create account call.</p>
-
-<blockquote>
-<p>cURL Example</p>
-</blockquote>
-
-<p><code class="prettyprint">shell curl -S -u &#39;APIusername:APIpassword&#39; -H &#39;Content-Type: application/json&#39; \
--X POST -i -k https://api.dudamobile.com/api/accounts/create \
--d &#39;{&quot;account_name&quot;:&quot;email@email.com&quot;, &quot;first_name&quot;:&quot;john&quot;, &quot;last_name&quot;:&quot;doe&quot;}&#39;
-</code></p>
 
 <h2 id="get-account">Get Account</h2>
 
@@ -2529,46 +2527,6 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 
 <p>You can expect a <code class="prettyprint">204 No Content</code> response code for a successful delete account call.</p>
 
-<h2 id="generate-single-sign-on-token">Generate Single Sign-on Token</h2>
-
-<blockquote>
-<p>cURL Example</p>
-</blockquote>
-<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
--H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
--X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/sso/johnsmith@gmail.com/token​
-</code></pre>
-
-<aside class="notice">We recommend using the generate SSO Link API instead of the Generate SSO Token. It is easier to use.</aside>
-
-<p>Generate a token that will grant sub-accounts access to your white label portal. By calling this API, Duda will return a token that you can be append to the end of your SSO Endpoint in order to authenticate a sub-account directly into your white label account. To generate a Single Sign-On Token for a specific site, you must first give access to a specific site for the Sub-account you want to access that site. Duda will return a URL Parameter with a key and a value. Use this key value pair to append the Token on to the SSO Endpoint URL.</p>
-
-<h3 id="method-and-path">Method and path</h3>
-
-<p><code class="prettyprint">GET /accounts/sso/{account_name}/token</code></p>
-
-<h3 id="parameters">Parameters:</strong></h3>
-
-<ul>
-<li>account_name - URL Parameter - Account name</li>
-</ul>
-
-<h3 id="return">Return:</h3>
-
-<p>HTTP Code: 200 OK </p>
-
-<blockquote>
-<p>JSON Response example:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
-    </span><span class="nt">"url_parameter"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  
-        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"dm_sso"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2|eyJyZXFVdWlkIjoiYTZjMGRjNGU0MTZiNDdiM2FmZGIyNTkzOGYxMjk4ODYifQ"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
 <h2 id="generate-sso-link">Generate SSO Link</h2>
 
 <p>Generate a Single Sign-On link that will send a user to a specific page in the platform. You can generate a link to: The dashboard, the editor, stats page or to reset a site. If you are sending the user to the stats, editor or reset pages, you will need to pass the site_name and target as a parameter on the request URL. After generating the link, you should direct the users browser to this URL.</p>
@@ -2635,6 +2593,46 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <td>Send the user directly to the select new template / reset site page. Note that if the user does reset the site, all existing website edits will be lost and the site will be reset to a new template that is selected.</td>
 </tr>
 </tbody></table>
+
+<h2 id="generate-single-sign-on-token">Generate Single Sign-on Token</h2>
+
+<blockquote>
+<p>cURL Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X GET <span class="se">\</span>
+-k https://api.dudamobile.com/api/accounts/sso/johnsmith@gmail.com/token​
+</code></pre>
+
+<aside class="notice">We recommend using the generate SSO Link API instead of the Generate SSO Token. It is easier to use.</aside>
+
+<p>Generate a token that will grant sub-accounts access to your white label portal. By calling this API, Duda will return a token that you can be append to the end of your SSO Endpoint in order to authenticate a sub-account directly into your white label account. To generate a Single Sign-On Token for a specific site, you must first give access to a specific site for the Sub-account you want to access that site. Duda will return a URL Parameter with a key and a value. Use this key value pair to append the Token on to the SSO Endpoint URL.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /accounts/sso/{account_name}/token</code></p>
+
+<h3 id="parameters">Parameters:</strong></h3>
+
+<ul>
+<li>account_name - URL Parameter - Account name</li>
+</ul>
+
+<h3 id="return">Return:</h3>
+
+<p>HTTP Code: 200 OK </p>
+
+<blockquote>
+<p>JSON Response example:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+    </span><span class="nt">"url_parameter"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  
+        </span><span class="nt">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"dm_sso"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2|eyJyZXFVdWlkIjoiYTZjMGRjNGU0MTZiNDdiM2FmZGIyNTkzOGYxMjk4ODYifQ"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h2 id="grant-customer-access-to-a-site">Grant Customer Access to a Site</h2>
 
