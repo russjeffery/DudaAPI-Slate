@@ -2643,34 +2643,35 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <p><code class="prettyprint">POST /accounts/{account_name}/sites/{site_name}/permissions</code></p>
 
 <blockquote>
-<p>Array permissions to send
-<code class="prettyprint">json
-[
-    &quot;PUSH_NOTIFICATIONS&quot;,
-    &quot;REPUBLISH&quot;,
-    &quot;EDIT&quot;,
-    &quot;LIMITED_EDITING&quot;,
-    &quot;INSITE&quot;,
-    &quot;PUBLISH&quot;,
-    &quot;CUSTOM_DOMAIN&quot;,
-    &quot;RESET&quot;,
-    &quot;E_COMMERCE&quot;,
-    &quot;SEO&quot;,
-    &quot;STATS_TAB&quot;,
-    &quot;DEV_MODE&quot;,
-    &quot;BACKUPS&quot;,
-    &quot;BLOG&quot;
-]
-</code>
-cURL Example:
-<code class="prettyprint">shell
-curl -S -u &#39;APIusername:APIpassword&#39; \
--H &#39;Content-Type: application/json&#39; \
--X POST \
--k https://api.dudamobile.comhttps://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions \
--d &#39;{&quot;permissions&quot;:[&quot;EDIT&quot;,&quot;DEV_MODE&quot;,&quot;STATS_TAB&quot;]}&#39;
-</code></p>
+<p>Array permissions to send</p>
 </blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="s2">"PUSH_NOTIFICATIONS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"REPUBLISH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"EDIT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"LIMITED_EDITING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"INSITE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"PUBLISH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CUSTOM_DOMAIN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"RESET"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"E_COMMERCE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"SEO"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATS_TAB"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"DEV_MODE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"BACKUPS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"BLOG"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>cURL Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X POST <span class="se">\</span>
+-k https://api.dudamobile.comhttps://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions <span class="se">\</span>
+-d <span class="s1">'{"permissions":["EDIT","DEV_MODE","STATS_TAB"]}'</span>
+</code></pre>
 
 <h3 id="permission-options">Permission options:</h3>
 
@@ -2780,14 +2781,12 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
     </span><span class="s2">"BACKUPS"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"BLOG"</span><span class="w">
 </span><span class="p">]</span><span class="w">
-
-
-</span><span class="err">```shell</span><span class="w">
-</span><span class="err">curl</span><span class="w"> </span><span class="err">-S</span><span class="w"> </span><span class="err">-u</span><span class="w"> </span><span class="err">'APIusername:APIpassword'</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-H</span><span class="w"> </span><span class="err">'Content-Type:</span><span class="w"> </span><span class="err">application/json'</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-X</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">\</span><span class="w">
-</span><span class="err">-k</span><span class="w"> </span><span class="err">https://api.dudamobile.com/api/accounts/permissions/multiscreen</span><span class="w">
 </span></code></pre>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X GET <span class="se">\</span>
+-k https://api.dudamobile.com/api/accounts/permissions/multiscreen
+</code></pre>
 
 <h2 id="get-site-permissions-for-a-customer">Get Site Permissions for a Customer</h2>
 
@@ -2799,7 +2798,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 
 <h3 id="return">Return</h3>
 
-<p>You can expect a <code class="prettyprint">200 OK</code> response code for a successful delete account call.</p>
+<p>You can expect a <code class="prettyprint">200 OK</code> response code for a successful call.</p>
 
 <blockquote>
 <p>JSON Example</p>
@@ -2845,12 +2844,173 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 
 <h3 id="return">Return:</h3>
 
-<p>You can expect a <code class="prettyprint">204 No Content</code> response code for a successful create account call.</p>
+<p>You can expect a <code class="prettyprint">204 No Content</code> response code for a successful delete access call.</p>
 <pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X DELETE <span class="se">\</span>
 -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 </code></pre>
+
+<h2 id="subscribe-customer-to-stats">Subscribe customer to stats</h2>
+
+<p>Sign up customer or staff member for weekly or monthly statistics emails for a specific site. These emails will be automatically delivered by the Duda platform to your users. Monthly emails are sent on the 3rd of each month and weekly emails are sent every Tuesday. You can also perform the same API call to overwrite the existing frequency of customers already signed up.</p>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X POST <span class="se">\</span>
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email <span class="se">\</span>
+-d <span class="s1">'{"frequency":"WEEKLY"}'</span>
+</code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /accounts/{account_name}/sites/{site_name}/stats-email</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>account_name - URL parameter - Account name</li>
+<li>site_name - URL parameter - A reference to a specific site</li>
+</ul>
+
+<p>You can also send a JSON object in the body of the request which tells Duda the frequency to send the customers emails: &ldquo;MONTHLY&rdquo; or &ldquo;YEARLY&rdquo;.</p>
+
+<h2 id="get-stats-email-settings">Get Stats Email Settings</h2>
+
+<p>Get the status of stats emails for this customer. If a recurring email is already enabled, a JSON object with the frequency will be returned. If no recurring email is enabled, then an error will be returned.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /accounts/{account_name}/sites/{site_name}/stats-email</code></p>
+
+<blockquote>
+<p>JSON Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"frequency"</span><span class="p">:</span><span class="s2">"WEEKLY"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X GET <span class="se">\</span>
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>account_name - URL parameter - Account name</li>
+<li>site_name - URL parameter - A reference to a specific site</li>
+</ul>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X DELETE <span class="se">\</span>
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
+</code></pre>
+
+<h3 id="response">Response</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response code for a successful call.</p>
+
+<h2 id="unsubscribe-customer-stats-email">Unsubscribe customer stats email</h2>
+
+<p>Stop a user from receiving recurring stats emails.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">DELETE /accounts/{account_name}/sites/{site_name}/stats-email</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>account_name - URL parameter - Account name</li>
+<li>site_name - URL parameter - A reference to a specific site</li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>You can expect a <code class="prettyprint">204 No Content</code> response code for a successful delete call.</p>
+
+<h2 id="get-multiscreen-sites-by-account">Get Multiscreen Sites by Account</h2>
+
+<p>Get all websites that a specific customer account has access to. This is useful for reporting and also listing a dashboard of websites for an end-user to access/edit. </p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /accounts/grant-access/{account_name}/sites/multiscreen</code></p>
+
+<blockquote>
+<p>JSON Return:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"site_name"</span><span class="p">:</span><span class="s2">"08e5f101"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"site_name"</span><span class="p">:</span><span class="s2">"a7fa3956"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"site_name"</span><span class="p">:</span><span class="s2">"u8elal2"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X GET <span class="se">\</span>
+-k https://api.dudamobile.com/api/accounts/grant-access/john@johnsmith.com/sites/multiscreen​
+</code></pre>
+
+<h3 id="parameters">Parameters:</h3>
+
+<ul>
+<li>account_name - URL parameter - Account name</li>
+</ul>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response back with an array of site name objects for this customer.</p>
+
+<blockquote>
+<p>JSON Return</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"reset_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.com/login/resetpwd?uuid=e4ec7b6f-b77f-47de-aedf-d2383ccb5de2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X POST <span class="se">\</span>
+-k https://api.dudamobile.com/api/accounts/reset-password/johnsmith@gmail.com
+</code></pre>
+
+<h2 id="get-reset-site-link">Get Reset Site Link</h2>
+
+<p>In order to allow your users to login directly to the dashboard, they must set up a password. Using the Get Reset Password URL you can generate a URL to allow your users to access their dashboard/editor directly. We recommend emailing the Reset Password link directly to your customers. This URL is valid for 30 days. </p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<h3 id="return">Return</h3>
+
+<p>With a successful call, you should recieve a <code class="prettyprint">200 OK</code> status reponse. </p>
 
           <h1 id="permission-groups">Permission Groups</h1>
 
@@ -2858,7 +3018,192 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 
           <h1 id="analytics">Analytics</h1>
 
-<aside class="notice">This is the analytics block of code.</aside>
+<h2 id="get-site-analytics">Get Site Analytics</h2>
+
+<p>Get analytics history for a specific website over a certain amount of time.</p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /analytics/site/{site_name}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p>The following URL query parameters can be added on the end of the GET site API call.</p>
+
+<p>Analytics are updated every 24 hours, so you will not be able to pull analytics from the current day, only previous days.</p>
+
+<table><thead>
+<tr>
+<th>Query String Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>Date</td>
+<td>Optional. Defaults to 30 days prior to &ldquo;to&rdquo; value</td>
+<td>Give the start (date)[#date] of when you want to pull analytics from.</td>
+</tr>
+<tr>
+<td>to</td>
+<td>Date</td>
+<td>Optional. Defaults to the current day.</td>
+<td>Give an end date.</td>
+</tr>
+<tr>
+<td>dimension</td>
+<td>String</td>
+<td>Optional</td>
+<td>The type of dimension to query the data by: (1) &ldquo;system&rdquo;: Set including Browser Type, Browser Version and Operating System, or (2) &ldquo;geo&rdquo;: Country (and Region where available)</td>
+</tr>
+<tr>
+<td>result</td>
+<td>String</td>
+<td>Optional. Either &ldquo;traffic&rdquo; or &ldquo;activities&rdquo;. Defaults to traffic.</td>
+<td>Whether to return results with <strong>traffic</strong> metrics (visits, unique visitors, pageviews), or to return results with <strong>activities</strong> metrics (click_to_calls, click_to_maps, click_to_emails, form_submits)</td>
+</tr>
+<tr>
+<td>dateGranularity</td>
+<td>String</td>
+<td>optional, can be: &ldquo;DAYS&rdquo;, &ldquo;WEEKS&rdquo;, &ldquo;MONTHS&rdquo;, or &ldquo;YEARS&rdquo;</td>
+<td>When the dateGranularity URL parameter is present, Duda will return a data from the selected format. If you choose days for a specific week, Duda will return the visits for that specific day and each day within the date range defined.</td>
+</tr>
+</tbody></table>
+
+<p>If neither the &ldquo;from&rdquo; parameter nor the &ldquo;to&rdquo; parameter is provided, the queried period will be the past 30 days. </p>
+
+<p>If only the &ldquo;from&rdquo; parameter is provided, the queried period will be the &ldquo;from&rdquo; date until today.</p>
+
+<p>If only the &ldquo;to&rdquo; parameter is provided, the queried period will be from 30 days prior to the &ldquo;to&rdquo; date until the &ldquo;to&rdquo; date.</p>
+
+<aside class="warning">The ?results=activities cannot be combined with the &lsquo;dimension&rsquo; query string. This will return an error.</aside>
+
+<blockquote>
+<p>Querying: Traffic, not dimensioned:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="nt">"UNIQUE_VISITORS"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="nt">"VISITS"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="nt">"PAGE_VIEWS"</span><span class="p">:</span><span class="mi">150</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Querying: Activities, not dimensioned:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="nt">"CLICK_TO_EMAILS"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="nt">"FORM_SUBMITS"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">"CLICK_TO_MAPS"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="nt">"CLICK_TO_CALLS"</span><span class="p">:</span><span class="mi">20</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Querying: Traffic, Dimensioned by geo:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"VISITORS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"PAGE_VIEWS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"VISITS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"dimension"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"VISITORS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"PAGE_VIEWS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"VISITS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"dimension"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FL"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"VISITORS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"PAGE_VIEWS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"VISITS"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"dimension"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"country"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Canada"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Ontario"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="return">Return</h3>
+
+<p><strong>If the result parameter is &ldquo;traffic&rdquo;:</strong></p>
+
+<p>If a dimension set is provided, an array containing the following JSON elements for each row of the result set.</p>
+
+<p>If no dimension set is provided, a JSON structure containing the following elements.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dimension</td>
+<td>JSON Structure</td>
+<td>A single dimension pertaining to the queried dimension type (if a dimension type was sent). Ex: The &ldquo;geo&rdquo; dimension type may return &ldquo;dimension&rdquo;:{&ldquo;Country&rdquo;:&ldquo;Canada&rdquo;,&ldquo;Region&rdquo;:&ldquo;Ontario&rdquo;}</td>
+</tr>
+<tr>
+<td>VISITS</td>
+<td>integer</td>
+<td>For the queried period and for the specified dimension, the number of visits to the site.</td>
+</tr>
+<tr>
+<td>VISITORS</td>
+<td>integer</td>
+<td>For the queried period and for the specified dimension, the number of unique visitors to the site.</td>
+</tr>
+<tr>
+<td>PAGE_VIEWS</td>
+<td>integer</td>
+<td>For the queried period and for the specified dimension, the number of page views to the site.</td>
+</tr>
+</tbody></table>
+
+<p><strong>If the result parameter is &ldquo;activities&rdquo;:</strong></p>
+
+<p>If a dimension set is provided, an array containing the following JSON elements for each row of the result set.</p>
+
+<p>If no dimension set is provided, a JSON structure containing the following elements.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dimension</td>
+<td>JSON Object</td>
+<td>A single dimension pertaining to the queried dimension type (if a dimension type was sent). Ex: The &ldquo;geo&rdquo; dimension type may return &ldquo;dimension&rdquo;:{&ldquo;Country&rdquo;:&ldquo;Canada&rdquo;,&ldquo;Region&rdquo;:&ldquo;Ontario&rdquo;}</td>
+</tr>
+<tr>
+<td>click_to_calls</td>
+<td>integer</td>
+<td>For the queried period and for the specified dimension, the number of click-to-call actions on the site.</td>
+</tr>
+<tr>
+<td>click_to_maps</td>
+<td>integer</td>
+<td>For the queried period and for the specified dimension, the number of click-to-map actions on the site.</td>
+</tr>
+<tr>
+<td>click_to_emails</td>
+<td>integer</td>
+<td>For the queried period and for the specified dimension, the number of click-to-email actions on the site.</td>
+</tr>
+<tr>
+<td>form_submits</td>
+<td>integer</td>
+<td>For the queried period and for the specified dimension, the number of form submission actions on the site.</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
