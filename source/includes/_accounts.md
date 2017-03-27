@@ -218,6 +218,7 @@ If you would like to update the permissions that a specific customer has to a si
 `POST /accounts/{account_name}/sites/{site_name}/permissions`
 
 > Array permissions to send
+
 ```json
 [
 	"PUSH_NOTIFICATIONS",
@@ -236,7 +237,9 @@ If you would like to update the permissions that a specific customer has to a si
 	"BLOG"
 ]
 ```
+
 > cURL Example:
+
 ```shell
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
@@ -289,7 +292,7 @@ Get a list of available permissions for a Customer account when granting access 
 	"BACKUPS",
 	"BLOG"
 ]
-
+```
 
 ```shell
 curl -S -u 'APIusername:APIpassword' \
@@ -306,7 +309,7 @@ Get the permissions that a customer has been granted for a specific site. Each s
 `GET /accounts/{account_name}/sites/{site_name}/permissions`
 
 ### Return
-You can expect a `200 OK` response code for a successful delete account call.
+You can expect a `200 OK` response code for a successful call.
  
 > JSON Example
 
@@ -352,7 +355,7 @@ curl -S -u 'APIusername:APIpassword' \
 
 ### Return:
 
-You can expect a `204 No Content` response code for a successful create account call.
+You can expect a `204 No Content` response code for a successful delete access call.
 
 ```shell
 curl -S -u 'APIusername:APIpassword' \
@@ -360,3 +363,143 @@ curl -S -u 'APIusername:APIpassword' \
 -X DELETE \
 -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 ```
+
+## Subscribe customer to stats
+
+Sign up customer or staff member for weekly or monthly statistics emails for a specific site. These emails will be automatically delivered by the Duda platform to your users. Monthly emails are sent on the 3rd of each month and weekly emails are sent every Tuesday. You can also perform the same API call to overwrite the existing frequency of customers already signed up.
+
+> Example
+
+```shell
+curl -S -u 'APIusername:APIpassword' \
+-H 'Content-Type: application/json' \
+-X POST \
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email \
+-d '{"frequency":"WEEKLY"}'
+```
+
+### Method and path
+`POST /accounts/{account_name}/sites/{site_name}/stats-email`
+
+### Parameters
+- account_name - URL parameter - Account name
+- site_name - URL parameter - A reference to a specific site
+
+You can also send a JSON object in the body of the request which tells Duda the frequency to send the customers emails: "MONTHLY" or "YEARLY".
+
+## Get Stats Email Settings
+Get the status of stats emails for this customer. If a recurring email is already enabled, a JSON object with the frequency will be returned. If no recurring email is enabled, then an error will be returned.
+
+### Method and path
+`GET /accounts/{account_name}/sites/{site_name}/stats-email`
+
+> JSON Response
+
+```json
+{
+	"frequency":"WEEKLY"
+}
+```
+> Example
+
+```shell
+curl -S -u 'APIusername:APIpassword' \
+-H 'Content-Type: application/json' \
+-X GET \
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
+```
+
+### Parameters
+- account_name - URL parameter - Account name
+- site_name - URL parameter - A reference to a specific site
+
+> Example
+
+```shell
+curl -S -u 'APIusername:APIpassword' \
+-H 'Content-Type: application/json' \
+-X DELETE \
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
+```
+
+### Response
+You can expect a `200 OK` response code for a successful call.
+
+## Unsubscribe customer stats email
+Stop a user from receiving recurring stats emails.
+
+### Method and path
+`DELETE /accounts/{account_name}/sites/{site_name}/stats-email`
+
+### Parameters
+- account_name - URL parameter - Account name
+- site_name - URL parameter - A reference to a specific site
+
+### Response
+You can expect a `204 No Content` response code for a successful delete call.
+
+## Get Multiscreen Sites by Account
+
+Get all websites that a specific customer account has access to. This is useful for reporting and also listing a dashboard of websites for an end-user to access/edit. 
+
+### Method and path
+
+`GET /accounts/grant-access/{account_name}/sites/multiscreen`
+
+> JSON Return:
+
+```json
+[
+	{
+		"site_name":"08e5f101"
+	},
+	{
+		"site_name":"a7fa3956"
+	},
+	{
+		"site_name":"u8elal2"
+	}
+]
+```
+
+> Example
+
+```shell
+curl -S -u 'APIusername:APIpassword' \
+-H 'Content-Type: application/json' \
+-X GET \
+-k https://api.dudamobile.com/api/accounts/grant-access/john@johnsmith.com/sites/multiscreen​
+```
+
+### Parameters:
+
+- account_name - URL parameter - Account name
+
+### Return
+You can expect a `200 OK` response back with an array of site name objects for this customer.
+
+> JSON Return
+
+```json
+{
+	"reset_url" : "http://example.mobilewebsiteserver.com/login/resetpwd?uuid=e4ec7b6f-b77f-47de-aedf-d2383ccb5de2"
+}
+```
+
+> Example:
+
+```shell
+curl -S -u 'APIusername:APIpassword' \
+-H 'Content-Type: application/json' \
+-X POST \
+-k https://api.dudamobile.com/api/accounts/reset-password/johnsmith@gmail.com
+```
+
+## Get Reset Site Link
+
+In order to allow your users to login directly to the dashboard, they must set up a password. Using the Get Reset Password URL you can generate a URL to allow your users to access their dashboard/editor directly. We recommend emailing the Reset Password link directly to your customers. This URL is valid for 30 days. 
+
+### Method and path
+
+### Return
+With a successful call, you should recieve a `200 OK` status reponse. 

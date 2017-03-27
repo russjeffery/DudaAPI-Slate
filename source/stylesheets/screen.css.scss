@@ -373,7 +373,7 @@ html, body {
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     background-color:#f2f2f2;
-    color:$h1-color;
+    color:#313131;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -671,6 +671,18 @@ html, body {
   li[data-unique='generate-sso-link']::before {
     content:"Single Sign-On";
   }
+  li[data-unique='grant-customer-access-to-a-site']::before {
+    content:"Permissions"
+  }
+  li[data-unique='subscribe-customer-to-stats']::before {
+    content:"Stats emails";
+  }
+  li[data-unique='get-multiscreen-sites-by-account']::before {
+    content:"Other";
+  }
+
+  
+  
   
 
 }
