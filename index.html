@@ -179,7 +179,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <p>The documentation here assumes that you will combine the endpoint with the path of the API method. There are some cases where you might have a different endpoint than the one above, such as working with Duda&rsquo;s sandbox environment or a custom setup that Duda provides, although this is rare. </p>
 
-<h2 id="data-schema">Data Schema</h2>
+<h2 id="data-schema">Data schema</h2>
 
 <p>All data passed to and from the Duda API will be in JSON representation. We currently only support this format of data transfer.</p>
 
@@ -327,9 +327,9 @@ Make sure to set the authorization header with your unique API username and API 
 </tr>
 </tbody></table>
 
-          <h1 id="multiscreen-sites">Multiscreen Sites</h1>
+          <h1 id="responsive-sites">Responsive sites</h1>
 
-<p>A site instance resource represents a single Duda site. There are two main types of Duda sites: mobile and multiscreen. Mobile represents a DudaMobile site and multiscreen represents a Responsive site. Below, you will see the API resources available for the multiscreen (DudaOne) sites only.</p>
+<p>A site instance resource represents a single Duda site. There are two main types of Duda sites: mobile and multiscreen (responsive). Below, you will see the API resources available for the multiscreen sites only.</p>
 
 <h2 id="create-site">Create site</h2>
 
@@ -597,7 +597,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <p>Upon successful creation of a website, Duda will return a site_name value along with a <code class="prettyprint">200 OK</code> HTTP response. The site_name is a unique string (usually between 8 and 32 characters) across all Duda websites and will be needed to later access other resources, such as updating the site, getting analytics or granting access. We recommend storing this site_name in your database for later reference.</p>
 
-<h2 id="get-site">Get Site</h2>
+<h2 id="get-site">Get site</h2>
 
 <p>Get information about an already existing website. You will need the site_name value that was provided during the create website call. </p>
 
@@ -845,7 +845,7 @@ Make sure to set the authorization header with your unique API username and API 
 
 <p>A <code class="prettyprint">204 No Content</code> HTTP code will be returned upon successful call. </p>
 
-<h2 id="delete-site">Delete Site</h2>
+<h2 id="delete-site">Delete site</h2>
 
 <p>This will immediately and permanently delete the site and cancel any subscription associated with the site. Please note that after deleting a site there is no way to bring the site back. Deleting a site will also cancel any active subscription/payment associated with the site. </p>
 
@@ -975,7 +975,7 @@ Make sure to set the authorization header with your unique API username and API 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h2 id="reset-site">Reset Site</h2>
+<h2 id="reset-site">Reset site</h2>
 
 <p>Reset and choose a new template for this site. This allows you to keep an existing site_name &ndash; but perform a reset on the site via API. </p>
 
@@ -1528,18 +1528,26 @@ Make sure to set the authorization header with your unique API username and API 
 <p>JSON Representation:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"home"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Home"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"services111"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Services"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contact"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABOUT"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"about/abab"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YWJvdXQvYWJhYg"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERVICES"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"services"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c2VydmljZXM"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HOME"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"home"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aG9tZQ"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONTACT"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y29udGFjdA"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
@@ -1561,12 +1569,17 @@ Make sure to set the authorization header with your unique API username and API 
 <tr>
 <td>page_name</td>
 <td>String</td>
-<td>The internal name/reference for the page. This value is also the URL where this page will be available once the site is published.</td>
+<td>The internal unique name of the specific page. This value is used to update or delete the page with other API calls. Note that this is updated when the path of the page is changed.</td>
 </tr>
 <tr>
 <td>page_title</td>
 <td>String</td>
 <td>The title of the page in the navigation of the site and also in the pages menu.</td>
+</tr>
+<tr>
+<td>page_path</td>
+<td>String</td>
+<td>The path / URL to this page on the website.</td>
 </tr>
 </tbody></table>
 
@@ -1576,11 +1589,11 @@ Make sure to set the authorization header with your unique API username and API 
 
 <h2 id="update-page">Update page</h2>
 
-<p>Update an existing page on the website. You need to pass the page_title (returned via the <a href="#get-pages">GET Pages</a> API Call). </p>
+<p>Update an existing page on the website. You can update either the page_title or the page_path of a specific page. You need to pass the page_name to update it, which is returned via the <a href="#get-pages">GET Pages</a> API Call.</p>
 
 <h3 id="method-and-path">Method and path</h3>
 
-<p><code class="prettyprint">POST /api/sites/multiscreen/site/{siteName}/pages/{pageName}/update</code></p>
+<p><code class="prettyprint">POST /api/sites/multiscreen/site/{site_name}/pages/{page_name}/update</code></p>
 
 <h3 id="required-properties">Required Properties</h3>
 
@@ -1592,26 +1605,26 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Example:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact/update'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/Y29udGFjdA/update'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
-    -d <span class="s1">'{ "page_name":"contact1","page_title":"contact 1"}'</span>
+    -d <span class="s1">'{ "page_path":"contact/1","page_title":"contact 1"}'</span>
 </code></pre>
 
 <h3 id="return">Return</h3>
 
 <p>You can expect a <code class="prettyprint">204 No Content</code> HTTP response for a successful call.</p>
 
-<aside class="warning">You cannot update the page_name of the home page.</aside>
+<aside class="warning">You cannot update the page_path of the home page.</aside>
 
 <h2 id="get-page">Get page</h2>
 
-<p>Get the details of an individual page of the site. Currently, this is only useful to get the title of a page you know the name of already.</p>
+<p>Get the details of an individual page of the site. Returns a JSON object containing the page_title, page_path and unique page_name.</p>
 
 <blockquote>
 <p>Example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
@@ -1624,8 +1637,9 @@ Make sure to set the authorization header with your unique API username and API 
 <p>JSON Return</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contact 1"</span><span class="w">
+  </span><span class="nt">"page_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABOUT"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"page_path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"about/abab"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"page_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YWJvdXQvYWJhYg"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1647,7 +1661,7 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Example</p>
 </blockquote>
-<pre class="highlight shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
@@ -2121,7 +2135,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 
 <h2 id="delete-ssl-certificate">Delete SSL Certificate</h2>
 
-<p>Delete a certificate that has been generated for a website. This will ensure that the website is served over only a HTTP (unsecure) connection and will delete the generated certificate.</p>
+<p>Delete a certificate that has been generated for a website. This will ensure that the website is served over only an HTTP (insecure) connection and will delete the generated certificate.</p>
 
 <h3 id="method-and-path">Method and path</h3>
 
@@ -2289,7 +2303,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 
 <p>Upon success, Duda will return a <code class="prettyprint">204 No Content</code> HTTP status code. </p>
 
-<h2 id="delete-site-backup">Delete Site Backup</h2>
+<h2 id="delete-site-backup">Delete site backup</h2>
 
 <p>Permanently delete a site backup. There is no way to restore or gain access to deleted site backups.</p>
 
@@ -2320,7 +2334,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 
 <p>An account resource represents a single Staff or Customer account. There are three account types referenced below, master account, Staff account and Customer account. The master account is the Duda account that accesses the Duda API.</p>
 
-<h2 id="create-account">Create Account</h2>
+<h2 id="create-account">Create account</h2>
 
 <p>Create a new Duda account in which you can grant a customer or staff permissions or site access. This generally will relate back to a customer or staff user from your control panel. </p>
 
@@ -2395,7 +2409,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 
 <p>You can expect a <code class="prettyprint">204 No Content</code> response code for a successful create account call.</p>
 
-<h2 id="get-account">Get Account</h2>
+<h2 id="get-account">Get account</h2>
 
 <p>Get information from the Duda platform about an existing account. You should know the Account name already, as you used it to originally create the Account. </p>
 
@@ -2470,7 +2484,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 curl -S -u &#39;APIusername:APIpassword&#39; -H &#39;Content-Type: application/json&#39; -X GET -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
 </code></p>
 
-<h2 id="delete-account">Delete Account</h2>
+<h2 id="delete-account">Delete account</h2>
 </blockquote>
 
 <p>Delete an existing Sub-account. This account must be a sub-account you&rsquo;ve already created. </p>
@@ -2492,7 +2506,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; -H &#39;Content-Type: application/j
 -X DELETE -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
 </code></pre>
 
-<h2 id="update-account">Update Account</h2>
+<h2 id="update-account">Update account</h2>
 
 <p>Update the parameters for an existing account. This is useful for updating email, name or language settings. </p>
 
@@ -2523,7 +2537,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 
 <p>You can expect a <code class="prettyprint">204 No Content</code> response code for a successful delete account call.</p>
 
-<h2 id="generate-sso-link">Generate SSO Link</h2>
+<h2 id="generate-sso-link">Generate SSO link</h2>
 
 <p>Generate a Single Sign-On link that will send a user to a specific page in the platform. You can generate a link to: The dashboard, the editor, stats page or to reset a site. If you are sending the user to the stats, editor or reset pages, you will need to pass the site_name and target as a parameter on the request URL. After generating the link, you should direct the users browser to this URL.</p>
 
@@ -2568,19 +2582,19 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <td>Dashboard</td>
 <td>(none)</td>
 <td>(none)</td>
-<td>Send the user directly into their website dashboard. You do not need to send a target or site_name parameter.</td>
+<td>Send the user directly to their website dashboard. You do not need to send a target or site_name parameter.</td>
 </tr>
 <tr>
 <td>Stats</td>
 <td>&ldquo;TARGET&rdquo;</td>
 <td>&ldquo;STATS&rdquo;</td>
-<td>Send the user directly into the website statistics URL.</td>
+<td>Send the user directly to the website statistics page.</td>
 </tr>
 <tr>
 <td>Site Editor</td>
 <td>&ldquo;TARGET&rdquo;</td>
 <td>&ldquo;EDITOR&rdquo;</td>
-<td>Send the user directly into the white labeled website builder.</td>
+<td>Send the user directly to the white labeled website builder.</td>
 </tr>
 <tr>
 <td>Stats</td>
@@ -2590,7 +2604,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 </tr>
 </tbody></table>
 
-<h2 id="generate-single-sign-on-token">Generate Single Sign-on Token</h2>
+<h2 id="generate-single-sign-on-token">Generate single sign-on token</h2>
 
 <blockquote>
 <p>cURL Example</p>
@@ -2630,7 +2644,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<h2 id="grant-customer-access-to-a-site">Grant Customer Access to a Site</h2>
+<h2 id="grant-customer-access-to-a-site">Grant customer access to a site</h2>
 
 <p>Give a Customer account access to a a specific site. This will allow them to access the site inside their account. Both site and account resources must exist already. You may pass an optional JSON permissions array that gives the customer access only to certain features. If no permissions object is passed, the customer will be given access to all features by default.</p>
 
@@ -2690,7 +2704,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <tr>
 <td>EDIT</td>
 <td>(None)</td>
-<td>Allow the user to perform all edits to the website, such as delete elements, move them add new ones and mre.</td>
+<td>Allow the user to perform all possible edits to the website, such as delete elements, move them add new content.</td>
 </tr>
 <tr>
 <td>DEV_MODE</td>
@@ -2715,7 +2729,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <tr>
 <td>CUSTOM_DOMAIN</td>
 <td>EDIT</td>
-<td>Set or edit the domain of a website. Can only be accessed for published websites.</td>
+<td>Set or edit the domain of a website. Can only be accessed on published websites.</td>
 </tr>
 <tr>
 <td>BLOG</td>
@@ -2745,16 +2759,16 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <tr>
 <td>PUSH_NOTIFICATION</td>
 <td>EDIT</td>
-<td>Ability to send push notifications to visitors who have subscribed to notifications on the website.</td>
+<td>Ability to send push notifications to visitors who have subscribed to notifications from the website.</td>
 </tr>
 <tr>
 <td>LIMITED_EDITING</td>
 <td>(None)</td>
-<td>Allow the customer to only edit widget content already in the site. They cannot move, delete or add widgets or change the design. Note that any permission that has the EDIT requirement cannot be used in conjunction with limited editing.</td>
+<td>Allow the customer to only edit widget content already in the website. They cannot move, delete or add widgets or change the design. Note that any permission that has the EDIT requirement cannot be used in conjunction with limited editing.</td>
 </tr>
 </tbody></table>
 
-<h2 id="get-multiscreen-site-permissions">Get Multiscreen Site Permissions</h2>
+<h2 id="get-multiscreen-site-permissions">Get multiscreen site permissions</h2>
 
 <p>Get a list of available permissions for a Customer account when granting access to a multiscreen website. This list will be updated in the future as new features are released, so it is best to check regularly for updates.</p>
 
@@ -2788,7 +2802,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 -k https://api.dudamobile.com/api/accounts/permissions/multiscreen
 </code></pre>
 
-<h2 id="get-site-permissions-for-a-customer">Get Site Permissions for a Customer</h2>
+<h2 id="get-site-permissions-for-a-customer">Get site permissions for a customer</h2>
 
 <p>Get the permissions that a customer has been granted for a specific site. Each site that a customer is granted access to can have different permissions, so each association can potentially have different permissions. Permissions can be returned for either mobile or multiscreen websites.  </p>
 
@@ -2822,7 +2836,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 </code></pre>
 
-<h2 id="remove-customer-access-to-site">Remove Customer Access to Site</h2>
+<h2 id="remove-customer-access-to-site">Remove customer access to site</h2>
 
 <p>Remove/delete access that a customer has to a specific mobile or multiscreen site. </p>
 
@@ -2878,7 +2892,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 
 <p>You can also send a JSON object in the body of the request which tells Duda the frequency to send the customers emails: &ldquo;MONTHLY&rdquo; or &ldquo;YEARLY&rdquo;.</p>
 
-<h2 id="get-stats-email-settings">Get Stats Email Settings</h2>
+<h2 id="get-stats-email-settings">Get stats email settings</h2>
 
 <p>Get the status of stats emails for this customer. If a recurring email is already enabled, a JSON object with the frequency will be returned. If no recurring email is enabled, then an error will be returned.</p>
 
@@ -2942,7 +2956,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 
 <p>You can expect a <code class="prettyprint">204 No Content</code> response code for a successful delete call.</p>
 
-<h2 id="get-multiscreen-sites-by-account">Get Multiscreen Sites by Account</h2>
+<h2 id="get-multiscreen-sites-by-account">Get multiscreen sites by account</h2>
 
 <p>Get all websites that a specific customer account has access to. This is useful for reporting and also listing a dashboard of websites for an end-user to access/edit. </p>
 
@@ -2985,7 +2999,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 
 <p>You can expect a <code class="prettyprint">200 OK</code> response back with an array of site name objects for this customer.</p>
 
-<h2 id="get-reset-site-link">Get Reset Site Link</h2>
+<h2 id="get-reset-pass-link">Get reset pass link</h2>
 
 <p>In order to allow your users to log in directly to the white label dashboard, they must set up a password. Using the Get Reset Password URL you can generate a unique URL to allow your users to access their dashboard/editor directly. We recommend emailing the Reset Password link directly to your customers. This URL is only valid for 30 days. </p>
 
@@ -3012,7 +3026,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 
 <h3 id="return">Return</h3>
 
-<p>With a successful call, you should recieve a <code class="prettyprint">200 OK</code> status reponse. </p>
+<p>With a successful call, you should receive a <code class="prettyprint">200 OK</code> status response. </p>
 
           <h1 id="permission-groups">Permission Groups</h1>
 
@@ -3214,6 +3228,134 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <h3 id="return">Return</h3>
 
 <p>You can expect a <code class="prettyprint">204 No Content</code> HTTP response code upon successful call.</p>
+
+<h2 id="get-staff-group-permissions">Get staff group permissions</h2>
+
+<p>Get the details of a specific permission group.</p>
+
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X GET -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ
+</code></pre>
+
+<blockquote>
+<p>Example response body:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Outside Sales"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#85144b"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"PRO_SETTINGS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"STATS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"MANAGE_STAFF"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CREATE_SITES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"DELETE_SITES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"MARKETING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"E_COMMERCE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"PUBLISH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"DEV_MODE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"EDIT_SITES"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"CUSTOM_DOMAIN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"REPUBLISH"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /permission-groups/{group_name}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>group_name - A unique ID that relates back to this specific group.</li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> HTTP response for a successful call. </p>
+
+<h2 id="delete-custom-group">Delete custom group</h2>
+
+<p>Delete an already created custom group. This can&rsquo;t be undone. </p>
+
+<aside class="warning">You can&rsquo;t delete a group with any staff accounts in it. You must first assign these staff accounts to other groups or delete them.</aside>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">DELETE /permission-groups/{group_name}</code></p>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X DELETE -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ 
+</code></pre>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>group_name - The uniquie name of the group. </li>
+</ul>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">204 No Content</code> HTTP response code for successful delete calls.</p>
+
+<h2 id="assign-staff-to-group">Assign staff to group</h2>
+
+<p>Assign a Staff Account to a specific group. Both the custom group and staff account must exist already. The account must be defined as a staff account. If this Staff acconut is already assigned to a group, they will be reassigned to the new group instead.</p>
+
+<blockquote>
+<p>Example call
+<code class="prettyprint">shell
+curl -S -u &#39;APIusername:APIpassword&#39; \
+-H &#39;Content-Type: application/json&#39; \
+-X POST -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
+</code></p>
+</blockquote>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /permission-groups/{group_name}/accounts/{account_name}/add</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>group_name - The uniquie name of the group. </li>
+<li>account_name - A unique account name that was set while originally creating the account (usually an email address)</li>
+</ul>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">204 No Content</code> HTTP response code for successful assign calls.</p>
+
+<h2 id="remove-staff-from-group">Remove staff from group</h2>
+
+<p>Remove a staff account from the group that they are currently assigned to. Please note that this will prevent the staff user from logging in, as staff account must be assigned to a group to log in.</p>
+
+<blockquote>
+<p>Example Call</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X POST -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
+</code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">DELETE /permission-groups/{group_name}/accounts/{account_name}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>group_name - The uniquie name of the group. </li>
+<li>account_name - A unique account name that was set while originally creating the account (usually an email address)</li>
+</ul>
 
           <h1 id="analytics">Analytics</h1>
 
