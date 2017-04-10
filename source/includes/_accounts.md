@@ -2,7 +2,7 @@
 
 An account resource represents a single Staff or Customer account. There are three account types referenced below, master account, Staff account and Customer account. The master account is the Duda account that accesses the Duda API.
 
-## Create Account
+## Create account
 
 Create a new Duda account in which you can grant a customer or staff permissions or site access. This generally will relate back to a customer or staff user from your control panel. 
 
@@ -44,7 +44,7 @@ lang | String | Optional | [Two digit language code](#langauges). Sets what lang
 
 You can expect a `204 No Content` response code for a successful create account call.
 
-## Get Account 
+## Get account 
 
 Get information from the Duda platform about an existing account. You should know the Account name already, as you used it to originally create the Account. 
 
@@ -85,7 +85,7 @@ lang | String | The current language of the account.
 ```shell
 curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' -X GET -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
 ```
-## Delete Account
+## Delete account
 
 Delete an existing Sub-account. This account must be a sub-account you've already created. 
 
@@ -105,7 +105,7 @@ You can expect a `204 No Content` response code for a successful delete account 
 curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' \
 -X DELETE -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
 ```
-## Update Account
+## Update account
 
 Update the parameters for an existing account. This is useful for updating email, name or language settings. 
 
@@ -131,7 +131,7 @@ You can update any property documented in the [create account call](#create-acco
 
 You can expect a `204 No Content` response code for a successful delete account call.
 
-## Generate SSO Link
+## Generate SSO link
 Generate a Single Sign-On link that will send a user to a specific page in the platform. You can generate a link to: The dashboard, the editor, stats page or to reset a site. If you are sending the user to the stats, editor or reset pages, you will need to pass the site_name and target as a parameter on the request URL. After generating the link, you should direct the users browser to this URL.
 
 The link you generate will have a valid SSO token appended to it which will be valid for two minutes. 
@@ -164,12 +164,12 @@ You must send a valid account_name as part of the URI parameter. There are sever
 
 Target Location | Query Key | Query Value | Description
 ---------- | ---------- | ---------- | ----------
-Dashboard | (none) | (none) | Send the user directly into their website dashboard. You do not need to send a target or site_name parameter.
-Stats | "TARGET" | "STATS" | Send the user directly into the website statistics URL. 
-Site Editor | "TARGET" | "EDITOR" | Send the user directly into the white labeled website builder.
+Dashboard | (none) | (none) | Send the user directly to their website dashboard. You do not need to send a target or site_name parameter.
+Stats | "TARGET" | "STATS" | Send the user directly to the website statistics page. 
+Site Editor | "TARGET" | "EDITOR" | Send the user directly to the white labeled website builder.
 Stats | "TARGET" | "RESET_SITE" | Send the user directly to the select new template / reset site page. Note that if the user does reset the site, all existing website edits will be lost and the site will be reset to a new template that is selected. 
 
-## Generate Single Sign-on Token
+## Generate single sign-on token
 
 > cURL Example
 
@@ -206,7 +206,7 @@ HTTP Code: 200 OK
 }
 ```
 
-## Grant Customer Access to a Site
+## Grant customer access to a site
 
 Give a Customer account access to a a specific site. This will allow them to access the site inside their account. Both site and account resources must exist already. You may pass an optional JSON permissions array that gives the customer access only to certain features. If no permissions object is passed, the customer will be given access to all features by default.
 
@@ -252,21 +252,21 @@ curl -S -u 'APIusername:APIpassword' \
 Permission Name | Dependency | Description
 ---------- | ---------- | ----------
 STATS_TAB | (None) | Access to the statistics for this website.
-EDIT | (None) | Allow the user to perform all edits to the website, such as delete elements, move them add new ones and mre.
+EDIT | (None) | Allow the user to perform all possible edits to the website, such as delete elements, move them add new content.
 DEV_MODE | EDIT | Allow direct access to the HTML & CSS of the website. This still allows the user to use the HTML embed widget.
 INSITE | EDIT | Add, edit, or delete existing website personalization rules. 
 E_COMMERCE | (None) | Manage catalogue, view orders and control store settings.
 SEO | EDIT | Set SEO settings on the site or page level.
-CUSTOM_DOMAIN | EDIT | Set or edit the domain of a website. Can only be accessed for published websites.
+CUSTOM_DOMAIN | EDIT | Set or edit the domain of a website. Can only be accessed on published websites.
 BLOG | (None) | Give access to write new posts, edit existing ones and manage blog settings.
 REPUBLISH | EDIT | Update the live site with all changes made in the editor.
 PUBLISH | REPUBLISH | Publish the site for the first time. *Note: When publishing a site for the first time, the account will be automatically charged.*
 BACKUPS | EDIT | Create, restore and delete backups.
 RESET | EDIT | Reset a site, will allow the customer to pick a new template for the site as part of resetting.
-PUSH_NOTIFICATION | EDIT | Ability to send push notifications to visitors who have subscribed to notifications on the website.
-LIMITED_EDITING | (None) | Allow the customer to only edit widget content already in the site. They cannot move, delete or add widgets or change the design. Note that any permission that has the EDIT requirement cannot be used in conjunction with limited editing.
+PUSH_NOTIFICATION | EDIT | Ability to send push notifications to visitors who have subscribed to notifications from the website.
+LIMITED_EDITING | (None) | Allow the customer to only edit widget content already in the website. They cannot move, delete or add widgets or change the design. Note that any permission that has the EDIT requirement cannot be used in conjunction with limited editing.
 
-## Get Multiscreen Site Permissions
+## Get multiscreen site permissions
 
 Get a list of available permissions for a Customer account when granting access to a multiscreen website. This list will be updated in the future as new features are released, so it is best to check regularly for updates.
 
@@ -301,7 +301,7 @@ curl -S -u 'APIusername:APIpassword' \
 -k https://api.dudamobile.com/api/accounts/permissions/multiscreen
 ```
 
-## Get Site Permissions for a Customer
+## Get site permissions for a customer
 
 Get the permissions that a customer has been granted for a specific site. Each site that a customer is granted access to can have different permissions, so each association can potentially have different permissions. Permissions can be returned for either mobile or multiscreen websites.  
 
@@ -334,7 +334,7 @@ curl -S -u 'APIusername:APIpassword' \
 -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 ```
 
-## Remove Customer Access to Site
+## Remove customer access to site
 
 Remove/delete access that a customer has to a specific mobile or multiscreen site. 
 
@@ -387,7 +387,7 @@ curl -S -u 'APIusername:APIpassword' \
 
 You can also send a JSON object in the body of the request which tells Duda the frequency to send the customers emails: "MONTHLY" or "YEARLY".
 
-## Get Stats Email Settings
+## Get stats email settings
 Get the status of stats emails for this customer. If a recurring email is already enabled, a JSON object with the frequency will be returned. If no recurring email is enabled, then an error will be returned.
 
 ### Method and path
@@ -438,13 +438,9 @@ Stop a user from receiving recurring stats emails.
 ### Response
 You can expect a `204 No Content` response code for a successful delete call.
 
-## Get Multiscreen Sites by Account
+## Get multiscreen sites by account
 
 Get all websites that a specific customer account has access to. This is useful for reporting and also listing a dashboard of websites for an end-user to access/edit. 
-
-### Method and path
-
-`GET /accounts/grant-access/{account_name}/sites/multiscreen`
 
 > JSON Return:
 
@@ -470,6 +466,9 @@ curl -S -u 'APIusername:APIpassword' \
 -X GET \
 -k https://api.dudamobile.com/api/accounts/grant-access/john@johnsmith.com/sites/multiscreen​
 ```
+### Method and path
+
+`GET /accounts/grant-access/{account_name}/sites/multiscreen`
 
 ### Parameters:
 
@@ -477,6 +476,10 @@ curl -S -u 'APIusername:APIpassword' \
 
 ### Return
 You can expect a `200 OK` response back with an array of site name objects for this customer.
+
+## Get reset pass link
+
+In order to allow your users to log in directly to the white label dashboard, they must set up a password. Using the Get Reset Password URL you can generate a unique URL to allow your users to access their dashboard/editor directly. We recommend emailing the Reset Password link directly to your customers. This URL is only valid for 30 days. 
 
 > JSON Return
 
@@ -495,11 +498,8 @@ curl -S -u 'APIusername:APIpassword' \
 -k https://api.dudamobile.com/api/accounts/reset-password/johnsmith@gmail.com
 ```
 
-## Get Reset Site Link
-
-In order to allow your users to login directly to the dashboard, they must set up a password. Using the Get Reset Password URL you can generate a URL to allow your users to access their dashboard/editor directly. We recommend emailing the Reset Password link directly to your customers. This URL is valid for 30 days. 
-
 ### Method and path
+`POST /accounts/reset-password/{account_name}`
 
 ### Return
-With a successful call, you should recieve a `200 OK` status reponse. 
+With a successful call, you should receive a `200 OK` status response. 

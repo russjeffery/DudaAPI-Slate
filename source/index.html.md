@@ -11,7 +11,7 @@ toc_footers:
 
 includes:
   - intro
-  - multiscreen
+  - responsive
   - accounts
   - permissions
   - analytics

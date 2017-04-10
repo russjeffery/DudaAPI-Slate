@@ -47,7 +47,7 @@ Duda's primary endpoint for all production work is:
 
 The documentation here assumes that you will combine the endpoint with the path of the API method. There are some cases where you might have a different endpoint than the one above, such as working with Duda's sandbox environment or a custom setup that Duda provides, although this is rare. 
 
-## Data Schema
+## Data schema
 
 All data passed to and from the Duda API will be in JSON representation. We currently only support this format of data transfer.
 

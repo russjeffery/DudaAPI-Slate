@@ -1,6 +1,6 @@
-# Multiscreen Sites
+# Responsive sites
 
-A site instance resource represents a single Duda site. There are two main types of Duda sites: mobile and multiscreen. Mobile represents a DudaMobile site and multiscreen represents a Responsive site. Below, you will see the API resources available for the multiscreen (DudaOne) sites only.
+A site instance resource represents a single Duda site. There are two main types of Duda sites: mobile and multiscreen (responsive). Below, you will see the API resources available for the multiscreen sites only.
 
 ## Create site
 
@@ -129,7 +129,7 @@ curl -X POST -i https://api.dudamobile.com/api/sites/multiscreen/create \
 ### Return
 Upon successful creation of a website, Duda will return a site_name value along with a `200 OK` HTTP response. The site_name is a unique string (usually between 8 and 32 characters) across all Duda websites and will be needed to later access other resources, such as updating the site, getting analytics or granting access. We recommend storing this site_name in your database for later reference.
 
-## Get Site
+## Get site
 Get information about an already existing website. You will need the site_name value that was provided during the create website call. 
 
 <aside class="warning">Note that only properties that have values will be returned.</aside>
@@ -275,7 +275,7 @@ curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/update/57b6506
 ### Return
 A `204 No Content` HTTP code will be returned upon successful call. 
 
-## Delete Site
+## Delete site
 This will immediately and permanently delete the site and cancel any subscription associated with the site. Please note that after deleting a site there is no way to bring the site back. Deleting a site will also cancel any active subscription/payment associated with the site. 
 
 ### Method and path
@@ -374,7 +374,7 @@ Duda will respond with a `200 OK` HTTP status and return a new site_name.
 	"site_name":"a6119858"
 }
 ```
-## Reset Site
+## Reset site
 
 Reset and choose a new template for this site. This allows you to keep an existing site_name -- but perform a reset on the site via API. 
 
@@ -822,18 +822,26 @@ curl -X GET -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages' \
 
 ```json
 [
-	{
-		"page_name": "home",
-		"page_title": "Home"
-	},
-	{
-		"page_name": "services111",
-		"page_title": "Services"
-	},
-	{
-		"page_name": "contact",
-		"page_title": "Contact"
-	}
+  {
+    "page_title": "ABOUT",
+    "page_path": "about/abab",
+    "page_name": "YWJvdXQvYWJhYg"
+  },
+  {
+    "page_title": "SERVICES",
+    "page_path": "services",
+    "page_name": "c2VydmljZXM"
+  },
+  {
+    "page_title": "HOME",
+    "page_path": "home",
+    "page_name": "aG9tZQ"
+  },
+  {
+    "page_title": "CONTACT",
+    "page_path": "contact",
+    "page_name": "Y29udGFjdA"
+  }
 ]
 ```
 ### Properties required
@@ -843,8 +851,9 @@ curl -X GET -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages' \
 
 Property | Type | Description
 ---------- | ---------- | ----------
-page_name | String | The internal name/reference for the page. This value is also the URL where this page will be available once the site is published. 
+page_name | String | The internal unique name of the specific page. This value is used to update or delete the page with other API calls. Note that this is updated when the path of the page is changed.
 page_title | String | The title of the page in the navigation of the site and also in the pages menu. 
+page_path | String | The path / URL to this page on the website. 
 
 ### Return
 
@@ -852,11 +861,11 @@ You can expect a `200 OK` response code with an array of JSON objects describing
 
 ## Update page
 
-Update an existing page on the website. You need to pass the page_title (returned via the [GET Pages](#get-pages) API Call). 
+Update an existing page on the website. You can update either the page_title or the page_path of a specific page. You need to pass the page_name to update it, which is returned via the [GET Pages](#get-pages) API Call.
 
 ### Method and path
 
-`POST /api/sites/multiscreen/site/{siteName}/pages/{pageName}/update`
+`POST /api/sites/multiscreen/site/{site_name}/pages/{page_name}/update`
 
 ### Required Properties
 - site_name - The name of the site, returned when it was originally created
@@ -865,25 +874,25 @@ Update an existing page on the website. You need to pass the page_title (returne
 > Example:
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact/update' \
+curl -X POST -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/Y29udGFjdA/update' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \ 
-	-d '{ "page_name":"contact1","page_title":"contact 1"}'
+	-d '{ "page_path":"contact/1","page_title":"contact 1"}'
 ```
 ### Return
 
 You can expect a `204 No Content` HTTP response for a successful call.
 
-<aside class="warning">You cannot update the page_name of the home page.</aside>
+<aside class="warning">You cannot update the page_path of the home page.</aside>
 
 ## Get page
 
-Get the details of an individual page of the site. Currently, this is only useful to get the title of a page you know the name of already.
+Get the details of an individual page of the site. Returns a JSON object containing the page_title, page_path and unique page_name.
 
 >Example
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact' \
+curl -X GET -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -896,8 +905,9 @@ curl -X GET -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact' \
 
 ```json
 {
-	"page_name": "contact",
-	"page_title": "contact 1"
+  "page_title": "ABOUT",
+  "page_path": "about/abab",
+  "page_name": "YWJvdXQvYWJhYg"
 }
 ```
 
@@ -915,7 +925,7 @@ Delete a page of your website. This cannot be undone.
 > Example
 
 ```shell
-curl -X DELETE -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/contact' \
+curl -X DELETE -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -988,7 +998,7 @@ Below you will see the three types of injection available: `CSS`, `DOMATTR`, and
 # }
 #
 # And run this: 
-curl -X POST -k 'https://api.dudamobile.com/api/api/sites/inject-content/b4ra2g' \
+curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \
 	-d '[
@@ -1272,7 +1282,7 @@ curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/b4ra2g/certifi
 
 ## Delete SSL Certificate
 
-Delete a certificate that has been generated for a website. This will ensure that the website is served over only a HTTP (unsecure) connection and will delete the generated certificate.
+Delete a certificate that has been generated for a website. This will ensure that the website is served over only an HTTP (insecure) connection and will delete the generated certificate.
 
 ### Method and path
 
@@ -1421,7 +1431,7 @@ curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g
 
 Upon success, Duda will return a `204 No Content` HTTP status code. 
 
-## Delete Site Backup
+## Delete site backup
 
  Permanently delete a site backup. There is no way to restore or gain access to deleted site backups.
 
