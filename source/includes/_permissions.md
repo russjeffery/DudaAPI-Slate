@@ -249,6 +249,7 @@ You can expect a `204 No Content` HTTP response code for successful delete calls
 Assign a Staff Account to a specific group. Both the custom group and staff account must exist already. The account must be defined as a staff account. If this Staff acconut is already assigned to a group, they will be reassigned to the new group instead.
 
 > Example call
+
 ```shell
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \

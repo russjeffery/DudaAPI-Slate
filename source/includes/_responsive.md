@@ -1,6 +1,6 @@
 # Responsive sites
 
-A site instance resource represents a single Duda site. There are two main types of Duda sites: mobile and multiscreen (responsive). Below, you will see the API resources available for the multiscreen sites only.
+A site instance resource represents a single responsive Duda website. In the documentation below, responsive websites are referred to as multiscreen websites. They are the same thing. 
 
 ## Create site
 
