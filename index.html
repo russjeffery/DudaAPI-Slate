@@ -329,7 +329,7 @@ Make sure to set the authorization header with your unique API username and API 
 
           <h1 id="responsive-sites">Responsive sites</h1>
 
-<p>A site instance resource represents a single Duda site. There are two main types of Duda sites: mobile and multiscreen (responsive). Below, you will see the API resources available for the multiscreen sites only.</p>
+<p>A site instance resource represents a single responsive Duda website. In the documentation below, responsive websites are referred to as multiscreen websites. They are the same thing. </p>
 
 <h2 id="create-site">Create site</h2>
 
@@ -3423,13 +3423,12 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <p>Assign a Staff Account to a specific group. Both the custom group and staff account must exist already. The account must be defined as a staff account. If this Staff acconut is already assigned to a group, they will be reassigned to the new group instead.</p>
 
 <blockquote>
-<p>Example call
-<code class="prettyprint">shell
-curl -S -u &#39;APIusername:APIpassword&#39; \
--H &#39;Content-Type: application/json&#39; \
--X POST -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
-</code></p>
+<p>Example call</p>
 </blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X POST -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
+</code></pre>
 
 <h3 id="method-and-path">Method and path</h3>
 
