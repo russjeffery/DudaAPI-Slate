@@ -1064,7 +1064,100 @@ Duda will return a `204 No Content` HTTP response code.
 
 <aside class="notice">The inject content API only updates the development version of the website. If you'd like to see these changes on the live website, make sure that you publish the website after making these updates.</aside>
 
-## Upload resources
+## Get Inject Content Values
+
+Search the website for all references of the data-inject value, either in the HTML or CSS of the website. This returns to you the existing properties that can be used for data injection later.
+
+This can also be used to get the actual content of a specific element within the website. 
+
+> Example 1 of one button within the website that contains a data-inject="read-more-btn" attribute assigned to it:
+
+```shell
+curl -u 'APIusername:APIpassword' \  
+-X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g' \
+-H 'Content-Type: application/json'
+```
+
+> Response 1
+
+```json
+[
+  {
+    "key": "read-more-btn",
+    "type": "DOMATTR",
+    "ref": "class",
+    "value": "u_1330691906 align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient"
+  },
+  {
+    "key": "read-more-btn",
+    "type": "DOMATTR",
+    "ref": "href",
+    "value": "/about"
+  },
+  {
+    "key": "read-more-btn",
+    "type": "DOMATTR",
+    "ref": "dmle_widget",
+    "value": "dudaButtonLinkId"
+  },
+  {
+    "key": "read-more-btn",
+    "type": "DOMATTR",
+    "ref": "id",
+    "value": "1330691906"
+  },
+  {
+    "key": "read-more-btn",
+    "type": "DOMATTR",
+    "ref": "data-inject",
+    "value": "read-more-btn"
+  },
+  {
+    "key": "read-more-btn",
+    "type": "INNERHTML",
+    "value": "<span class=\"iconBg\" id=\"1206527425\" duda_id=\"1206527425\"> <span class=\"icon hasFontIcon icon-star\" id=\"1686467387\" duda_id=\"1686467387\"> </span></span><span class=\"text\" id=\"1307805474\" localization_key=\"templates.custom.197\" duda_id=\"1307805474\">      Read More     </span>"
+  }
+]
+```
+
+> Example 2, filtering for only the INNERHTML:
+
+```shell
+curl -u 'APIusername:APIpassword' \  
+-X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g?type=INNERHTML' \
+-H 'Content-Type: application/json'
+```
+
+> Example 2 response:
+
+```json
+[
+  {
+    "key": "read-more-btn",
+    "type": "INNERHTML",
+    "value": "<span class=\"iconBg\" id=\"1206527425\" duda_id=\"1206527425\"> <span class=\"icon hasFontIcon icon-star\" id=\"1686467387\" duda_id=\"1686467387\"> </span></span><span class=\"text\" id=\"1307805474\" localization_key=\"templates.custom.197\" duda_id=\"1307805474\">Read More</span>"
+  }
+]
+```
+
+### Method and path
+`GET /api/sites/multiscreen/inject-content/{site_name}`
+
+### Optional query parameters
+
+You can append the following query parameters to filter the results of what will be returned:
+
+Property | Type | Description
+---------- | ---------- | ----------
+key | String | Search for a specific element that contains the data-inject attribute or CSS block that has the data-inject CSS property.
+type | String | Can be: "DOMATTR", "CSS" or "INNERHTML". Search for only the specific type of response. 
+ref | String | Used with CSS & DOMATTR types. Can filter for a specific value type. 
+
+### Return
+
+You can expect a `200 OK` HTTP response code along with an array of json objects describing the inject content possibilities.
+
+## Upload resourcess
 Upload resources to the website from an external source. Today, this only supports images, but might be extended in the future for other types of media. This will upload the resource to the CDN that Duda uses and make it available to anyone building the website. This API is commonly used in conjunction with the [inject content API]( #inject-content) to insert new images directly into the website.
 
 ### Method and path
