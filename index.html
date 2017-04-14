@@ -1865,7 +1865,119 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 
 <aside class="notice">The inject content API only updates the development version of the website. If you&rsquo;d like to see these changes on the live website, make sure that you publish the website after making these updates.</aside>
 
-<h2 id="upload-resources">Upload resources</h2>
+<h2 id="get-inject-content-values">Get Inject Content Values</h2>
+
+<p>Search the website for all references of the data-inject value, either in the HTML or CSS of the website. This returns to you the existing properties that can be used for data injection later.</p>
+
+<p>This can also be used to get the actual content of a specific element within the website. </p>
+
+<blockquote>
+<p>Example 1 of one button within the website that contains a data-inject=&ldquo;read-more-btn&rdquo; attribute assigned to it:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span> 
+-X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<blockquote>
+<p>Response 1</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read-more-btn"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOMATTR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"class"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"u_1330691906 align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read-more-btn"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOMATTR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"href"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/about"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read-more-btn"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOMATTR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dmle_widget"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dudaButtonLinkId"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read-more-btn"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOMATTR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1330691906"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read-more-btn"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOMATTR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data-inject"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read-more-btn"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read-more-btn"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INNERHTML"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=\"iconBg\" id=\"1206527425\" duda_id=\"1206527425\"&gt; &lt;span class=\"icon hasFontIcon icon-star\" id=\"1686467387\" duda_id=\"1686467387\"&gt; &lt;/span&gt;&lt;/span&gt;&lt;span class=\"text\" id=\"1307805474\" localization_key=\"templates.custom.197\" duda_id=\"1307805474\"&gt;      Read More     &lt;/span&gt;"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Example 2, filtering for only the INNERHTML:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span> 
+-X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g?type=INNERHTML'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span>
+</code></pre>
+
+<blockquote>
+<p>Example 2 response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"read-more-btn"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INNERHTML"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=\"iconBg\" id=\"1206527425\" duda_id=\"1206527425\"&gt; &lt;span class=\"icon hasFontIcon icon-star\" id=\"1686467387\" duda_id=\"1686467387\"&gt; &lt;/span&gt;&lt;/span&gt;&lt;span class=\"text\" id=\"1307805474\" localization_key=\"templates.custom.197\" duda_id=\"1307805474\"&gt;Read More&lt;/span&gt;"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /api/sites/multiscreen/inject-content/{site_name}</code></p>
+
+<h3 id="optional-query-parameters">Optional query parameters</h3>
+
+<p>You can append the following query parameters to filter the results of what will be returned:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>String</td>
+<td>Search for a specific element that contains the data-inject attribute or CSS block that has the data-inject CSS property.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Can be: &ldquo;DOMATTR&rdquo;, &ldquo;CSS&rdquo; or &ldquo;INNERHTML&rdquo;. Search for only the specific type of response.</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>String</td>
+<td>Used with CSS &amp; DOMATTR types. Can filter for a specific value type.</td>
+</tr>
+</tbody></table>
+
+<h3 id="return">Return</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> HTTP response code along with an array of json objects describing the inject content possibilities.</p>
+
+<h2 id="upload-resourcess">Upload resourcess</h2>
 
 <p>Upload resources to the website from an external source. Today, this only supports images, but might be extended in the future for other types of media. This will upload the resource to the CDN that Duda uses and make it available to anyone building the website. This API is commonly used in conjunction with the <a href="#inject-content">inject content API</a> to insert new images directly into the website.</p>
 
