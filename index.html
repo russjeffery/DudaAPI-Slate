@@ -204,8 +204,12 @@ Make sure to set the authorization header with your unique API username and API 
 <td>en</td>
 </tr>
 <tr>
-<td>Spanish LATAM</td>
+<td>Spanish</td>
 <td>es</td>
+</tr>
+<tr>
+<td>Spanish LATAM</td>
+<td>es_ar</td>
 </tr>
 <tr>
 <td>German</td>
@@ -1981,6 +1985,8 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 
 <p>Upload resources to the website from an external source. Today, this only supports images, but might be extended in the future for other types of media. This will upload the resource to the CDN that Duda uses and make it available to anyone building the website. This API is commonly used in conjunction with the <a href="#inject-content">inject content API</a> to insert new images directly into the website.</p>
 
+<aside class="warning">Please make sure files you upload have the correct extension. For example, PNG images should have .png and JPEG should have .jpg or .jpeg.</aside>
+
 <h3 id="method-and-path">Method and path</h3>
 
 <p><code class="prettyprint">POST /api/sites/multiscreen/resources/{site_name}/upload</code></p>
@@ -2771,22 +2777,25 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <blockquote>
 <p>Array permissions to send</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-    </span><span class="s2">"PUSH_NOTIFICATIONS"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"REPUBLISH"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"EDIT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"LIMITED_EDITING"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"INSITE"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"PUBLISH"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"CUSTOM_DOMAIN"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"RESET"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"E_COMMERCE"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"SEO"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"STATS_TAB"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"DEV_MODE"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"BACKUPS"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"BLOG"</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"permissions"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"PUSH_NOTIFICATIONS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"REPUBLISH"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"EDIT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"LIMITED_EDITING"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"INSITE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"PUBLISH"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"CUSTOM_DOMAIN"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"RESET"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"E_COMMERCE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"SEO"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"STATS_TAB"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"DEV_MODE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"BACKUPS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"BLOG"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <blockquote>
@@ -2795,7 +2804,7 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST <span class="se">\</span>
--k https://api.dudamobile.comhttps://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions <span class="se">\</span>
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions <span class="se">\</span>
 -d <span class="s1">'{"permissions":["EDIT","DEV_MODE","STATS_TAB"]}'</span>
 </code></pre>
 
@@ -2892,20 +2901,20 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <p>JSON Response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
-    </span><span class="s2">"PUSH_NOTIFICATIONS"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"REPUBLISH"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"EDIT"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"LIMITED_EDITING"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"INSITE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"PUBLISH"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"CUSTOM_DOMAIN"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"RESET"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"DEV_MODE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"E_COMMERCE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"REPUBLISH"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"INSITE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"SEO"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"STATS_TAB"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"DEV_MODE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"RESET"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"BACKUPS"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"BLOG"</span><span class="w">
+    </span><span class="s2">"BLOG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"LIMITED_EDITING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"EDIT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"PUSH_NOTIFICATIONS"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
@@ -3654,6 +3663,253 @@ curl -S -u &#39;APIusername:APIpassword&#39; \
 <td>For the queried period and for the specified dimension, the number of form submission actions on the site.</td>
 </tr>
 </tbody></table>
+
+          <h1 id="custom-widgets">Custom Widgets</h1>
+
+<p>Duda has an API for custom widgets. This relates to widgets that exist within your master account. Currently, this API is used to localize widgets for different languages. Note that you must follow the instructions here to set up widgets for localization. </p>
+
+<p>Widget localiation work with key value parings. Inside of widget builder, you add a key value combination, where the key is used as a variable and the value is the default fallback for all languages. When localizing widgets, you send Duda a key value pair with the localized content for each specific locale you need to support. </p>
+
+<h2 id="get-all-custom-widgets">Get all custom widgets</h2>
+
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X GET <span class="se">\</span>
+-k https://api.dudamobile.com/api/widgets/list
+</code></pre>
+
+<blockquote>
+<p>JSON Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"812a0ed5f2a54ccc8a66ccfd6fab3fc8"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FAQ"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f3e1efc5fb2e44d185c9a41643d11945"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Facebook Page Feed"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ab485aff625a480bbb2c660e880b0fbd"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Return an array of objects that describe all widgets in your account. Duda will return the title (name) and unique identifer for that widget. Note that this only returns custom widgets which are in your account. </p>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /widgets/list</code></p>
+
+<h3 id="response">Response</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> Response code for a successful call.</p>
+
+<h2 id="scan-for-available-strings">Scan for available strings</h2>
+
+<p>Search a widget for all available localization keys that have been inserted into the widget. This will return a list of all key value parings that have been added to the editors, HTML or JavaScript sections of the widget. The value that is returned will be the default text that was originally entered into the widget.</p>
+
+<p>Duda allows you to install localzion placeholders within three locations of widgets: (1) Content &amp; Design Editors, (2) HTML (3) JavaScript. See below for how they shouild be formatted:</p>
+
+<table><thead>
+<tr>
+<th>Install Area</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content or Design Editor</td>
+<td>{{key=default value/text}}</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td>{{localize &lsquo;key&rsquo; &#39;DEFAULT TEXT&rsquo;}}</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>api.localize(&#39;key&rsquo;, &#39;DEFAULT TEXT&rsquo;)</td>
+</tr>
+</tbody></table>
+
+<p>You can install the placeholders above into any area that displays text to the user directly, including the labels, placeholders, widget, HTML, JS, etc.. This API call will return all possible strings to be localized. </p>
+
+<blockquote>
+<p>Example </p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X GET <span class="se">\</span>
+-k https://api.dudamobile.com/api/widgets/<span class="o">{</span>widgetId<span class="o">}</span>/strings/scan
+</code></pre>
+
+<blockquote>
+<p>JSON Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"HTMLKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT TEXT in HTML"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT TEXT EDITOR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"JSKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT TEXT JS"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">GET /widgets/{widgetId}/strings/scan</code></p>
+
+<h3 id="response">Response</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response code with an object of key value pairs. </p>
+
+<h2 id="get-widget-locale-strings">Get Widget Locale Strings</h2>
+
+<p>Get all localized strings for a specific widget for a specific locale. You will pass Duda both the Widget ID and the locale of which you want to see what has already been set for a specific widget.  </p>
+
+<p>Duda will return the key and then the language specific copy as the value to that key. </p>
+
+<blockquote>
+<p>Example </p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X GET <span class="se">\</span>
+-k https://api.dudamobile.com/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/en_gb
+</code></pre>
+
+<blockquote>
+<p>JSON Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"FAQ_title"</span><span class="p">:</span><span class="s2">"English UK FAQ Title"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and Path</h3>
+
+<p><code class="prettyprint">GET /widgets/{widgetId}/strings/{localeCode}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<ul>
+<li>Widget ID: The unique ID representing the widget, returned originally by the Get All Widget API call. </li>
+<li>Locale Code: A string representing the of the language you want to return</li>
+</ul>
+
+<h3 id="response">Response</h3>
+
+<p>You can expect a <code class="prettyprint">200 OK</code> response code for a successful call with a JSON object that contains the key and localized content. </p>
+
+<h2 id="update-widget-locale-strings">Update widget locale strings</h2>
+
+<p>Set the strings of a widget for a specific language. You can pass any key value pair. You will want to pass a JSON object of Key/Value entries that define the StringKey/String that will be used.</p>
+
+<p>You can pass key value pairs that are not yet installed in the widget, because Duda localizes widgets at the time of output/runtime, depending on the locale of the website or widget.</p>
+
+<blockquote>
+<p>Example Body to Send for Spanish:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"Widget.FAQ.Label"</span><span class="p">:</span><span class="s2">"FAQ Artículos"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Widget.FAQ.Tooltip"</span><span class="p">:</span><span class="s2">"Introduzca cada título, descripción, etc."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Widget.FAQ.AddItem.Text"</span><span class="p">:</span><span class="s2">"Añadir nueva pregunta"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X POST <span class="se">\</span>
+-k https://api.dudamobile.com/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/es
+-d <span class="s1">'{
+    "Widget.FAQ.Label":"FAQ Artículos",
+    "Widget.FAQ.Tooltip":"Introduzca cada título, descripción, etc.",
+    "Widget.FAQ.Add.Item.Text":"Añadir nueva pregunta"
+}'</span>
+</code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /widgets/{widgetId}/strings/{localeCode}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<p>URI Parameters:</p>
+
+<ul>
+<li>Widget ID: The unique ID representing the widget, returned originally by the Get All Widget API call. </li>
+<li>Locale Code: A string representing the of the language you want to return</li>
+</ul>
+
+<p>Body data:</p>
+
+<p>A JSON object of key value pairs. </p>
+
+<h3 id="response">Response</h3>
+
+<p>You can expect a <code class="prettyprint">204 No Content</code> response for a successful call. </p>
+
+<h2 id="publish-widget-locale-strings">Publish widget locale strings</h2>
+
+<p>Publish all the custom locale strings that have been added to the widget. This will only make the newly added strings available to live widgets. This only publishes the strings &ndash; not the entire widget.</p>
+
+<aside class="warning">The placeholders within the widget editors, HTML and JavaScript will need to be installed in the widget and published before you will see new strings appear.</aside>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X POST <span class="se">\</span>
+-k https://api.dudamobile.com/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/[publish
+</code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p><code class="prettyprint">POST /widgets/{widgetId}/strings/publish</code></p>
+
+<h3 id="response">Response</h3>
+
+<p>A successful call will return a <code class="prettyprint">204 No Content</code> HTTP response code.</p>
+
+<h2 id="get-available-locales">Get available locales</h2>
+
+<p>Get a list of available locales that the widget can be localized for. We will return an array of <a href="#languages">language</a> codes.</p>
+
+<blockquote>
+<p>Example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+-X GET <span class="se">\</span>
+-k https://api.dudamobile.com/api/widgets/locales
+</code></pre>
+
+<blockquote>
+<p>JSON Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"es"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fr"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"de"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tr"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"en_gb"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"it"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nl"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"es_ar"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="method-and-path">Method and path</h3>
+
+<p>GET /api/widgets/locales</p>
 
       </div>
       <div class="dark-box">
