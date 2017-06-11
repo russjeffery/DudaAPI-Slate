@@ -65,7 +65,8 @@ There are some parts of the API where Duda returns real world content to display
 Language | Language Code
 --------- | -------
 English | en
-Spanish LATAM | es
+Spanish | es
+Spanish LATAM | es_ar 
 German | de
 Portuguese | pt
 Turkish | tr

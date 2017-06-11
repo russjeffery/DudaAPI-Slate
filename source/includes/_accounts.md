@@ -220,22 +220,25 @@ If you would like to update the permissions that a specific customer has to a si
 > Array permissions to send
 
 ```json
-[
-	"PUSH_NOTIFICATIONS",
-	"REPUBLISH",
-	"EDIT",
-	"LIMITED_EDITING",
-	"INSITE",
-	"PUBLISH",
-	"CUSTOM_DOMAIN",
-	"RESET",
-	"E_COMMERCE",
-	"SEO",
-	"STATS_TAB",
-	"DEV_MODE",
-	"BACKUPS",
-	"BLOG"
-]
+{
+"permissions":
+	[
+		"PUSH_NOTIFICATIONS",
+		"REPUBLISH",
+		"EDIT",
+		"LIMITED_EDITING",
+		"INSITE",
+		"PUBLISH",
+		"CUSTOM_DOMAIN",
+		"RESET",
+		"E_COMMERCE",
+		"SEO",
+		"STATS_TAB",
+		"DEV_MODE",
+		"BACKUPS",
+		"BLOG"
+	]
+}
 ```
 
 > cURL Example:
@@ -244,7 +247,7 @@ If you would like to update the permissions that a specific customer has to a si
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.dudamobile.comhttps://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions \
+-k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions \
 -d '{"permissions":["EDIT","DEV_MODE","STATS_TAB"]}'
 ```
 
@@ -277,20 +280,20 @@ Get a list of available permissions for a Customer account when granting access 
 
 ```json
 [
-	"PUSH_NOTIFICATIONS",
-	"REPUBLISH",
-	"EDIT",
-	"LIMITED_EDITING",
-	"INSITE",
-	"PUBLISH",
-	"CUSTOM_DOMAIN",
-	"RESET",
-	"E_COMMERCE",
-	"SEO",
-	"STATS_TAB",
-	"DEV_MODE",
-	"BACKUPS",
-	"BLOG"
+    "PUBLISH",
+    "CUSTOM_DOMAIN",
+    "DEV_MODE",
+    "E_COMMERCE",
+    "REPUBLISH",
+    "INSITE",
+    "SEO",
+    "STATS_TAB",
+    "RESET",
+    "BACKUPS",
+    "BLOG",
+    "LIMITED_EDITING",
+    "EDIT",
+    "PUSH_NOTIFICATIONS"
 ]
 ```
 

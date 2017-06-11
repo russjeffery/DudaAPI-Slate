@@ -15,6 +15,7 @@ includes:
   - accounts
   - permissions
   - analytics
+  - widgets
 
 search: true
 ---
