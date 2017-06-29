@@ -17,6 +17,7 @@ Call the DudaAPI to create a new multiscreen site. This site will be created in 
 	"template_id": 20012,
 	"url": "www.example.com",
 	"default_domain_prefix": "sub-domain",
+	"lang":"en",
 	"site_data": {
 		"site_domain": "www.example.com",
 		"external_uid": "AD3421",
@@ -57,6 +58,7 @@ Property | Type | Required | Description
 ---------- | ---------- | ---------- | ----------
 template_id | Int | Required | Template ID of the template you want to base your new Responsive site on. You can see the API to get available templates [here](#get-templates).
 url | String | optional | Have Duda import content into the new site based from an existing website. You may use an existing website address or Facebook business page. 
+lang | String | optional | Set the language of the website. This controls the default copy (based on the template), widget outputs and other language specific text. See available [languages](#languages) above.
 default_domain_prefix | String | optional | Set the default sub-domain for your site. This controls the <sub-domain-prefix>.dudaone.com address. 
 site_data | Object | optional | JSON object containing additional site data. See below for the options and properties.
 site_alternate_domain | Object | optional | Set alternate domains for the site. The alternate domain values will be redirected to the primary domain (set in the site_data object). 
@@ -146,6 +148,7 @@ site_name - URL Parameter. Originally returned when first creating a website.
   "account_name": "example@domain.com",
   "external_uid": "externalReference1",
   "site_domain": "customDomain1.com",
+  "lang":"en"
   "site_business_info": {
     "business_name": "Example Business",
     "address": {
@@ -244,6 +247,7 @@ You can use this call to update properties about a site that is already created.
 	"site_domain":"example.com",
 	"default_domain_prefix":"new-domain-prefix",
 	"external_uid":"5123161232",
+	"lang":"en",
 	"site_alternate_domains":{
 		"domains":[
 			"alternatedomain1.com",
@@ -260,6 +264,7 @@ Property | Type | Description
 site_domain | String ([FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)) | The domain of the site you want to use. Note that the domain value is unique across the entire Duda system. 
 default_domain_prefix | String | Change the sub-domain prefix that you want to use. This must be a unique value and not used on other sites.
 external_uid | String | Placeholder for external system identifier. (max 45 chars)
+lang | String | Set the language of then website. This is used to change the output of default strings in widgets, cookie notifications, etc..
 site_alternate_domains | Object | Set alternate domains for the site. The alternate domain values will be redirected to the primary domain. 
 force_https | bool | If true, all website traffic will be redirected to a secure (HTTPS) enabled site. Only can be set if an SSL certificate is successfully generated. Defaults to true. 
 

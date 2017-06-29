@@ -1,4 +1,4 @@
-# Account
+unt_name":"email@email.com", "first_nam# Account
 
 An account resource represents a single Staff or Customer account. There are three account types referenced below, master account, Staff account and Customer account. The master account is the Duda account that accesses the Duda API.
 
@@ -27,7 +27,7 @@ Create a new Duda account in which you can grant a customer or staff permissions
 ```shell 
 curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' \
 -X POST -i -k https://api.dudamobile.com/api/accounts/create \
--d '{"account_name":"email@email.com", "first_name":"john", "last_name":"doe"}'
+-d '{"account_name":"email@email.com", "first_name":"john", "last_name":"doe", "account_type":"CUSTOMER", "lang":"en"}'	
 ```
 
 ### Parameters:
