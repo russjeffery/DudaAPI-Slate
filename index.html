@@ -352,6 +352,7 @@ Make sure to set the authorization header with your unique API username and API 
     </span><span class="nt">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
     </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.example.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default_domain_prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub-domain"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lang"</span><span class="p">:</span><span class="s2">"en"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"site_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"site_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.example.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"external_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AD3421"</span><span class="p">,</span><span class="w">
@@ -407,6 +408,12 @@ Make sure to set the authorization header with your unique API username and API 
 <td>String</td>
 <td>optional</td>
 <td>Have Duda import content into the new site based from an existing website. You may use an existing website address or Facebook business page.</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>String</td>
+<td>optional</td>
+<td>Set the language of the website. This controls the default copy (based on the template), widget outputs and other language specific text. See available <a href="#languages">languages</a> above.</td>
 </tr>
 <tr>
 <td>default_domain_prefix</td>
@@ -620,7 +627,8 @@ Make sure to set the authorization header with your unique API username and API 
   </span><span class="nt">"account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@domain.com"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"external_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"externalReference1"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"site_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customDomain1.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"site_business_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nt">"lang"</span><span class="p">:</span><span class="s2">"en"</span><span class="w">
+  </span><span class="s2">"site_business_info"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"business_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Business"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1240 Main ST."</span><span class="p">,</span><span class="w">
@@ -790,6 +798,7 @@ Make sure to set the authorization header with your unique API username and API 
     </span><span class="nt">"site_domain"</span><span class="p">:</span><span class="s2">"example.com"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"default_domain_prefix"</span><span class="p">:</span><span class="s2">"new-domain-prefix"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"external_uid"</span><span class="p">:</span><span class="s2">"5123161232"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lang"</span><span class="p">:</span><span class="s2">"en"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"site_alternate_domains"</span><span class="p">:{</span><span class="w">
         </span><span class="nt">"domains"</span><span class="p">:[</span><span class="w">
             </span><span class="s2">"alternatedomain1.com"</span><span class="p">,</span><span class="w">
@@ -823,6 +832,11 @@ Make sure to set the authorization header with your unique API username and API 
 <td>external_uid</td>
 <td>String</td>
 <td>Placeholder for external system identifier. (max 45 chars)</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>String</td>
+<td>Set the language of then website. This is used to change the output of default strings in widgets, cookie notifications, etc..</td>
 </tr>
 <tr>
 <td>site_alternate_domains</td>
@@ -2448,7 +2462,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 
 <p>Upon success, Duda will return a <code class="prettyprint">204 No Content</code> HTTP status code.</p>
 
-          <h1 id="account">Account</h1>
+          <p>unt_name&quot;:&ldquo;email@email.com&rdquo;, &ldquo;first_nam# Account</p>
 
 <p>An account resource represents a single Staff or Customer account. There are three account types referenced below, master account, Staff account and Customer account. The master account is the Duda account that accesses the Duda API.</p>
 
@@ -2478,7 +2492,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </blockquote>
 <pre class="highlight shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST -i -k https://api.dudamobile.com/api/accounts/create <span class="se">\</span>
--d <span class="s1">'{"account_name":"email@email.com", "first_name":"john", "last_name":"doe"}'</span>
+-d <span class="s1">'{"account_name":"email@email.com", "first_name":"john", "last_name":"doe", "account_type":"CUSTOMER", "lang":"en"}'</span> 
 </code></pre>
 
 <h3 id="parameters">Parameters:</h3>
@@ -2513,7 +2527,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <td>account_type</td>
 <td>String</td>
 <td>Optional</td>
-<td>Can be &ldquo;CUSTOMER&rdquo; or &ldquo;STAFF&rdquo;. Accounts created are defaulted to customer accounts.</td>
+<td>Can be &quot;CUSTOMER&rdquo; or &ldquo;STAFF&rdquo;. Accounts created are defaulted to customer accounts.</td>
 </tr>
 <tr>
 <td>lang</td>
