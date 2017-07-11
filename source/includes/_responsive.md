@@ -818,7 +818,7 @@ Get all pages that exist within the website. Returns an array of objects that de
 > CURL Example:
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages' \
+curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/site/b4ra2g/pages' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -1235,7 +1235,7 @@ status | String | The status of the upload. This can be *NOT_FOUND* if Duda coul
 
 <aside class="notice">Since Duda must download the image, multi-size them and finally compress images uploaded through this API, it can often take several seconds to respond, depending on the number of images. If possible, we recommend you perform this action asynchronously.</aside>
 
-## Get recently published sties
+## Get recently published sites
 
 Get a list of recently published websites in your account, for a specific amount of days. This returns results of all sites that have been published recently, either for an ongoing website update or for the first time. This can be used in conjunction with the get site to see the status of the website for billing reasons. You can call this API to get recently published websites, then get the actual status of the website by calling the get site to see if it is published, unpublished or has never been published.
 
@@ -1268,7 +1268,7 @@ curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/published?lastD
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
-## Get recently unpublished sties
+## Get recently unpublished sites
 
 Get a list of recently unpublished websites in your account, for a specific amount of days. This returns results of all sites that have been unpublished recently, which usually means the website was canceled. This can be used in conjunction with the get site to see the status of the website for billing reasons. You can call this API to get recently unpublished websites, then get the actual status of the website by calling the get site to see if it is published or unpublished.
 
