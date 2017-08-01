@@ -111,8 +111,8 @@ html, body {
     }
   }
 
-  img+.tocify {
-    margin-top: $logo-margin;
+  .logo {
+    margin-bottom: $logo-margin;
   }
 
   .search-results {
@@ -124,13 +124,12 @@ html, body {
     transition-property: height, margin;
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
+    background: $nav-subitem-bg;
     &.visible {
       height: auto;
       margin-bottom: 1em;
       max-height: 230px;
     }
-
-    @include embossed-bg;
 
     li {
       margin: 1em $nav-padding;
@@ -147,7 +146,6 @@ html, body {
       }
     }
   }
-
 
   .tocify-item>a, .toc-footer li {
     padding: $nav-padding-top $nav-padding $nav-padding-top $nav-padding;
@@ -171,7 +169,7 @@ html, body {
     color: $nav-text;
     transition-property: background;
     transition-timing-function: linear;
-    transition-duration: 230ms;
+    transition-duration: 200ms;
   }
 
   // This is the currently selected ToC entry
@@ -180,10 +178,14 @@ html, body {
     font-weight: 500;
   }
 
-  // Subheaders are the submenus that slide open
-  // in the table of contents.
-  .tocify-subheader {
-    display: none; // tocify will override this when needed
+  // this is parent links of the currently selected ToC entry
+  .toc-link.active-parent {
+    background-color: $nav-active-parent-bg;
+    color: $nav-active-parent-text;
+  }
+
+  .toc-list-h2 {
+    display: none;
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
@@ -229,7 +231,19 @@ html, body {
       text-decoration: none;
     }
   }
+}
 
+.toc-link, .toc-footer li {
+  padding: 0 $nav-padding 0 $nav-padding;
+  display: block;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: #fff;
+  transition-property: background;
+  transition-timing-function: linear;
+  transition-duration: 130ms;
 }
 
 // button to show navigation on mobile devices
@@ -337,6 +351,8 @@ html, body {
 // This is all the stuff with the light background in the left half of the page
 
 .content {
+  // fixes webkit rendering bug for some: see #538
+  -webkit-transform: translateZ(0);
   // to place content above the dark box
   position: relative;
   z-index: 30;
@@ -367,7 +383,7 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 30px;
+    font-size: 25px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
@@ -535,7 +551,6 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    padding: 2em $main-padding;
     margin: 0;
     width: $examples-width;
 
@@ -557,16 +572,16 @@ html, body {
 
   pre {
     @extend %code-font;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding: 2em $main-padding;
   }
 
   blockquote {
     &>p {
       background-color: $code-annotation-bg;
-      border-radius: 5px;
-      padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      padding: $code-annotation-padding 2em;
+      color: #eee;
     }
   }
 }
@@ -578,7 +593,7 @@ html, body {
 // There are also a couple styles disperesed
 
 @media (max-width: $tablet-width) {
-  .tocify-wrapper {
+  .toc-wrapper {
     left: -$nav-width;
 
     &.open {
@@ -594,7 +609,7 @@ html, body {
     display: block;
   }
 
-  .tocify-wrapper .tocify-item > a {
+  .toc-link {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
   }
@@ -609,7 +624,7 @@ html, body {
     margin-right: 0;
   }
 
-  .tocify-wrapper .lang-selector {
+  .toc-wrapper .lang-selector {
     display: block;
   }
 

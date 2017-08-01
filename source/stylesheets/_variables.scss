@@ -41,7 +41,6 @@ $search-notice-bg: #c97a7e;
 $h1-bg-color: #2f373a;
 $h2-bg-color: #f1f1f1;
 
-
 // TEXT COLORS
 ////////////////////
 $main-text: #313131; // main content text color
@@ -51,7 +50,6 @@ $nav-active-text: #F66035;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
-
 
 // SIZES
 ////////////////////
@@ -90,12 +88,8 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 // OTHER
 ////////////////////
-$nav-active-shadow: #000;
-$nav-footer-border-color: #666;
-$nav-embossed-border-top: #000;
-$nav-embossed-border-bottom: #939393;
-$main-embossed-text-shadow: 0px 1px 0px #fff;
-$search-box-border-color: #666;
+$nav-footer-border-color: #666 !default;
+$search-box-border-color: #666 !default;
 
 
 ////////////////////////////////////////////////////////////////////////////////
