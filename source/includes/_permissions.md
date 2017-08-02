@@ -13,7 +13,7 @@ As part of the Permission Groups, Duda provides a set of default (predefined) gr
     "group_name": "administrator",
     "color": "rgb(253,113,34)",
     "title": "Admin",
-    "permissions": ["EDIT", "CREATE", "DELETE", "API", "DUDA_PRO", "MANAGE_USERS", "STATS", "E_COMMERCE", "MARKETING", "REPUBLISH", "PUBLISH", "DEV_MODE", "SITE_CUSTOM_DOMAIN"]
+    "permissions": ["EDIT", "CREATE", "DELETE", "API", "DUDA_PRO", "MANAGE_USERS", "STATS", "E_COMMERCE", "MARKETING", "REPUBLISH", "PUBLISH", "DEV_MODE", "PURCHASE_IMAGES", SITE_CUSTOM_DOMAIN"]
 }, {
     "group_name": "salesman",
     "color": "rgb(36,206,151)",

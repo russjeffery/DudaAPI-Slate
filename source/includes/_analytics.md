@@ -1,5 +1,7 @@
 # Analytics
 
+## Get Analytics
+
 Get analytics history for a specific website over a certain amount of time.
 
 ### Method and path

@@ -2,7 +2,7 @@
 title: Duda REST API Documentation
 
 language_tabs:
-  - shell: cURL
+  - shell
 
 toc_footers:
   - <a href='/developers/'>Back to Developer Portal</a>
@@ -18,3 +18,4 @@ includes:
   - widgets
 
 search: true
+---

@@ -35,6 +35,9 @@ html, body {
   height: 100%;
   -webkit-text-size-adjust: none; /* Never autoresize text */
 }
+.toc-h1 {
+  @extend %toc-header-font;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // TABLE OF CONTENTS
@@ -111,10 +114,6 @@ html, body {
     }
   }
 
-  .logo {
-    margin-bottom: $logo-margin;
-  }
-
   .search-results {
     margin-top: 0;
     box-sizing: border-box;
@@ -147,7 +146,7 @@ html, body {
     }
   }
 
-  .tocify-item>a, .toc-footer li {
+  .toc-h2 >a, .toc-footer li {
     padding: $nav-padding-top $nav-padding $nav-padding-top $nav-padding;
     display: block;
     overflow-x: hidden;
@@ -173,7 +172,7 @@ html, body {
   }
 
   // This is the currently selected ToC entry
-  .tocify-focus {
+  .active {
     color: $nav-active-text;
     font-weight: 500;
   }
@@ -182,25 +181,30 @@ html, body {
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
+    font-weight: 500;
+  }
+  .toc-link.active {
+    background-color: $nav-active-bg;
+    color: $nav-active-text;
   }
 
   .toc-list-h2 {
     display: none;
     background-color: $nav-subitem-bg;
     font-weight: 500;
-    .tocify-item>a {
+    .toc-link {
       /*padding-left: $nav-padding + $nav-indent;*/
       font-size: 14px;
       font-weight:400;
-      padding: $nav-padding-top 0px $nav-padding-top 30px;
+      /*padding: $nav-padding-top 0px $nav-padding-top 30px;*/
     }
 
-    .tocify-focus {
+    .active {
       background-color:$nav-active-bg;
       font-weight: 400;
     }
 
-    li:not(.tocify-focus) {
+    a:not(.active) {
       color:$main-text;
     }
 
@@ -240,10 +244,11 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: #fff;
+  color: $main-text;
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
+  padding: $nav-padding-top 0px $nav-padding-top 30px;
 }
 
 // button to show navigation on mobile devices
@@ -388,8 +393,8 @@ html, body {
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    background-color:#f2f2f2;
-    color:#313131;
+    background-color:$nav-bg;
+    color:$main-text;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -404,7 +409,7 @@ html, body {
     margin-bottom: 1em;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-color:$h2-bg-color;
+    background-color:$nav-bg;
   }
 
   // h2s right after h1s should bump right up
@@ -451,7 +456,7 @@ html, body {
     }
 
     tr {
-      border-bottom:1px solid $h2-bg-color;
+      border-bottom:1px solid $nav-bg;
     }
 
     tr:last-child {
@@ -650,54 +655,51 @@ html, body {
   background-color: $code-bg;
 }
 
-.tocify-subheader {
-  li::before{
+.toc-list-h2 {
+  a::before{
     font-size: 14px;
     font-weight: 300;
     color: #909090;
     padding: 5px 0 5px 20px;
     background-color: #fff;
     display: block;
+    margin-left:-30px;
+    margin-top:-5px;
   }
-  li[data-unique='get-all-templates']::before {
+  a[href='#get-all-templates']::before {
     content:"Templates";
   }
-  li[data-unique='create-site']::before {
+  a[href='#create-site']::before {
     content:"Sites";
   }
-  li[data-unique='get-recently-published-sties']::before {
+  a[href='#get-recently-published-sites']::before {
     content:"Reporting";
   }
-  li[data-unique='generate-ssl-certificate']::before {
+  a[href='#generate-ssl-certificate']::before {
     content:"SSL Certificates";
   }
-  li[data-unique='create-site-backup']::before {
+  a[href='#create-site-backup']::before {
     content:"Backups";
   }
-  li[data-unique='get-pages']::before {
+  a[href='#get-pages']::before {
     content:"Pages";
   }
-  li[data-unique='inject-content']::before {
+  a[href='#inject-content']::before {
     content:"Content";
   }
-  li[data-unique='create-account']::before {
+  a[href='#create-account']::before {
     content:"Account Management";
   }
-  li[data-unique='generate-sso-link']::before {
+  a[href='#generate-sso-link']::before {
     content:"Single Sign-On";
   }
-  li[data-unique='grant-customer-access-to-a-site']::before {
+  a[href='#grant-customer-access-to-a-site']::before {
     content:"Permissions"
   }
-  li[data-unique='subscribe-customer-to-stats']::before {
+  a[href='#subscribe-customer-to-stats']::before {
     content:"Stats emails";
   }
-  li[data-unique='get-multiscreen-sites-by-account']::before {
+  a[href='#get-multiscreen-sites-by-account']::before {
     content:"Other";
   }
-
-  
-  
-  
-
 }

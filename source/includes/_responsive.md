@@ -24,6 +24,7 @@ Call the DudaAPI to create a new multiscreen site. This site will be created in 
 		"site_business_info": {
 			"business_name": "Open Market",
 			"phone_number": "4157775577",
+			"email": "name@domain.com",
 			"address": {
 				"country": "US",
 				"city": "San Francisco",

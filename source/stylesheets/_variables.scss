@@ -29,17 +29,17 @@ $code-bg: #292929;
 $code-annotation-bg: #1c1c1c;
 $nav-subitem-bg: #fff;
 $nav-active-bg: #f1f1f1;
+$nav-active-parent-bg: #f2f2f2;
+$nav-active-parent-text: #313131;
 $lang-select-border: #000;
 $lang-select-bg: #222;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
 $main-bg: #fff;
-$aside-notice-bg: #8fbcd4;
-$aside-warning-bg: #c97a7e;
+$aside-notice-bg: #9cd1ff;
+$aside-warning-bg: #e8c72e;
 $aside-success-bg: #3ec17c;
 $search-notice-bg: #c97a7e;
-$h1-bg-color: #2f373a;
-$h2-bg-color: #f1f1f1;
 
 // TEXT COLORS
 ////////////////////
@@ -70,13 +70,18 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Helvetica,Arial,sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
 } 
 
 %header-font {
-  @extend %default-font;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+%toc-header-font {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 %code-font {

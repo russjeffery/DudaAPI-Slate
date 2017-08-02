@@ -1,4 +1,4 @@
-unt_name":"email@email.com", "first_nam# Account
+# Account
 
 An account resource represents a single Staff or Customer account. There are three account types referenced below, master account, Staff account and Customer account. The master account is the Duda account that accesses the Duda API.
 
@@ -68,6 +68,12 @@ Get information from the Duda platform about an existing account. You should kno
 }
 ````
 
+> CURL Example:
+
+```shell
+curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' -X GET -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
+```
+
 ### Return:
 Upon success, Duda will return a `200 OK` HTTP status code. A JSON object representing the Account will be returned with the following possible values:
 
@@ -80,11 +86,6 @@ email | Valid Email | Email address of the account. Can be different than accoun
 account_type | String | Can be "CUSTOMER" or "STAFF". Represents the type of account.
 lang | String | The current language of the account.
 
-
-> CURL Example:
-```shell
-curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' -X GET -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
-```
 ## Delete account
 
 Delete an existing Sub-account. This account must be a sub-account you've already created. 
@@ -92,6 +93,13 @@ Delete an existing Sub-account. This account must be a sub-account you've alread
 ### Method and path
 
 `DELETE /accounts/{account_name}`
+
+> Example:
+
+```shell
+curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' \
+-X DELETE -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
+```
 
 ### Parameters:
 
@@ -101,10 +109,7 @@ Delete an existing Sub-account. This account must be a sub-account you've alread
  
 You can expect a `204 No Content` response code for a successful delete account call.
 
-```shell
-curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' \
--X DELETE -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
-```
+
 ## Update account
 
 Update the parameters for an existing account. This is useful for updating email, name or language settings. 
@@ -113,6 +118,7 @@ Update the parameters for an existing account. This is useful for updating email
 `POST /accounts/update/{account_name}`
 
 > cURL Example
+
 ```shell
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
@@ -187,7 +193,7 @@ Generate a token that will grant sub-accounts access to your white label portal.
 ### Method and path
 `GET /accounts/sso/{account_name}/token`
 
-### Parameters:</strong> 
+### Parameters:
 
 - account_name - URL Parameter - Account name
 
