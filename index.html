@@ -212,7 +212,7 @@
         <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
-    <div class="tocify-wrapper">
+    <div class="toc-wrapper">
     <a href="/">
       <img src="images/duda.svg" alt="Duda" />
       </a>
@@ -2515,6 +2515,8 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </tbody></table>
 <h3 id='return'>Return</h3>
 <p>You can expect a <code>204 No Content</code> response code for a successful create account call.</p>
+
+<aside class="notice">Duda will not email your customer directly (assumign you provide a valid email) when the account is created or updated. We only send emails to your customers for form submissions, stats emails, resetting passwords and sending site invites (from dashboard UI only). All emails we send to cutomers are white labeled fully and will not reference Duda.</aside>
 <h2 id='get-account'>Get account</h2>
 <p>Get information from the Duda platform about an existing account. You should know the Account name already, as you used it to originally create the Account. </p>
 <h3 id='method-and-path-2'>Method and path</h3>
