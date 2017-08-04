@@ -44,6 +44,8 @@ lang | String | Optional | [Two digit language code](#langauges). Sets what lang
 
 You can expect a `204 No Content` response code for a successful create account call.
 
+<aside class="notice">Duda will not email your customer directly (assumign you provide a valid email) when the account is created or updated. We only send emails to your customers for form submissions, stats emails, resetting passwords and sending site invites (from dashboard UI only). All emails we send to cutomers are white labeled fully and will not reference Duda.</aside>
+
 ## Get account 
 
 Get information from the Duda platform about an existing account. You should know the Account name already, as you used it to originally create the Account. 
