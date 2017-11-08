@@ -327,7 +327,7 @@
                     <a href="#get-inject-content-values" class="toc-h2 toc-link" data-title="Responsive sites">Get Inject Content Values</a>
                   </li>
                   <li>
-                    <a href="#upload-resourcess" class="toc-h2 toc-link" data-title="Responsive sites">Upload resourcess</a>
+                    <a href="#upload-resources" class="toc-h2 toc-link" data-title="Responsive sites">Upload resources</a>
                   </li>
                   <li>
                     <a href="#get-recently-published-sites" class="toc-h2 toc-link" data-title="Responsive sites">Get recently published sites</a>
@@ -2077,7 +2077,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </tbody></table>
 <h3 id='return-19'>Return</h3>
 <p>You can expect a <code>200 OK</code> HTTP response code along with an array of json objects describing the inject content possibilities.</p>
-<h2 id='upload-resourcess'>Upload resourcess</h2>
+<h2 id='upload-resources'>Upload resources</h2>
 <p>Upload resources to the website from an external source. Today, this only supports images, but might be extended in the future for other types of media. This will upload the resource to the CDN that Duda uses and make it available to anyone building the website. This API is commonly used in conjunction with the <a href="#inject-content">inject content API</a> to insert new images directly into the website.</p>
 
 <aside class="warning">Please make sure files you upload have the correct extension. For example, PNG images should have .png and JPEG should have .jpg or .jpeg.</aside>
@@ -2634,7 +2634,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 -X GET <span class="se">\</span>
 -k https://api.dudamobile.com/api/accounts/sso/johnsmith@gmail.com/link​?target<span class="o">=</span>STATS&amp;site_name<span class="o">=</span>146856ab
 </code></pre><h3 id='method-and-path-5'>Method and path</h3>
-<p><code>GET /accounts/sso/{account_name}/link?TARGET=EDITOR&amp;site_name=h5de912a</code></p>
+<p><code>GET /accounts/sso/{account_name}/link?target=EDITOR&amp;site_name=h5de912a</code></p>
 <h3 id='paramters'>Paramters</h3>
 <p>You must send a valid account_name as part of the URI parameter. There are several optional URL query paramters you can add on the request. If you pass the stats, Site Editor or Reset Site targets, you must also add a site_name parameter for the website that you are wanting to give the user access to. </p>
 
@@ -3620,7 +3620,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <h3 id='response-5'>Response</h3>
 <p>A successful call will return a <code>204 No Content</code> HTTP response code.</p>
 <h2 id='get-available-locales'>Get available locales</h2>
-<p>Get a list of available locales that the widget can be localized for. We will return an array of <a href="#languages">language</a> codes.</p>
+<p>Get a list of available locales that the widget can be localized for. We will return an array of <a href="#langauges">language</a> codes.</p>
 
 <blockquote>
 <p>Example</p>
@@ -3646,7 +3646,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
     </span><span class="s2">"es_ar"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='method-and-path-6'>Method and path</h3>
-<p>GET /api/widgets/locales</p>
+<p>GET /widgets/locales</p>
 
       </div>
       <div class="dark-box">
