@@ -187,7 +187,7 @@ curl -S -u 'APIusername:APIpassword' \
 A successful call will return a `204 No Content` HTTP response code.
 
 ## Get available locales
-Get a list of available locales that the widget can be localized for. We will return an array of [language](#languages) codes.
+Get a list of available locales that the widget can be localized for. We will return an array of [language](#langauges) codes.
 
 > Example
 
@@ -216,4 +216,4 @@ curl -S -u 'APIusername:APIpassword' \
 ```
 
 ### Method and path
-GET /api/widgets/locales
+GET /widgets/locales

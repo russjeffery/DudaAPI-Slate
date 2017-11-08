@@ -156,7 +156,7 @@ curl -S -u 'APIusername:APIpassword' \
 ```
 
 ### Method and path
-`GET /accounts/sso/{account_name}/link?TARGET=EDITOR&site_name=h5de912a`
+`GET /accounts/sso/{account_name}/link?target=EDITOR&site_name=h5de912a`
 
 ### Paramters
 

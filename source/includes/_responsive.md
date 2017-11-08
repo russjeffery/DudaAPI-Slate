@@ -1163,7 +1163,7 @@ ref | String | Used with CSS & DOMATTR types. Can filter for a specific value ty
 
 You can expect a `200 OK` HTTP response code along with an array of json objects describing the inject content possibilities.
 
-## Upload resourcess
+## Upload resources
 Upload resources to the website from an external source. Today, this only supports images, but might be extended in the future for other types of media. This will upload the resource to the CDN that Duda uses and make it available to anyone building the website. This API is commonly used in conjunction with the [inject content API]( #inject-content) to insert new images directly into the website.
 
 <aside class="warning">Please make sure files you upload have the correct extension. For example, PNG images should have .png and JPEG should have .jpg or .jpeg.</aside>
