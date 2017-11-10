@@ -37,20 +37,18 @@ Call the DudaAPI to create a new multiscreen site. This site will be created in 
 					"restaurant_id":"55123",
 					"location":"Downtown",
 					"country":"US"
-
 				},
 				{
 					"restaurant_id":"55141",
 					"location":"China Town",
 					"country":"US"
-
 				}
 			]
+		},
+		"site_alternate_domains":{
+			"domains":["www.domain1.com","www.domain1.net","www.domain2.com"],
+			"is_redirect":true
 		}
-	},
-	"site_alternate_domain":{
-		"domains":["www.domain1.com","www.domain1.net","www.domain2.com"],
-		"is_redirect":true
 	}
 }
 ```
