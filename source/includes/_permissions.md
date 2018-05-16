@@ -13,7 +13,7 @@ As part of the Permission Groups, Duda provides a set of default (predefined) gr
     "group_name": "administrator",
     "color": "rgb(253,113,34)",
     "title": "Admin",
-    "permissions": ["EDIT", "CREATE", "DELETE", "API", "DUDA_PRO", "MANAGE_USERS", "STATS", "E_COMMERCE", "MARKETING", "REPUBLISH", "PUBLISH", "DEV_MODE", "PURCHASE_IMAGES", SITE_CUSTOM_DOMAIN"]
+    "permissions": ["EDIT", "CREATE", "DELETE", "API", "DUDA_PRO", "MANAGE_USERS", "STATS", "E_COMMERCE", "MARKETING", "REPUBLISH", "PUBLISH", "DEV_MODE", "PURCHASE_IMAGES", "SITE_CUSTOM_DOMAIN"]
 }, {
     "group_name": "salesman",
     "color": "rgb(36,206,151)",
@@ -37,7 +37,7 @@ As part of the Permission Groups, Duda provides a set of default (predefined) gr
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/permission-groups/default
+-k https://api.duda.co/api/permission-groups/default
 ```
 
 ### Method and path
@@ -66,7 +66,7 @@ Create a new staff group. This group defines the features that a staff member wi
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.dudamobile.com/api/permission-groups/create \
+-k https://api.duda.co/api/permission-groups/create \
 -d '{"group_name": "Mzc0MQ","color": "rgb(27,245,71)","title": "Outside Sales","permissions":["STATS", "CREATE", "REPUBLISH", "EDIT"]}' 
 ```
 
@@ -118,7 +118,7 @@ Get all custom groups that have been created for this account. These are groups 
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/permission-groups/custom
+-k https://api.duda.co/api/permission-groups/custom
 ```
 
 ### Method and path
@@ -160,7 +160,7 @@ Update an existing group. Use this if you want to change the features that a cer
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/update \
+-k https://api.duda.co/api/permission-groups/Mzc0MQ/update \
 -d '{"color": "rgb(27,245,71)","title": "Outside Sales","permissions":["STATS", "CREATE", "REPUBLISH", "EDIT","CREATE_SITES"]}'
 ```
 
@@ -180,7 +180,7 @@ Get the details of a specific permission group.
 ```shell
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
--X GET -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ
+-X GET -k https://api.duda.co/api/permission-groups/Mzc0MQ
 ```
 
 > Example response body:
@@ -233,7 +233,7 @@ Delete an already created custom group. This can't be undone.
 ```shell
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
--X DELETE -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ 
+-X DELETE -k https://api.duda.co/api/permission-groups/Mzc0MQ 
 ```
 
 ### Parameters
@@ -253,7 +253,7 @@ Assign a Staff Account to a specific group. Both the custom group and staff acco
 ```shell
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
--X POST -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
+-X POST -k https://api.duda.co/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
 ```
 
 ### Method and path
@@ -278,7 +278,7 @@ Remove a staff account from the group that they are currently assigned to. Pleas
 ```shell
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
--X POST -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
+-X POST -k https://api.duda.co/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
 ```
 
 ### Method and path

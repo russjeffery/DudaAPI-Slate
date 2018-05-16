@@ -14,7 +14,7 @@ Call the DudaAPI to create a new multiscreen site. This site will be created in 
 
 ```json
 {
-	"template_id": 20012,
+	"template_id": 1000772,
 	"url": "www.example.com",
 	"default_domain_prefix": "sub-domain",
 	"lang":"en",
@@ -113,10 +113,10 @@ is_redirect | bool | optional | Defaults to true. If set as true, all alternate 
 >Create a website:
 
 ```shell
-curl -X POST -i https://api.dudamobile.com/api/sites/multiscreen/create \
+curl -X POST -i https://api.duda.co/api/sites/multiscreen/create \
 	-u 'APIusername:APIpassword' \
 	-H 'Content-Type: application/json' \
-	-d '{ "template_id": "20012"}'
+	-d '{ "template_id": "1000772"}'
 ```
 
 > Expected return:
@@ -200,13 +200,13 @@ cetrtificate_status | String | The status of SSL certificate generation. Has thr
 site_alternate_domains | Object | [See the section above](#site_alternate_domain-object) to get the full reference for the site_alternate_domain object. 
 
 ```shell
-curl -X GET https://api.dudamobile.com/api/sites/multiscreen/57b6506a \
+curl -X GET https://api.duda.co/api/sites/multiscreen/57b6506a \
 	-u 'APIpassword:APIusername' \
 	-H 'Content-Type: application/json' 
 ```
 
-## Get sites by external id
-This will return a list of all site ID's that have the external ID value provided when creating or updating the website. The external ID value is not a unique value in the Duda system -- so multiple sites can have the same external ID value. 
+## Get sites by External ID
+This will return a list of all site ID's that have the external ID value provided when creating or updating the website. The external ID value is not a unique value in the Duda system, so multiple sites can have the same external ID value. 
 
 `GET /sites/multiscreen/byexternalid/{external_uid}`
 
@@ -270,7 +270,7 @@ force_https | bool | If true, all website traffic will be redirected to a secure
 > Example CURL to Update Site:
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/update/57b6506a' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/update/57b6506a' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \
 	-d '{"site_domain":"www.uniquedomain.com"}'
@@ -292,7 +292,7 @@ This will immediately and permanently delete the site and cancel any subscriptio
 > CURL Example to delete a site:
 
 ```shell
-curl -X DELETE -k 'https://api.dudamobile.com/api/sites/multiscreen/57b6506a' \
+curl -X DELETE -k 'https://api.duda.co/api/sites/multiscreen/57b6506a' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'	
 ```
@@ -314,7 +314,7 @@ Takes the development version of the site and copies it to a live state. Publish
 > CURL Example:
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/publish/57b6506a' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/publish/57b6506a' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'	
 ```
@@ -335,7 +335,7 @@ Removes the site from the production environment. This is good for disabling the
 > CURL Example:
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/publish/57b6506a' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/publish/57b6506a' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'	
 ```
@@ -354,7 +354,7 @@ Create a duplicate of a single multiscreen site. The new site will not be publis
 > CURL Example:
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/duplicate/57b6506a' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/duplicate/57b6506a' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'	\ 
 	-d '{"new_default_domain_prefix":"bobspizza"}'
@@ -415,46 +415,6 @@ removeBizInfos | Bool | Optional | If passed as true, resetting the site will re
 
 You can expect a `204 No Content` response code for a successful reset call.
 
-## Get sites created between
-
-Will return an array of site names created during the given time period. If no from parameter is specified, sites created in the past 7 days will be returned. Will return an array of site names. Please see the section about [handling dates, above.](#dates)
-
-### Method and path
-`GET /sites/multiscreen/created?from=2016-03-01&to=2016-03-31`
-
-> JSON Return:
-
-```json
-[
-   "c27cdebf",
-   "1aadcb7c",
-   "0c2b5c42",
-   "83729462",
-   "287185af",
-   "ff82ddc4",
-   "a6119858",
-   "57b6506a",
-   "5876c248",
-   "6f45aed8"
-]
-```
-
-### URL Query Parameters
-Query String | Type | Required | Description
----------- | ---------- | ---------- | ----------
-from | Date | Optional | Start date to query sites for. If not supllied, defaults to 7 days ago, from the current time. 
-to | Date | Optional | End date of when to search for. If not supplied, will default to today.
-
-> CURL Example:
-
-```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/created?from=2016-03-01&to=2016-03-09' \
-	-u 'APIusername:APIpassword' \ 
-	-H 'Content-Type: application/json'	
-```
-
-### Return
-You can expect a `200 OK` HTTP code along with an array of site names to be returned for the specified time frame. 
 
 ## Get multiple sites
 
@@ -463,7 +423,7 @@ Get site details for many sites at once. You can send an array of site names you
 > CURL Example:
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/get-many' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/get-many' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'	\
 	-d '[{"site_name":"fb8b8ced"},{"site_name":"76ed3209"}]'
@@ -542,41 +502,65 @@ Get an array of objects for all templates available to your account. Each templa
 ```json
 [
 	{
-		"template_name": "Yellow Brick Road",
-		"preview_url": "http://example.mobilewebsiteserver.c...heme-20004-263",
-		"thumbnail_url": "https://dd-cdn.multiscreensite.com/t...brick-road.jpg",
-		"template_id": 20004,
-		"template_properties": {
-			"can_build_from_url": true
-		}
-	},
-	{
-		"template_name": "Popsicle",
-		"preview_url": "http://example.mobilewebsiteserver.c...heme-20002-263",
-		"thumbnail_url": "https://dd-cdn.multiscreensite.com/t...w/popsicle.jpg",
-		"template_id": 20002,
-		"template_properties": {
-			"can_build_from_url": true
-		}
-	},
-	{
-		"template_name": "Medical",
-		"preview_url": "http://example.mobilewebsiteserver.c...heme-20021-263",
-		"thumbnail_url": "https://dd-cdn.multiscreensite.com/t...ew/medical.jpg",
-		"template_id": 20021,
-		"template_properties": {
-			"can_build_from_url": true
-		}
-	},
-	{
-		"template_name": "Custom2 Template",
-		"preview_url": "http://example.mobilewebsiteserver.c...eview/f8b71a68",
-		"thumbnail_url": "https://dp-cdn.multiscreensite.com/t...nd=[B@676f0be9",
-		"template_id": 1000410,
-		"template_properties": {
-			"can_build_from_url": false
-		}
-	}
+        "template_name": "Auto Repair",
+        "preview_url": "http://dashboard.russjeffery.com/preview/dm-theme-1005442-en-328",
+        "thumbnail_url": "https://irp-cdn.multiscreensite.com/0f8a84df3a244e0f9249423e0588397f/siteTemplateIcons/IzrGRlYSCeQNUc4V1nAA_Auto_repair_BigPreview.png",
+        "desktop_thumbnail_url": "https://irp-cdn.multiscreensite.com/0f8a84df3a244e0f9249423e0588397f/siteTemplateIcons/GwrdUIcXTbOypxHaiUNZ_auto_repair_desktop.png",
+        "tablet_thumbnail_url": "https://irp-cdn.multiscreensite.com/0f8a84df3a244e0f9249423e0588397f/siteTemplateIcons/LUihe1rSq5kiizBraMgG_auto-repair_ipad.png",
+        "mobile_thumbnail_url": "https://irp-cdn.multiscreensite.com/0f8a84df3a244e0f9249423e0588397f/siteTemplateIcons/rcceNsKOTKSqSx5bnPME_auto-repair-mobile.png",
+        "template_id": 1005442,
+        "template_properties": {
+            "can_build_from_url": false,
+            "has_store": false,
+            "has_blog": false,
+            "page_count": 5
+        }
+    },
+    {
+        "template_name": "Flower Store",
+        "preview_url": "http://dashboard.russjeffery.com/preview/dm-theme-1004110-en-324",
+        "thumbnail_url": "https://irp-cdn.multiscreensite.com/aee0f8c56d634e6f969aeed4c5bc9fc4/siteTemplateIcons/R8gW4rpREyJVcyodUBqW_BigPreview.jpg",
+        "desktop_thumbnail_url": "https://irp-cdn.multiscreensite.com/aee0f8c56d634e6f969aeed4c5bc9fc4/siteTemplateIcons/eYs4FiVQkmUoOyxxNcPd_flower_store_desktop.png",
+        "tablet_thumbnail_url": "https://irp-cdn.multiscreensite.com/aee0f8c56d634e6f969aeed4c5bc9fc4/siteTemplateIcons/NK8oQFkOTEG0FbHqhqXX_flower_store_tablet.png",
+        "mobile_thumbnail_url": "https://irp-cdn.multiscreensite.com/aee0f8c56d634e6f969aeed4c5bc9fc4/siteTemplateIcons/tW6yISIT5yHHRg0oakt7_flower_store_mobile.png",
+        "template_id": 1004110,
+        "template_properties": {
+            "can_build_from_url": false,
+            "has_store": true,
+            "has_blog": false,
+            "page_count": 3
+        }
+    },
+    {
+        "template_name": "Blank Services",
+        "preview_url": "http://dashboard.russjeffery.com/preview/dm-theme-1003738-en-327",
+        "thumbnail_url": "https://irp-cdn.multiscreensite.com/fac18167cc14456196ba71cef32d4bc0/siteTemplateIcons/fViD6lOeQZmv89Yvf7vM_Blank_services_BigPreview.jpg",
+        "desktop_thumbnail_url": "https://irp-cdn.multiscreensite.com/fac18167cc14456196ba71cef32d4bc0/siteTemplateIcons/JcFd47BRSmOv8utqovg3_blank_services_desktop.png",
+        "tablet_thumbnail_url": "https://irp-cdn.multiscreensite.com/fac18167cc14456196ba71cef32d4bc0/siteTemplateIcons/Mva1521TEK3O936gia2F_blank_services_tablet.png",
+        "mobile_thumbnail_url": "https://irp-cdn.multiscreensite.com/fac18167cc14456196ba71cef32d4bc0/siteTemplateIcons/xNEqNg6ZR56eI3ngAxvE_blank_services_mobile.png",
+        "template_id": 1003738,
+        "template_properties": {
+            "can_build_from_url": false,
+            "has_store": false,
+            "has_blog": false,
+            "page_count": 3
+        }
+    },
+    {
+        "template_name": "Conference",
+        "preview_url": "http://dashboard.russjeffery.com/preview/dm-theme-1004580-en-320",
+        "thumbnail_url": "https://irp-cdn.multiscreensite.com/c3e028f9d55f47dfbde4c4c237ffda9f/siteTemplateIcons/LgJaTshSpaGY709UMa5f_BigPreview%20(2).jpg",
+        "desktop_thumbnail_url": "https://irp-cdn.multiscreensite.com/c3e028f9d55f47dfbde4c4c237ffda9f/siteTemplateIcons/10xwaGtIQX6GQziGsTXs_conference_desktop.png",
+        "tablet_thumbnail_url": "https://irp-cdn.multiscreensite.com/c3e028f9d55f47dfbde4c4c237ffda9f/siteTemplateIcons/RezGoJXWQWWbOkd73RBI_conference_tablet.png",
+        "mobile_thumbnail_url": "https://irp-cdn.multiscreensite.com/c3e028f9d55f47dfbde4c4c237ffda9f/siteTemplateIcons/r4gs9oeLQz8JItdoilAL_conference_mobile.png",
+        "template_id": 1004580,
+        "template_properties": {
+            "can_build_from_url": false,
+            "has_store": false,
+            "has_blog": false,
+            "page_count": 3
+        }
+    }
 ]
 ```
 
@@ -591,14 +575,20 @@ Property | Type | Description
 template_name | String | The name of the template.
 preview_url | URL String | A direct URL to preview the template. This URL is publically available and does not require authentication.
 thumbnail_url | URL String | A direct URL to a JPG image displaying the template. This would be good to use to show in a template selection page. 
+mobile_thumbnail_url | URL String | A screenshot of the mobile view of this template.
+desktop_thumbnail_url | URL String | A screenshot of the desktop view of this template.
+tablet_thumbnail_url | URL String | A screenshot of the tablet view of this template.
 template_id | Int | A unique number associated with this template. This is used to create the template from. 
 template_properties | Object | Contains proprieties of the templates. Currently this only contains can_build_from_url
 can_build_from_url | Bool | Will be either true or false. If it is false, this means that the template is a custom template which cannot pull content from an external URL while creating the site. 
+has_store | bool | If the template has an eCommerce store built into it.
+has_blog | bool | If the template has a blog added to the website once it's created.
+page_count | int | The number of pages this template contains.
 
 > CURL Example to Get All Templates:
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/templates' \
+curl -X GET -k 'https://api.duda.co/api/sites/multiscreen/templates' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -606,6 +596,8 @@ curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/templates' \
 ### Return
 
 You can expect a `200 OK` response along with the all the template data (in an array of objects) shown here.
+
+<aside class="notice">Only templates built by Duda will have a tablet or mobile screenshot returned in the API. Duda does not currently have a way to generate mobile & tablet preview screenshots automatically.</aside>
 
 ## Get template info
 
@@ -615,13 +607,19 @@ Get the name, preview URL, thumbnail_url, and template ID of a single template. 
 
 ```json
 {
-	"template_name": "Italiano",
-	"preview_url": "http://example.mobilewebsiteserver.com/preview/dm-theme-20012-263",
-	"thumbnail_url": "https://dd-cdn.multiscreensite.com/themes-panel/preview/italiano.jpg",
-	"template_id": 20012,
-	"template_properties": {
-		"can_build_from_url": true
-	}
+	"template_name": "Consultant Landing Page",
+    "preview_url": "http://dashboard.russjeffery.com/preview/dm-theme-1026287-en-343",
+    "thumbnail_url": "https://irp-cdn.multiscreensite.com/c1e7738d32ae46538527c1fd4e95a9b9/siteTemplateIcons/4CXbg61CTvKDPTEyC7EQ_Consultant_landing_page_3%20screens.png",
+    "desktop_thumbnail_url": "https://irp-cdn.multiscreensite.com/c1e7738d32ae46538527c1fd4e95a9b9/siteTemplateIcons/jASytIEDRJWRG0dxSbJj_Consultant_landing_page_Desktop.png",
+    "tablet_thumbnail_url": "https://irp-cdn.multiscreensite.com/c1e7738d32ae46538527c1fd4e95a9b9/siteTemplateIcons/4XZxi7HCTWaPx7oTc6fW_Consultant_landing_page_Tablet.png",
+    "mobile_thumbnail_url": "https://irp-cdn.multiscreensite.com/c1e7738d32ae46538527c1fd4e95a9b9/siteTemplateIcons/8V63M24zRYaJG96sWSdu_Consultant_landing_page_Mobile.png",
+    "template_id": 1026287,
+    "template_properties": {
+        "can_build_from_url": false,
+        "has_store": false,
+        "has_blog": false,
+        "page_count": 1
+    }
 }
 ```
 
@@ -640,7 +638,7 @@ You can add a `?lang=en` URL parameter onto the template API path call to get th
 > CURL Example:
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/templates/20012' \
+curl -X GET -k 'https://api.duda.co/api/sites/multiscreen/templates/1026287' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -648,6 +646,8 @@ curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/templates/20012
 ### Return
 
 You can expect a `200 OK` response along with an JSON object that describes the given template. 
+
+<aside class="notice">Only templates built by Duda will have a tablet or mobile screenshot returned in the API. Duda does not currently have a way to generate mobile & tablet preview screenshots automatically.</aside>
 
 ## Create template from site
 
@@ -678,7 +678,7 @@ new_template_name | String | Required | A name for the template you are creating
 > Example to create template: 
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/template/fromsite' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/template/fromsite' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \ 
 	-d '{"site_name": "66cbb9b7","new_template_name": "Example Template"}'
@@ -731,7 +731,7 @@ new_template_name | String | Required | A name for the template you are creating
 > Example to create template: 
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/template/fromtemplate' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/template/fromtemplate' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \ 
 	-d '{"template_id":20012,"new_template_name": "Example Template"}'
@@ -767,7 +767,7 @@ Delete a previously created custom template. This will not delete any sites that
 - template_id: The unique ID of the template; 
 
 ```shell
-curl -X DELETE -k 'https://api.dudamobile.com/api/sites/multiscreen/template/100041' \
+curl -X DELETE -k 'https://api.duda.co/api/sites/multiscreen/template/100041' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -797,7 +797,7 @@ Update the name of an existing custom template.
 - new_name: A string that contains a new name you want the template.
 
 ```shell 
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/template/100041' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/template/100041' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \
 	-d '{"new_name":"New template name"}'
@@ -817,7 +817,7 @@ Get all pages that exist within the website. Returns an array of objects that de
 > CURL Example:
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/site/b4ra2g/pages' \
+curl -X GET -k 'https://api.duda.co/api/sites/multiscreen/site/b4ra2g/pages' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -878,7 +878,7 @@ Update an existing page on the website. You can update either the page_title or 
 > Example:
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/Y29udGFjdA/update' \
+curl -X POST -k 'https://api.duda.co/api/sites/b4ra2g/pages/Y29udGFjdA/update' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \ 
 	-d '{ "page_path":"contact/1","page_title":"contact 1"}'
@@ -896,7 +896,7 @@ Get the details of an individual page of the site. Returns a JSON object contain
 >Example
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg' \
+curl -X GET -k 'https://api.duda.co/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -929,7 +929,7 @@ Delete a page of your website. This cannot be undone.
 > Example
 
 ```shell
-curl -X DELETE -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg' \
+curl -X DELETE -k 'https://api.duda.co/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -945,6 +945,270 @@ curl -X DELETE -k 'https://api.dudamobile.com/api/sites/b4ra2g/pages/YWJvdXQvYWJ
 ### Return
 
 You can expect a `204 No Content` HTTP code upon success. 
+
+## Get Content Library Data
+
+> JSON Data Returned:
+
+```json
+{
+    "location_data": {
+        "phones": [
+            {
+                "phoneNumber": "123-123-1234",
+                "label": "Russ Phone"
+            },
+            {
+                "phoneNumber": "18001234567",
+                "label": "Duda Phone"
+            }
+        ],
+        "emails": [
+            {
+                "emailAddress": "api@duda.co",
+                "label": "API Email"
+            },
+            {
+                "emailAddress": "support@duda.co",
+                "label": "Support Email"
+            }
+        ],
+        "label": "Duda HQ",
+        "social_accounts": {
+            "tripadvisor": "Restaurant_Review-g32849-d2394400-Reviews-Oren_s_Hummus_Shop-Palo_Alto_California.html",
+            "youtube": "UCPMwzOc1Su-s2z-J1xiU9ig",
+            "facebook": "duda",
+            "yelp": "orens-hummus-shop-palo-alto",
+            "pinterest": "michelleobama",
+            "google_plus": "+Dudamobile577",
+            "linkedin": "duda",
+            "instagram": "orenshummus",
+            "snapchat": "michelleobama",
+            "twitter": "dudamobile",
+            "rss": "https://www.duda.co/blog/feed/",
+            "vimeo": "dudamobile",
+            "reddit": "duda"
+        },
+        "address": {
+            "streetAddress": "577 College Ave",
+            "postalCode": "94306",
+            "city": "Palo Alto",
+            "country": "US"
+        },
+        "logo_url": "https://du-cdn.multiscreensite.com/duda_website/img/home/agencies.svg",
+        "business_hours": [
+            {
+                "days": [
+                    "SAT",
+                    "SUN"
+                ],
+                "open": "00:00",
+                "close": "00:00"
+            },
+            {
+                "days": [
+                    "MON",
+                    "TUE",
+                    "WED",
+                    "THU",
+                    "FRI"
+                ],
+                "open": "09:00",
+                "close": "18:00"
+            }
+        ]
+    },
+    "additional_locations": [
+        {
+            "uuid": "276169839",
+            "phones": [
+                {
+                    "phoneNumber": "123-123-1234",
+                    "label": ""
+                }
+            ],
+            "emails": [],
+            "label": "Duda Tel Aviv",
+            "social_accounts": {},
+            "address": {},
+            "geo": {
+                "longitude": "34.78337",
+                "latitude": "32.07605"
+            },
+            "logo_url": null,
+            "business_hours": null
+        }
+    ],
+    "site_texts": {
+        "overview": "Oh, Duda? Duda is a variation of \"Dude\", who just happens to be the main character in one of our favorite movies of all time: The Big Lebowski. You should watch it some time. Look out for that ferret!",
+        "services": "- Responsive Website Builder",
+        "custom": [
+            {
+                "label": "Example CTA 1",
+                "text": "THE WEB DESIGN PLATFORM FOR Scaling Your Agency"
+            },
+            {
+                "label": "Example CTA 2",
+                "text": "THE WEB DESIGN PLATFORM FOR\nBuilding Websites Faster"
+            }
+        ],
+        "about_us": "Duda is a leading website builder for web professionals and agencies of all sizes. Our website builder enables you to build amazing, feature-rich websites that are perfectly suited to desktop, tablet and mobile. Our mobile builder enables you to build mobile-only sites from scratch, or based on an existing desktop site or Facebook business page. Duda allows professionals and agencies to build high-converting, personalized websites at scale. Duda optimizes each and every site for Google PageSpeed."
+    },
+    "business_data": {
+        "name": "Duda",
+        "logo_url": "https"
+    }
+}
+```
+
+Get the data that exists within the content library of a website. The content library is a central data stores of the website that stores structured information. This information can be used to help assist in the site build by providing accurate information that is available within the website builder directly. 
+
+### Method and path
+`GET /api/sites/multiscreen/{site_name}/content`
+
+### Parameters
+
+- site_name
+
+### Location Properties Returned
+
+Below is the list of possible location specific data that will be returned via the API. Note that this data can be returned for the primary location (`location_data`) or any secondary/child locations (`additional_locations`). All fields are optional.
+
+Property | Type | Description
+---------- | ---------- | ----------
+location_data | object | Represents the primary location of this business. It contains all location specific data points and should be used for all cases exepct where there is more than one location for this business/website. 
+phones | Array of objects | Contains phone numbers for this location. The object allows for a friendly label name and the actual phone number. Max 80 characters each.
+emails | Array of objects | Contains all email addresses associated with this location. The object allows for a friendly label name and the acutal email address. Max 80 characters each.
+label | String | A simple name for this location. This is displayed in the Duda Content Library UI related to this location. Max 80 characters.
+social_accounts | Object | The profile name of this locations social networks. You must pass only the profile name/ID. Do not pass the full URL (e.g. https://wwwfacebook.com/duda). We support the following social networks: Facebook, Twitter, Yelp, Foursquare, Google Plus, Instagram, Youtube, Linkedin, Pinterest, Vimeo, RSS, Reddit, Trip Advisor & Snapchat. 
+address | Object | Contains all fields required to display an address: streetAddress, postalCode, region, city, country. 
+logo_url | String | A URL directly referencing the logo of this location. Must be a public URL and be served over HTTPS. 
+business_hours | Array of Objects | An array containing each day of the week and the hours that the location opens and closes. For each set of hours, you can pass an array of days: MON, TUE, WED, THU, FRI, SAT, SUN that apply to those hours. Open and close hours must be in 24HH:MM format. So, for example, 7:30 am would be: 07:30 and 5 pm would be 17:00. 
+
+### Global Properties Returned
+
+Below is website content that does not relate to a specific location.
+
+Property | Type | Description
+---------- | ---------- | ----------
+site_texts | Object | An Object containing overview, services, about_us and custom text strings. Each field has a max length of 2000 characters. 
+custom | Array of Objects | An array that contains custom text strings. These will each have a label & text associated with them. These can be used for storing site data or information about the business.
+business_data | Object | Set the `name` of the business and the primary image `logo_url` of the website. 
+
+
+### Return
+You can expect a `200 OK` HTTP code upon success.
+
+<aside class="notice">The content library API has fields which do not currently display within the content library in the Duda editor. Examples of this are: Business Hours, Logo, Business Name, etc.. We plan to update this, but this is currently a small inconsistency in the platform.</aside>
+
+## Update content library data
+
+> JSON Body to send:
+
+```json
+{
+    "location_data": {
+        "phones": [
+            {
+                "phoneNumber": "123-123-1234",
+                "label": "Russ Phone"
+            },
+            {
+                "phoneNumber": "18001234567",
+                "label": "Duda Phone"
+            }
+        ],
+        "emails": [
+            {
+                "emailAddress": "api@duda.co",
+                "label": "API Email"
+            },
+            {
+                "emailAddress": "support@duda.co",
+                "label": "Support Email"
+            }
+        ],
+        "label": "Duda HQ",
+        "social_accounts": {
+            "twitter": "dudamobile",
+            "facebook": "duda",
+            "youtube":"UCPMwzOc1Su-s2z-J1xiU9ig",
+            "yelp":"orens-hummus-shop-palo-alto",
+            "fourSquare":"4df7ce8315205e0e3f6b06a4",
+            "linkedin":"duda",
+            "google_plus":"+Dudamobile577",
+            "instagram":"orenshummus",
+            "pinterest":"michelleobama",
+            "vimeo":"dudamobile",
+            "rss":"https://www.duda.co/blog/feed/",
+            "reddit":"Duda",
+            "tripadvisor":"Restaurant_Review-g32849-d2394400-Reviews-Oren_s_Hummus_Shop-Palo_Alto_California.html",
+            "snapchat":"michelleobama"
+        },
+        "address": {
+        	"streetAddress":"577 College Ave",
+        	"postalCode":"94306",
+        	"region":"",
+        	"city":"Palo Alto",
+        	"country":"US"
+        },
+        "logo_url": "https://du-cdn.multiscreensite.com/duda_website/img/home/agencies.svg",
+        "business_hours": [
+        	{
+        		"days": ["SAT","SUN"],
+	        	"open": "00:00",
+	        	"close": "00:00"
+        	},
+        	{
+        		"days":["MON","TUE","WED","THU","FRI"],
+        		"open":"09:00",
+        		"close":"18:00"
+        	}
+        	]
+    },
+    "site_texts": {
+        "overview": "Oh, Duda? Duda is a variation of \"Dude\", who just happens to be the main character in one of our favorite movies of all time: The Big Lebowski. You should watch it some time. Look out for that ferret!",
+        "services": "- Responsive Website Builder",
+        "custom": [
+            {
+                "label": "Example CTA 2",
+                "text": "THE WEB DESIGN PLATFORM FOR\nBuilding Websites Faster"
+            },
+            {
+                "label": "Example CTA 1",
+                "text": "THE WEB DESIGN PLATFORM FOR Scaling Your Agency"
+            }
+        ],
+        "about_us": "Duda is a leading website builder for web professionals and agencies of all sizes. Our website builder enables you to build amazing, feature-rich websites that are perfectly suited to desktop, tablet and mobile. Our mobile builder enables you to build mobile-only sites from scratch, or based on an existing desktop site or Facebook business page. Duda allows professionals and agencies to build high-converting, personalized websites at scale. Duda optimizes each and every site for Google PageSpeed."
+    },
+    "business_data": {
+        "name": "Duda",
+        "logo_url": "https"
+    }
+}
+```
+
+>Simple CURL to update business hours:
+
+```shell
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/57b6506a/content' \
+    -u 'APIusername:APIpassword' \ 
+    -H 'Content-Type: application/json' \
+    -d '{"location_data": {"business_hours": [{"days": ["SAT","SUN","MON"],"open": "00:00","close": "00:00"},{"days":["TUE","WED","THU","FRI"],"open":"09:00","close":"17:30"}]}}'
+```
+
+Update the content of the content that exists within the content library. This will update the data that exists within the content library and make it available during the site builds. For example, when adding a map, Duda will automatically populate the address from the content library. 
+
+The data you can set is the exact same that you get from the content library API call.
+
+### Method and path
+`POST /api/sites/multiscreen/{site_name}/content`
+
+### Parameters
+
+- site_name
+
+<aside class="notice">We do not currently support updating of content for `additional_locations`.</aside>
 
 ## Inject content
 
@@ -978,7 +1242,7 @@ You can expect a `204 No Content` HTTP code upon success.
 
 Content injection allows you to change a website via API (text, images, CSS, etc..) direclty on an existing website or template. You can update CSS values, InnerHTML of an elemnt or an attribute on an element. For the InnerHTML and Attr types, you must have the `data-inject=value` set on the element. For the CSS type, you must have a `data-inject:value` CSS property set within a declaration block. 
 
-This feature primarily works by sending the `type` value to alter the markup or styling in multiple ways. Should pass Duda an array of JSON objects. For a full example of content injection, [please see this guide](#NEEDS-LINK).
+This feature primarily works by sending the `type` value to alter the markup or styling in multiple ways. Should pass Duda an array of JSON objects. For a full example of content injection.
 
 
 ### Method and path
@@ -1002,7 +1266,7 @@ Below you will see the three types of injection available: `CSS`, `DOMATTR`, and
 # }
 #
 # And run this: 
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/inject-content/b4ra2g' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \
 	-d '[
@@ -1078,7 +1342,7 @@ This can also be used to get the actual content of a specific element within the
 
 ```shell
 curl -u 'APIusername:APIpassword' \  
--X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g' \
+-X GET -k 'https://api.duda.co/api/sites/multiscreen/inject-content/b4ra2g' \
 -H 'Content-Type: application/json'
 ```
 
@@ -1128,7 +1392,7 @@ curl -u 'APIusername:APIpassword' \
 
 ```shell
 curl -u 'APIusername:APIpassword' \  
--X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g?type=INNERHTML' \
+-X GET -k 'https://api.duda.co/api/sites/multiscreen/inject-content/b4ra2g?type=INNERHTML' \
 -H 'Content-Type: application/json'
 ```
 
@@ -1196,7 +1460,7 @@ resource_type | String | Required | The type of resource being uploaded. Today, 
 > Example
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/published?lastDays=30' \
+curl -X GET -k 'https://api.duda.co/api/sites/multiscreen/published?lastDays=30' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \
 	-d '[{"src":"http://www.dudasupport.com/test/beach.jpg","recource_type": "IMAGE"},{"src": "http://www.dudasupport.com/test/field.jpeg","recource_type": "IMAGE"}]'
@@ -1263,7 +1527,7 @@ Duda will return a `200 OK` response code along with an array of strings that ar
 >CURL Example:
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/published?lastDays=30' \
+curl -X GET -k 'https://api.duda.co/api/sites/multiscreen/published?lastDays=30' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -1292,7 +1556,7 @@ If you do not pass a lastDays value, then we will return results for the last 7 
 >CURL Example:
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/unpublished?lastDays=30' \
+curl -X GET -k 'https://api.duda.co/api/sites/multiscreen/unpublished?lastDays=30' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -1300,6 +1564,47 @@ curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/unpublished?las
 ### Response
 
 Duda will return a `200 OK` response code along with an array of strings that are Duda Site_name values. 
+
+## Get sites created between
+
+Will return an array of site names created during the given time period. If no from parameter is specified, sites created in the past 7 days will be returned. Will return an array of site names. Please see the section about [handling dates, above.](#dates)
+
+### Method and path
+`GET /sites/multiscreen/created?from=2016-03-01&to=2016-03-31`
+
+> JSON Return:
+
+```json
+[
+   "c27cdebf",
+   "1aadcb7c",
+   "0c2b5c42",
+   "83729462",
+   "287185af",
+   "ff82ddc4",
+   "a6119858",
+   "57b6506a",
+   "5876c248",
+   "6f45aed8"
+]
+```
+
+### URL Query Parameters
+Query String | Type | Required | Description
+---------- | ---------- | ---------- | ----------
+from | Date | Optional | Start date to query sites for. If not supllied, defaults to 7 days ago, from the current time. 
+to | Date | Optional | End date of when to search for. If not supplied, will default to today.
+
+> CURL Example:
+
+```shell
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/created?from=2016-03-01&to=2016-03-09' \
+	-u 'APIusername:APIpassword' \ 
+	-H 'Content-Type: application/json'	
+```
+
+### Return
+You can expect a `200 OK` HTTP code along with an array of site names to be returned for the specified time frame. 
 
 ## Get contact form data
 
@@ -1350,7 +1655,7 @@ You can add on additional *to* or *from* URL parameters onto the full URL to dec
 <aside class="notice">Duda will return all contact form messages that have been submitted to the site. Each form on the site has a *form title*, controlled in the Duda Editor, which will allow you to tell which contact form on the site this is from.</aside>
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/get-forms/b4ra2g?from=2017-01-01&to=2017-01-30' \
+curl -X GET -k 'https://api.duda.co/api/sites/multiscreen/get-forms/b4ra2g?from=2017-01-01&to=2017-01-30' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -1371,7 +1676,7 @@ URI Parameter:
 Upon success, Duda will return a `204 No Content` HTTP code.
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/b4ra2g/certificate' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/b4ra2g/certificate' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -1395,7 +1700,7 @@ URI Parameter:
 Upon success, Duda will return a `204 No Content` HTTP code.
 
 ```shell
-curl -X DELETE -k 'https://api.dudamobile.com/api/sites/multiscreen/b4ra2g/certificate' \
+curl -X DELETE -k 'https://api.duda.co/api/sites/multiscreen/b4ra2g/certificate' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -1432,7 +1737,7 @@ name | String | Optional | Set the name of the backup you are creating.
 > Example
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/backups/b4ra2g' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \
 	-d '{"name":"QA-Complete"}''
@@ -1496,7 +1801,7 @@ Get an array of existing site backups/versions. A backup can be created from ins
 > CURL Example:
 
 ```shell
-curl -X GET -k 'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g' \
+curl -X GET -k 'https://api.duda.co/api/sites/multiscreen/backups/b4ra2g' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -1521,7 +1826,7 @@ Restore a site from an existing backup. This will fully restore the site back to
 > Example: 
 
 ```shell
-curl -X POST -k 'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete' \
+curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -1546,7 +1851,7 @@ Upon success, Duda will return a `204 No Content` HTTP status code.
 > Example: 
 
 ```shell
-curl -X DELETE -k 'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete' \
+curl -X DELETE -k 'https://api.duda.co/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete' \
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json'
 ```

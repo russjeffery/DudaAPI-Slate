@@ -11,7 +11,7 @@ The API uses standard RESTful principles to manage resources:
 ## Authentication
 
 ```shell
-curl -X GET -i 'https://api.dudamobile.com/api/sites/multiscreen/templates' \
+curl -X GET -i 'https://api.duda.co/api/sites/multiscreen/templates' \
 	-H 'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M=' \ 
 	-H 'Content-Type: application/json'
 ```
@@ -43,7 +43,7 @@ The Duda API is free for anyone to access and use. You should take note of the p
 
 Duda's primary endpoint for all production work is: 
 
-`https://api.dudamobile.com/api`
+`https://api.duda.co/api`
 
 The documentation here assumes that you will combine the endpoint with the path of the API method. There are some cases where you might have a different endpoint than the one above, such as working with Duda's sandbox environment or a custom setup that Duda provides, although this is rare. 
 
@@ -82,7 +82,7 @@ Polish | pl
 > Attempt to get site info for a site that does not exist:
 
 ```shell
-curl -X GET -i 'https://api.dudamobile.com/api/sites/multiscreen/badName' \
+curl -X GET -i 'https://api.duda.co/api/sites/multiscreen/badName' \
     -H 'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M=' \ 
     -H 'Content-Type: application/json'
 ```

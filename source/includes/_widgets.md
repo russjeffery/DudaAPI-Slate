@@ -12,7 +12,7 @@ Widget localiation work with key value parings. Inside of widget builder, you ad
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/widgets/list
+-k https://api.duda.co/api/widgets/list
 ```
 
 > JSON Response
@@ -63,7 +63,7 @@ You can install the placeholders above into any area that displays text to the u
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/widgets/{widgetId}/strings/scan
+-k https://api.duda.co/api/widgets/{widgetId}/strings/scan
 ```
 
 > JSON Response:
@@ -95,7 +95,7 @@ Duda will return the key and then the language specific copy as the value to tha
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/en_gb
+-k https://api.duda.co/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/en_gb
 ```
 
 > JSON Response:
@@ -138,7 +138,7 @@ You can pass key value pairs that are not yet installed in the widget, because D
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.dudamobile.com/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/es
+-k https://api.duda.co/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/es
 -d '{
     "Widget.FAQ.Label":"FAQ Artículos",
     "Widget.FAQ.Tooltip":"Introduzca cada título, descripción, etc.",
@@ -177,7 +177,7 @@ Publish all the custom locale strings that have been added to the widget. This w
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.dudamobile.com/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/[publish
+-k https://api.duda.co/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/[publish
 ```
 
 ### Method and path
@@ -195,7 +195,7 @@ Get a list of available locales that the widget can be localized for. We will re
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/widgets/locales
+-k https://api.duda.co/api/widgets/locales
 ```
 
 > JSON Response:

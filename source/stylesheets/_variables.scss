@@ -44,8 +44,9 @@ $search-notice-bg: #c97a7e;
 // TEXT COLORS
 ////////////////////
 $main-text: #313131; // main content text color
-$h1-color:#fff;
+$header-text: #313131;
 $nav-text: #313131;
+$content-link-color:#F66035;
 $nav-active-text: #F66035;
 $lang-select-text: #fff; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
@@ -70,18 +71,26 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 // FONTS
 ////////////////////
 %default-font {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+  font-weight:400;
 } 
 
 %header-font {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: $header-text;
 }
 
 %toc-header-font {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
+}
+
+%toc-font {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  color:$nav-text;
 }
 
 %code-font {

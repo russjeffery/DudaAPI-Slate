@@ -26,7 +26,7 @@ Create a new Duda account in which you can grant a customer or staff permissions
 
 ```shell 
 curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' \
--X POST -i -k https://api.dudamobile.com/api/accounts/create \
+-X POST -i -k https://api.duda.co/api/accounts/create \
 -d '{"account_name":"email@email.com", "first_name":"john", "last_name":"doe", "account_type":"CUSTOMER", "lang":"en"}'	
 ```
 
@@ -73,7 +73,7 @@ Get information from the Duda platform about an existing account. You should kno
 > CURL Example:
 
 ```shell
-curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' -X GET -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
+curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' -X GET -i -k https://api.duda.co/api/accounts/johnsmith@gmail.com
 ```
 
 ### Return:
@@ -100,7 +100,7 @@ Delete an existing Sub-account. This account must be a sub-account you've alread
 
 ```shell
 curl -S -u 'APIusername:APIpassword' -H 'Content-Type: application/json' \
--X DELETE -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
+-X DELETE -i -k https://api.duda.co/api/accounts/johnsmith@gmail.com
 ```
 
 ### Parameters:
@@ -125,7 +125,7 @@ Update the parameters for an existing account. This is useful for updating email
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.dudamobile.com/api/accounts/update/johnsmith@gmail.com \
+-k https://api.duda.co/api/accounts/update/johnsmith@gmail.com \
 -d '{"email": "jsmith@gmail.com"}'
 ```
 
@@ -152,7 +152,7 @@ If you are generating a link to a specific site for a customer, please make sure
 curl -S -u 'APIusername:APIpassword' \ 
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/accounts/sso/johnsmith@gmail.com/link​?target=STATS&site_name=146856ab
+-k https://api.duda.co/api/accounts/sso/johnsmith@gmail.com/link​?target=STATS&site_name=146856ab
 ```
 
 ### Method and path
@@ -177,6 +177,8 @@ Stats | "TARGET" | "STATS" | Send the user directly to the website statistics pa
 Site Editor | "TARGET" | "EDITOR" | Send the user directly to the white labeled website builder.
 Stats | "TARGET" | "RESET_SITE" | Send the user directly to the select new template / reset site page. Note that if the user does reset the site, all existing website edits will be lost and the site will be reset to a new template that is selected. 
 
+<aside class="warning">SSO Links & Tokens should be generated on demand and should not be generated upon page load or be statically linked to. SSO Tokens are only valid for two minutes, so you need to verify in real time that the user is authenticated to your system, then generate the SSO link once they intend to enter the editor, dashboard, stats, etc..</aside>
+
 ## Generate single sign-on token
 
 > cURL Example
@@ -185,7 +187,7 @@ Stats | "TARGET" | "RESET_SITE" | Send the user directly to the select new templ
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/accounts/sso/johnsmith@gmail.com/token​
+-k https://api.duda.co/api/accounts/sso/johnsmith@gmail.com/token​
 ```
 
 <aside class="notice">We recommend using the generate SSO Link API instead of the Generate SSO Token. It is easier to use.</aside>
@@ -255,7 +257,7 @@ If you would like to update the permissions that a specific customer has to a si
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions \
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions \
 -d '{"permissions":["EDIT","DEV_MODE","STATS_TAB"]}'
 ```
 
@@ -309,7 +311,7 @@ Get a list of available permissions for a Customer account when granting access 
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/accounts/permissions/multiscreen
+-k https://api.duda.co/api/accounts/permissions/multiscreen
 ```
 
 ## Get site permissions for a customer
@@ -342,7 +344,7 @@ You can expect a `200 OK` response code for a successful call.
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 ```
 
 ## Remove customer access to site
@@ -356,7 +358,7 @@ Remove/delete access that a customer has to a specific mobile or multiscreen sit
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X DELETE \
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 ```
  
 ### URI Parameters:
@@ -372,7 +374,7 @@ You can expect a `204 No Content` response code for a successful delete access c
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X DELETE \
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 ```
 
 ## Subscribe customer to stats
@@ -385,7 +387,7 @@ Sign up customer or staff member for weekly or monthly statistics emails for a s
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email \
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email \
 -d '{"frequency":"WEEKLY"}'
 ```
 
@@ -417,7 +419,7 @@ Get the status of stats emails for this customer. If a recurring email is alread
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
 ```
 
 ### Parameters
@@ -430,7 +432,7 @@ curl -S -u 'APIusername:APIpassword' \
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X DELETE \
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
 ```
 
 ### Response
@@ -475,7 +477,7 @@ Get all websites that a specific customer account has access to. This is useful 
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X GET \
--k https://api.dudamobile.com/api/accounts/grant-access/john@johnsmith.com/sites/multiscreen​
+-k https://api.duda.co/api/accounts/grant-access/john@johnsmith.com/sites/multiscreen​
 ```
 ### Method and path
 
@@ -506,7 +508,7 @@ In order to allow your users to log in directly to the white label dashboard, th
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.dudamobile.com/api/accounts/reset-password/johnsmith@gmail.com
+-k https://api.duda.co/api/accounts/reset-password/johnsmith@gmail.com
 ```
 
 ### Method and path

@@ -55,6 +55,8 @@ html, body {
 }
 
 .toc-wrapper {
+  @extend %toc-font;
+
   transition: left 0.3s ease-in-out;
 
   overflow-y: auto;
@@ -66,8 +68,6 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 16px;
-  font-weight: 300;
   box-sizing: border-box;
 
   // language selector for mobile devices
@@ -174,14 +174,12 @@ html, body {
   // This is the currently selected ToC entry
   .active {
     color: $nav-active-text;
-    font-weight: 500;
   }
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
-    font-weight: 500;
   }
   .toc-link.active {
     background-color: $nav-active-bg;
@@ -191,22 +189,18 @@ html, body {
   .toc-list-h2 {
     display: none;
     background-color: $nav-subitem-bg;
-    font-weight: 500;
     .toc-link {
       /*padding-left: $nav-padding + $nav-indent;*/
-      font-size: 14px;
-      font-weight:400;
       /*padding: $nav-padding-top 0px $nav-padding-top 30px;*/
     }
 
     .active {
       background-color:$nav-active-bg;
-      font-weight: 400;
     }
-
+/*
     a:not(.active) {
       color:$main-text;
-    }
+    }*/
 
     // for embossed look:
     @include embossed-bg;
@@ -238,13 +232,13 @@ html, body {
 }
 
 .toc-link, .toc-footer li {
+  @extend %toc-font;
   padding: 0 $nav-padding 0 $nav-padding;
   display: block;
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: $main-text;
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
@@ -394,7 +388,6 @@ html, body {
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
     background-color:$nav-bg;
-    color:$main-text;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -574,6 +567,9 @@ html, body {
       border-bottom: dashed 1px #ccc;
     }
   }
+  a {
+    color:$content-link-color;
+  }
 
   pre {
     @extend %code-font;
@@ -684,7 +680,7 @@ html, body {
   a[href='#get-pages']::before {
     content:"Pages";
   }
-  a[href='#inject-content']::before {
+  a[href='#get-content-library-data']::before {
     content:"Content";
   }
   a[href='#create-account']::before {
