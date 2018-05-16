@@ -6,7 +6,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500|Source+Sans+Pro:300,300i,400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
 
 
     <title>Duda REST API Documentation</title>
@@ -264,7 +264,7 @@
                     <a href="#get-site" class="toc-h2 toc-link" data-title="Responsive sites">Get site</a>
                   </li>
                   <li>
-                    <a href="#get-sites-by-external-id" class="toc-h2 toc-link" data-title="Responsive sites">Get sites by external id</a>
+                    <a href="#get-sites-by-external-id" class="toc-h2 toc-link" data-title="Responsive sites">Get sites by External ID</a>
                   </li>
                   <li>
                     <a href="#update-site" class="toc-h2 toc-link" data-title="Responsive sites">Update site</a>
@@ -283,9 +283,6 @@
                   </li>
                   <li>
                     <a href="#reset-site" class="toc-h2 toc-link" data-title="Responsive sites">Reset site</a>
-                  </li>
-                  <li>
-                    <a href="#get-sites-created-between" class="toc-h2 toc-link" data-title="Responsive sites">Get sites created between</a>
                   </li>
                   <li>
                     <a href="#get-multiple-sites" class="toc-h2 toc-link" data-title="Responsive sites">Get multiple sites</a>
@@ -321,6 +318,12 @@
                     <a href="#delete-page" class="toc-h2 toc-link" data-title="Responsive sites">Delete page</a>
                   </li>
                   <li>
+                    <a href="#get-content-library-data" class="toc-h2 toc-link" data-title="Responsive sites">Get Content Library Data</a>
+                  </li>
+                  <li>
+                    <a href="#update-content-library-data" class="toc-h2 toc-link" data-title="Responsive sites">Update content library data</a>
+                  </li>
+                  <li>
                     <a href="#inject-content" class="toc-h2 toc-link" data-title="Responsive sites">Inject content</a>
                   </li>
                   <li>
@@ -334,6 +337,9 @@
                   </li>
                   <li>
                     <a href="#get-recently-unpublished-sites" class="toc-h2 toc-link" data-title="Responsive sites">Get recently unpublished sites</a>
+                  </li>
+                  <li>
+                    <a href="#get-sites-created-between" class="toc-h2 toc-link" data-title="Responsive sites">Get sites created between</a>
                   </li>
                   <li>
                     <a href="#get-contact-form-data" class="toc-h2 toc-link" data-title="Responsive sites">Get contact form data</a>
@@ -472,7 +478,7 @@
         <ul class="toc-footer">
             <li><a href='/developers/'>Back to Developer Portal</a></li>
             <li><a href='/developers/rest-api/api-terms'>Duda API Terms of Service</a></li>
-            <li><a href='https://help.dudamobile.com/' target="_blank">View Duda Support Docs</a></li>
+            <li><a href='https://help.duda.co/' target="_blank">View Duda Support Docs</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -488,7 +494,7 @@
 <li>GET verb/method will read an existing resource</li>
 <li>DELETE verb/method will delete an existing resource</li>
 </ul>
-<h2 id='authentication'>Authentication</h2><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/templates'</span> <span class="se">\</span>
+<h2 id='authentication'>Authentication</h2><pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'https://api.duda.co/api/sites/multiscreen/templates'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M='</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
@@ -516,7 +522,7 @@ Make sure to set the authorization header with your unique API username and API 
 <h2 id='endpoints'>Endpoints</h2>
 <p>Duda&#39;s primary endpoint for all production work is: </p>
 
-<p><code>https://api.dudamobile.com/api</code></p>
+<p><code>https://api.duda.co/api</code></p>
 
 <p>The documentation here assumes that you will combine the endpoint with the path of the API method. There are some cases where you might have a different endpoint than the one above, such as working with Duda&#39;s sandbox environment or a custom setup that Duda provides, although this is rare. </p>
 <h2 id='data-schema'>Data schema</h2>
@@ -587,7 +593,7 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Attempt to get site info for a site that does not exist:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/badName'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -i <span class="s1">'https://api.duda.co/api/sites/multiscreen/badName'</span> <span class="se">\</span>
     -H <span class="s1">'Authorization: ZXhhbXBsZVVzZXI6YmUkdHBAc3M='</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
@@ -672,7 +678,7 @@ Make sure to set the authorization header with your unique API username and API 
 <p>Full create site JSON representation. Only the template_id is required.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000772</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.example.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"default_domain_prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub-domain"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"lang"</span><span class="p">:</span><span class="s2">"en"</span><span class="p">,</span><span class="w">
@@ -903,10 +909,10 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Create a website:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -i https://api.dudamobile.com/api/sites/multiscreen/create <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -i https://api.duda.co/api/sites/multiscreen/create <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-    -d <span class="s1">'{ "template_id": "20012"}'</span>
+    -d <span class="s1">'{ "template_id": "1000772"}'</span>
 </code></pre>
 <blockquote>
 <p>Expected return:</p>
@@ -1047,11 +1053,11 @@ Make sure to set the authorization header with your unique API username and API 
 <td><a href="#site_alternate_domain-object">See the section above</a> to get the full reference for the site_alternate_domain object.</td>
 </tr>
 </tbody></table>
-<pre class="highlight shell tab-shell"><code>curl -X GET https://api.dudamobile.com/api/sites/multiscreen/57b6506a <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET https://api.duda.co/api/sites/multiscreen/57b6506a <span class="se">\</span>
     -u <span class="s1">'APIpassword:APIusername'</span> <span class="se">\</span>
     -H <span class="s1">'Content-Type: application/json'</span> 
-</code></pre><h2 id='get-sites-by-external-id'>Get sites by external id</h2>
-<p>This will return a list of all site ID&#39;s that have the external ID value provided when creating or updating the website. The external ID value is not a unique value in the Duda system -- so multiple sites can have the same external ID value. </p>
+</code></pre><h2 id='get-sites-by-external-id'>Get sites by External ID</h2>
+<p>This will return a list of all site ID&#39;s that have the external ID value provided when creating or updating the website. The external ID value is not a unique value in the Duda system, so multiple sites can have the same external ID value. </p>
 
 <p><code>GET /sites/multiscreen/byexternalid/{external_uid}</code></p>
 <h3 id='parameters'>Parameters</h3>
@@ -1138,7 +1144,7 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Example CURL to Update Site:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/update/57b6506a'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/update/57b6506a'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
     -d <span class="s1">'{"site_domain":"www.uniquedomain.com"}'</span>
@@ -1156,7 +1162,7 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>CURL Example to delete a site:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/57b6506a'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/57b6506a'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> 
 </code></pre><h3 id='return-4'>Return</h3>
@@ -1173,7 +1179,7 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/publish/57b6506a'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/publish/57b6506a'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> 
 </code></pre><h3 id='return-5'>Return</h3>
@@ -1190,7 +1196,7 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/publish/57b6506a'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/publish/57b6506a'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> 
 </code></pre><h3 id='return-6'>Return</h3>
@@ -1203,7 +1209,7 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/duplicate/57b6506a'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/duplicate/57b6506a'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
     -d <span class="s1">'{"new_default_domain_prefix":"bobspizza"}'</span>
@@ -1275,72 +1281,21 @@ Make sure to set the authorization header with your unique API username and API 
 </tbody></table>
 <h3 id='return-8'>Return</h3>
 <p>You can expect a <code>204 No Content</code> response code for a successful reset call.</p>
-<h2 id='get-sites-created-between'>Get sites created between</h2>
-<p>Will return an array of site names created during the given time period. If no from parameter is specified, sites created in the past 7 days will be returned. Will return an array of site names. Please see the section about <a href="#dates">handling dates, above.</a></p>
-<h3 id='method-and-path-8'>Method and path</h3>
-<p><code>GET /sites/multiscreen/created?from=2016-03-01&amp;to=2016-03-31</code></p>
-
-<blockquote>
-<p>JSON Return:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-   </span><span class="s2">"c27cdebf"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"1aadcb7c"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"0c2b5c42"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"83729462"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"287185af"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"ff82ddc4"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"a6119858"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"57b6506a"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"5876c248"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"6f45aed8"</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='url-query-parameters'>URL Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Query String</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>from</td>
-<td>Date</td>
-<td>Optional</td>
-<td>Start date to query sites for. If not supllied, defaults to 7 days ago, from the current time.</td>
-</tr>
-<tr>
-<td>to</td>
-<td>Date</td>
-<td>Optional</td>
-<td>End date of when to search for. If not supplied, will default to today.</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>CURL Example:</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/created?from=2016-03-01&amp;to=2016-03-09'</span> <span class="se">\</span>
-    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
-    -H <span class="s1">'Content-Type: application/json'</span> 
-</code></pre><h3 id='return-9'>Return</h3>
-<p>You can expect a <code>200 OK</code> HTTP code along with an array of site names to be returned for the specified time frame. </p>
 <h2 id='get-multiple-sites'>Get multiple sites</h2>
 <p>Get site details for many sites at once. You can send an array of site names you can retrieve information about multiple sites at once. This is much quicker than calling the retrieve site multiple times. A maximum of 50 sites can be retrieved at once.</p>
 
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/get-many'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/get-many'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
     -d <span class="s1">'[{"site_name":"fb8b8ced"},{"site_name":"76ed3209"}]'</span>
-</code></pre><h3 id='method-and-path-9'>Method and path</h3>
+</code></pre><h3 id='method-and-path-8'>Method and path</h3>
 <p><code>POST /sites/multiscreen/get-many</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <p>An array of site name strings should be sent in the body of the request. </p>
-<h3 id='return-10'>Return</h3>
+<h3 id='return-9'>Return</h3>
 <blockquote>
 <p>JSON Return Example: </p>
 </blockquote>
@@ -1392,7 +1347,7 @@ Make sure to set the authorization header with your unique API username and API 
 <p>You can expect a <code>200 OK</code> response code. </p>
 <h2 id='get-all-templates'>Get all templates</h2>
 <p>Get an array of objects for all templates available to your account. Each template has a set of data associated with it, including the template_id, which is required to create new sites from. Both Duda default templates and custom templates that you create will be returned by this API call. </p>
-<h3 id='method-and-path-10'>Method and path</h3>
+<h3 id='method-and-path-9'>Method and path</h3>
 <p><code>GET /sites/multiscreen/templates</code></p>
 
 <blockquote>
@@ -1400,39 +1355,63 @@ Make sure to set the authorization header with your unique API username and API 
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yellow Brick Road"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...heme-20004-263"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dd-cdn.multiscreensite.com/t...brick-road.jpg"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20004</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto Repair"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dashboard.russjeffery.com/preview/dm-theme-1005442-en-328"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/0f8a84df3a244e0f9249423e0588397f/siteTemplateIcons/IzrGRlYSCeQNUc4V1nAA_Auto_repair_BigPreview.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"desktop_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/0f8a84df3a244e0f9249423e0588397f/siteTemplateIcons/GwrdUIcXTbOypxHaiUNZ_auto_repair_desktop.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tablet_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/0f8a84df3a244e0f9249423e0588397f/siteTemplateIcons/LUihe1rSq5kiizBraMgG_auto-repair_ipad.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mobile_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/0f8a84df3a244e0f9249423e0588397f/siteTemplateIcons/rcceNsKOTKSqSx5bnPME_auto-repair-mobile.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1005442</span><span class="p">,</span><span class="w">
         </span><span class="s2">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"has_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"has_blog"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Popsicle"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...heme-20002-263"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dd-cdn.multiscreensite.com/t...w/popsicle.jpg"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20002</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flower Store"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dashboard.russjeffery.com/preview/dm-theme-1004110-en-324"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/aee0f8c56d634e6f969aeed4c5bc9fc4/siteTemplateIcons/R8gW4rpREyJVcyodUBqW_BigPreview.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"desktop_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/aee0f8c56d634e6f969aeed4c5bc9fc4/siteTemplateIcons/eYs4FiVQkmUoOyxxNcPd_flower_store_desktop.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tablet_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/aee0f8c56d634e6f969aeed4c5bc9fc4/siteTemplateIcons/NK8oQFkOTEG0FbHqhqXX_flower_store_tablet.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mobile_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/aee0f8c56d634e6f969aeed4c5bc9fc4/siteTemplateIcons/tW6yISIT5yHHRg0oakt7_flower_store_mobile.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1004110</span><span class="p">,</span><span class="w">
         </span><span class="s2">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"has_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"has_blog"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...heme-20021-263"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dd-cdn.multiscreensite.com/t...ew/medical.jpg"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20021</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Blank Services"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dashboard.russjeffery.com/preview/dm-theme-1003738-en-327"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/fac18167cc14456196ba71cef32d4bc0/siteTemplateIcons/fViD6lOeQZmv89Yvf7vM_Blank_services_BigPreview.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"desktop_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/fac18167cc14456196ba71cef32d4bc0/siteTemplateIcons/JcFd47BRSmOv8utqovg3_blank_services_desktop.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tablet_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/fac18167cc14456196ba71cef32d4bc0/siteTemplateIcons/Mva1521TEK3O936gia2F_blank_services_tablet.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mobile_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/fac18167cc14456196ba71cef32d4bc0/siteTemplateIcons/xNEqNg6ZR56eI3ngAxvE_blank_services_mobile.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1003738</span><span class="p">,</span><span class="w">
         </span><span class="s2">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"has_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"has_blog"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom2 Template"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.c...eview/f8b71a68"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dp-cdn.multiscreensite.com/t...nd=[B@676f0be9"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000410</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Conference"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dashboard.russjeffery.com/preview/dm-theme-1004580-en-320"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/c3e028f9d55f47dfbde4c4c237ffda9f/siteTemplateIcons/LgJaTshSpaGY709UMa5f_BigPreview%20(2).jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"desktop_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/c3e028f9d55f47dfbde4c4c237ffda9f/siteTemplateIcons/10xwaGtIQX6GQziGsTXs_conference_desktop.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tablet_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/c3e028f9d55f47dfbde4c4c237ffda9f/siteTemplateIcons/RezGoJXWQWWbOkd73RBI_conference_tablet.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mobile_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/c3e028f9d55f47dfbde4c4c237ffda9f/siteTemplateIcons/r4gs9oeLQz8JItdoilAL_conference_mobile.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1004580</span><span class="p">,</span><span class="w">
         </span><span class="s2">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"has_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"has_blog"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -1462,6 +1441,21 @@ Make sure to set the authorization header with your unique API username and API 
 <td>A direct URL to a JPG image displaying the template. This would be good to use to show in a template selection page.</td>
 </tr>
 <tr>
+<td>mobile_thumbnail_url</td>
+<td>URL String</td>
+<td>A screenshot of the mobile view of this template.</td>
+</tr>
+<tr>
+<td>desktop_thumbnail_url</td>
+<td>URL String</td>
+<td>A screenshot of the desktop view of this template.</td>
+</tr>
+<tr>
+<td>tablet_thumbnail_url</td>
+<td>URL String</td>
+<td>A screenshot of the tablet view of this template.</td>
+</tr>
+<tr>
 <td>template_id</td>
 <td>Int</td>
 <td>A unique number associated with this template. This is used to create the template from.</td>
@@ -1476,16 +1470,33 @@ Make sure to set the authorization header with your unique API username and API 
 <td>Bool</td>
 <td>Will be either true or false. If it is false, this means that the template is a custom template which cannot pull content from an external URL while creating the site.</td>
 </tr>
+<tr>
+<td>has_store</td>
+<td>bool</td>
+<td>If the template has an eCommerce store built into it.</td>
+</tr>
+<tr>
+<td>has_blog</td>
+<td>bool</td>
+<td>If the template has a blog added to the website once it&#39;s created.</td>
+</tr>
+<tr>
+<td>page_count</td>
+<td>int</td>
+<td>The number of pages this template contains.</td>
+</tr>
 </tbody></table>
 
 <blockquote>
 <p>CURL Example to Get All Templates:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/templates'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/templates'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
-</code></pre><h3 id='return-11'>Return</h3>
+</code></pre><h3 id='return-10'>Return</h3>
 <p>You can expect a <code>200 OK</code> response along with the all the template data (in an array of objects) shown here.</p>
+
+<aside class="notice">Only templates built by Duda will have a tablet or mobile screenshot returned in the API. Duda does not currently have a way to generate mobile & tablet preview screenshots automatically.</aside>
 <h2 id='get-template-info'>Get template info</h2>
 <p>Get the name, preview URL, thumbnail_url, and template ID of a single template. You can use this to get particular images or preview URLs of templates to display to your users. This will allow them to see the variety of templates to choose from. If you want to see the full list of template ID&#39;s available, please use the <a href="#get-all-templates">get all templates call</a>.</p>
 
@@ -1493,15 +1504,21 @@ Make sure to set the authorization header with your unique API username and API 
 <p>JSON Data Returned:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Italiano"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.mobilewebsiteserver.com/preview/dm-theme-20012-263"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dd-cdn.multiscreensite.com/themes-panel/preview/italiano.jpg"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"template_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Consultant Landing Page"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dashboard.russjeffery.com/preview/dm-theme-1026287-en-343"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/c1e7738d32ae46538527c1fd4e95a9b9/siteTemplateIcons/4CXbg61CTvKDPTEyC7EQ_Consultant_landing_page_3%20screens.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"desktop_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/c1e7738d32ae46538527c1fd4e95a9b9/siteTemplateIcons/jASytIEDRJWRG0dxSbJj_Consultant_landing_page_Desktop.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tablet_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/c1e7738d32ae46538527c1fd4e95a9b9/siteTemplateIcons/4XZxi7HCTWaPx7oTc6fW_Consultant_landing_page_Tablet.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mobile_thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://irp-cdn.multiscreensite.com/c1e7738d32ae46538527c1fd4e95a9b9/siteTemplateIcons/8V63M24zRYaJG96sWSdu_Consultant_landing_page_Mobile.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1026287</span><span class="p">,</span><span class="w">
     </span><span class="s2">"template_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="s2">"can_build_from_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"has_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"has_blog"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"page_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='method-and-path-11'>Method and path</h3>
+</span></code></pre><h3 id='method-and-path-10'>Method and path</h3>
 <p><code>GET /sites/multiscreen/templates/{template_id}</code></p>
 <h3 id='parameters-8'>Parameters:</h3>
 <ul>
@@ -1513,14 +1530,16 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/templates/20012'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/templates/1026287'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
-</code></pre><h3 id='return-12'>Return</h3>
+</code></pre><h3 id='return-11'>Return</h3>
 <p>You can expect a <code>200 OK</code> response along with an JSON object that describes the given template. </p>
+
+<aside class="notice">Only templates built by Duda will have a tablet or mobile screenshot returned in the API. Duda does not currently have a way to generate mobile & tablet preview screenshots automatically.</aside>
 <h2 id='create-template-from-site'>Create template from site</h2>
 <p>Take an existing website and turn it into a template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).</p>
-<h3 id='method-and-path-12'>Method and path</h3>
+<h3 id='method-and-path-11'>Method and path</h3>
 <p><code>POST /sites/multiscreen/template/fromsite</code></p>
 
 <blockquote>
@@ -1558,7 +1577,7 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Example to create template: </p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/template/fromsite'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/template/fromsite'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
     -d <span class="s1">'{"site_name": "66cbb9b7","new_template_name": "Example Template"}'</span>
@@ -1581,7 +1600,7 @@ Make sure to set the authorization header with your unique API username and API 
 <aside class="notice">Often when first creating a template, the thumbnail_url returned is a generic placeholder image. Duda will automatically generate a thumbnail image of the template as an asynchronous process that is often available a while after the initial template creation.</aside>
 <h2 id='create-template-from-template'>Create template from template</h2>
 <p>Take an existing template and turn it into a new template. This template can then be used to build new sites from. The template will be returned as part of the GET TEMPLATES api call and be available to select from while creating a new site (under the My Templates section while creating a new multiscreen site).</p>
-<h3 id='method-and-path-13'>Method and path</h3>
+<h3 id='method-and-path-12'>Method and path</h3>
 <p><code>POST /sites/multiscreen/template/fromtemplate</code></p>
 
 <blockquote>
@@ -1619,7 +1638,7 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Example to create template: </p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/template/fromtemplate'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/template/fromtemplate'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
     -d <span class="s1">'{"template_id":20012,"new_template_name": "Example Template"}'</span>
@@ -1642,13 +1661,13 @@ Make sure to set the authorization header with your unique API username and API 
 <aside class="notice">Often when first creating a template, the thumbnail_url returned is a generic placeholder image. Duda will automatically generate a thumbnail image of the template as an asynchronous process that is often available a while after the initial template creation.</aside>
 <h2 id='delete-custom-template'>Delete custom template</h2>
 <p>Delete a previously created custom template. This will not delete any sites that have been created from the template, but it will remove it from your list of available templates.</p>
-<h3 id='method-and-path-14'>Method and path</h3>
+<h3 id='method-and-path-13'>Method and path</h3>
 <p><code>DELETE /sites/multiscreen/templates/{template_id}</code></p>
 <h3 id='uri-parameters'>URI Parameters:</h3>
 <ul>
 <li>template_id: The unique ID of the template; </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/template/100041'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/template/100041'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre><h3 id='response-3'>Response</h3>
@@ -1662,27 +1681,27 @@ Make sure to set the authorization header with your unique API username and API 
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"new_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New template name"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='method-and-path-15'>Method and path</h3>
+</span></code></pre><h3 id='method-and-path-14'>Method and path</h3>
 <p><code>POST /sites/multiscreen/templates/{template_id}</code></p>
 <h3 id='uri-parameters-2'>URI Parameters</h3>
 <ul>
 <li>new_name: A string that contains a new name you want the template.</li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/template/100041'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/template/100041'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
     -d <span class="s1">'{"new_name":"New template name"}'</span>
-</code></pre><h3 id='return-13'>Return</h3>
+</code></pre><h3 id='return-12'>Return</h3>
 <p>Upon successful update a <code>204 No Content</code> HTTP response code will be returned.</p>
 <h2 id='get-pages'>Get pages</h2>
 <p>Get all pages that exist within the website. Returns an array of objects that describes each page of the site. </p>
-<h3 id='method-and-path-16'>Method and path</h3>
+<h3 id='method-and-path-15'>Method and path</h3>
 <p><code>GET /api/sites/multiscreen/site/{site_name}/pages</code></p>
 
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/site/b4ra2g/pages'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/site/b4ra2g/pages'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
@@ -1739,11 +1758,11 @@ Make sure to set the authorization header with your unique API username and API 
 <td>The path / URL to this page on the website.</td>
 </tr>
 </tbody></table>
-<h3 id='return-14'>Return</h3>
+<h3 id='return-13'>Return</h3>
 <p>You can expect a <code>200 OK</code> response code with an array of JSON objects describing each page. </p>
 <h2 id='update-page'>Update page</h2>
 <p>Update an existing page on the website. You can update either the page_title or the page_path of a specific page. You need to pass the page_name to update it, which is returned via the <a href="#get-pages">GET Pages</a> API Call.</p>
-<h3 id='method-and-path-17'>Method and path</h3>
+<h3 id='method-and-path-16'>Method and path</h3>
 <p><code>POST /api/sites/multiscreen/site/{site_name}/pages/{page_name}/update</code></p>
 <h3 id='required-properties'>Required Properties</h3>
 <ul>
@@ -1754,11 +1773,11 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/Y29udGFjdA/update'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/b4ra2g/pages/Y29udGFjdA/update'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
     -d <span class="s1">'{ "page_path":"contact/1","page_title":"contact 1"}'</span>
-</code></pre><h3 id='return-15'>Return</h3>
+</code></pre><h3 id='return-14'>Return</h3>
 <p>You can expect a <code>204 No Content</code> HTTP response for a successful call.</p>
 
 <aside class="warning">You cannot update the page_path of the home page.</aside>
@@ -1768,10 +1787,10 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Example</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.duda.co/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
-</code></pre><h3 id='method-and-path-18'>Method and path</h3>
+</code></pre><h3 id='method-and-path-17'>Method and path</h3>
 <p><code>GET /api/sites/multiscreen/site/{site_name}/pages/{page_name}</code></p>
 
 <blockquote>
@@ -1787,7 +1806,7 @@ Make sure to set the authorization header with your unique API username and API 
 <li>site_name - Name of the site, originally returned when the site was created.</li>
 <li>page_name - Name of the page, originally returned via the <a href="#get-sites">Get Sites API call</a>.</li>
 </ul>
-<h3 id='return-16'>Return</h3>
+<h3 id='return-15'>Return</h3>
 <p>You can expect a <code>200 OK</code> response HTTP code for a successful call. </p>
 <h2 id='delete-page'>Delete page</h2>
 <p>Delete a page of your website. This cannot be undone.</p>
@@ -1795,18 +1814,323 @@ Make sure to set the authorization header with your unique API username and API 
 <blockquote>
 <p>Example</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.duda.co/api/sites/b4ra2g/pages/YWJvdXQvYWJhYg'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
-</code></pre><h3 id='method-and-path-19'>Method and path</h3>
+</code></pre><h3 id='method-and-path-18'>Method and path</h3>
 <p><code>DELETE /api/sites/multiscreen/site/{site_name}/pages/{page_name}/delete</code></p>
 <h3 id='required-uri-inputs-2'>Required URI Inputs</h3>
 <ul>
 <li>site_name - Name of the site, originally returned when creating the website. </li>
 <li>page_name - Name of the page, originally returned when getting the pages of the site. </li>
 </ul>
-<h3 id='return-17'>Return</h3>
+<h3 id='return-16'>Return</h3>
 <p>You can expect a <code>204 No Content</code> HTTP code upon success. </p>
+<h2 id='get-content-library-data'>Get Content Library Data</h2>
+<blockquote>
+<p>JSON Data Returned:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"location_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"phones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-123-1234"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Russ Phone"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18001234567"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda Phone"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api@duda.co"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Email"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"support@duda.co"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Support Email"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda HQ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"social_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"tripadvisor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Restaurant_Review-g32849-d2394400-Reviews-Oren_s_Hummus_Shop-Palo_Alto_California.html"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"youtube"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UCPMwzOc1Su-s2z-J1xiU9ig"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"facebook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duda"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"yelp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orens-hummus-shop-palo-alto"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pinterest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"michelleobama"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"google_plus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+Dudamobile577"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"linkedin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duda"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"instagram"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orenshummus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"snapchat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"michelleobama"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"twitter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dudamobile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.duda.co/blog/feed/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vimeo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dudamobile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reddit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duda"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"streetAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"577 College Ave"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94306"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Palo Alto"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://du-cdn.multiscreensite.com/duda_website/img/home/agencies.svg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"business_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"SAT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"SUN"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00:00"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"MON"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TUE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"WED"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"THU"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"FRI"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18:00"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"additional_locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"276169839"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"phones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-123-1234"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda Tel Aviv"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"social_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34.78337"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32.07605"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"business_hours"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"site_texts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oh, Duda? Duda is a variation of </span><span class="se">\"</span><span class="s2">Dude</span><span class="se">\"</span><span class="s2">, who just happens to be the main character in one of our favorite movies of all time: The Big Lebowski. You should watch it some time. Look out for that ferret!"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"services"</span><span class="p">:</span><span class="w"> </span><span class="s2">"- Responsive Website Builder"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example CTA 1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THE WEB DESIGN PLATFORM FOR Scaling Your Agency"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example CTA 2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THE WEB DESIGN PLATFORM FOR</span><span class="se">\n</span><span class="s2">Building Websites Faster"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"about_us"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda is a leading website builder for web professionals and agencies of all sizes. Our website builder enables you to build amazing, feature-rich websites that are perfectly suited to desktop, tablet and mobile. Our mobile builder enables you to build mobile-only sites from scratch, or based on an existing desktop site or Facebook business page. Duda allows professionals and agencies to build high-converting, personalized websites at scale. Duda optimizes each and every site for Google PageSpeed."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"business_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Get the data that exists within the content library of a website. The content library is a central data stores of the website that stores structured information. This information can be used to help assist in the site build by providing accurate information that is available within the website builder directly. </p>
+<h3 id='method-and-path-19'>Method and path</h3>
+<p><code>GET /api/sites/multiscreen/{site_name}/content</code></p>
+<h3 id='parameters-11'>Parameters</h3>
+<ul>
+<li>site_name</li>
+</ul>
+<h3 id='location-properties-returned'>Location Properties Returned</h3>
+<p>Below is the list of possible location specific data that will be returned via the API. Note that this data can be returned for the primary location (<code>location_data</code>) or any secondary/child locations (<code>additional_locations</code>). All fields are optional.</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>location_data</td>
+<td>object</td>
+<td>Represents the primary location of this business. It contains all location specific data points and should be used for all cases exepct where there is more than one location for this business/website.</td>
+</tr>
+<tr>
+<td>phones</td>
+<td>Array of objects</td>
+<td>Contains phone numbers for this location. The object allows for a friendly label name and the actual phone number. Max 80 characters each.</td>
+</tr>
+<tr>
+<td>emails</td>
+<td>Array of objects</td>
+<td>Contains all email addresses associated with this location. The object allows for a friendly label name and the acutal email address. Max 80 characters each.</td>
+</tr>
+<tr>
+<td>label</td>
+<td>String</td>
+<td>A simple name for this location. This is displayed in the Duda Content Library UI related to this location. Max 80 characters.</td>
+</tr>
+<tr>
+<td>social_accounts</td>
+<td>Object</td>
+<td>The profile name of this locations social networks. You must pass only the profile name/ID. Do not pass the full URL (e.g. https://wwwfacebook.com/duda). We support the following social networks: Facebook, Twitter, Yelp, Foursquare, Google Plus, Instagram, Youtube, Linkedin, Pinterest, Vimeo, RSS, Reddit, Trip Advisor &amp; Snapchat.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>Object</td>
+<td>Contains all fields required to display an address: streetAddress, postalCode, region, city, country.</td>
+</tr>
+<tr>
+<td>logo_url</td>
+<td>String</td>
+<td>A URL directly referencing the logo of this location. Must be a public URL and be served over HTTPS.</td>
+</tr>
+<tr>
+<td>business_hours</td>
+<td>Array of Objects</td>
+<td>An array containing each day of the week and the hours that the location opens and closes. For each set of hours, you can pass an array of days: MON, TUE, WED, THU, FRI, SAT, SUN that apply to those hours. Open and close hours must be in 24HH:MM format. So, for example, 7:30 am would be: 07:30 and 5 pm would be 17:00.</td>
+</tr>
+</tbody></table>
+<h3 id='global-properties-returned'>Global Properties Returned</h3>
+<p>Below is website content that does not relate to a specific location.</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>site_texts</td>
+<td>Object</td>
+<td>An Object containing overview, services, about_us and custom text strings. Each field has a max length of 2000 characters.</td>
+</tr>
+<tr>
+<td>custom</td>
+<td>Array of Objects</td>
+<td>An array that contains custom text strings. These will each have a label &amp; text associated with them. These can be used for storing site data or information about the business.</td>
+</tr>
+<tr>
+<td>business_data</td>
+<td>Object</td>
+<td>Set the <code>name</code> of the business and the primary image <code>logo_url</code> of the website.</td>
+</tr>
+</tbody></table>
+<h3 id='return-17'>Return</h3>
+<p>You can expect a <code>200 OK</code> HTTP code upon success.</p>
+
+<aside class="notice">The content library API has fields which do not currently display within the content library in the Duda editor. Examples of this are: Business Hours, Logo, Business Name, etc.. We plan to update this, but this is currently a small inconsistency in the platform.</aside>
+<h2 id='update-content-library-data'>Update content library data</h2>
+<blockquote>
+<p>JSON Body to send:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"location_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"phones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123-123-1234"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Russ Phone"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18001234567"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda Phone"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api@duda.co"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API Email"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"support@duda.co"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Support Email"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda HQ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"social_accounts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"twitter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dudamobile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"facebook"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duda"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"youtube"</span><span class="p">:</span><span class="s2">"UCPMwzOc1Su-s2z-J1xiU9ig"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"yelp"</span><span class="p">:</span><span class="s2">"orens-hummus-shop-palo-alto"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fourSquare"</span><span class="p">:</span><span class="s2">"4df7ce8315205e0e3f6b06a4"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"linkedin"</span><span class="p">:</span><span class="s2">"duda"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"google_plus"</span><span class="p">:</span><span class="s2">"+Dudamobile577"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"instagram"</span><span class="p">:</span><span class="s2">"orenshummus"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pinterest"</span><span class="p">:</span><span class="s2">"michelleobama"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vimeo"</span><span class="p">:</span><span class="s2">"dudamobile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rss"</span><span class="p">:</span><span class="s2">"https://www.duda.co/blog/feed/"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reddit"</span><span class="p">:</span><span class="s2">"Duda"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tripadvisor"</span><span class="p">:</span><span class="s2">"Restaurant_Review-g32849-d2394400-Reviews-Oren_s_Hummus_Shop-Palo_Alto_California.html"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"snapchat"</span><span class="p">:</span><span class="s2">"michelleobama"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"streetAddress"</span><span class="p">:</span><span class="s2">"577 College Ave"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="s2">"94306"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"region"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Palo Alto"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://du-cdn.multiscreensite.com/duda_website/img/home/agencies.svg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"business_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"SAT"</span><span class="p">,</span><span class="s2">"SUN"</span><span class="p">],</span><span class="w">
+                </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00:00"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"days"</span><span class="p">:[</span><span class="s2">"MON"</span><span class="p">,</span><span class="s2">"TUE"</span><span class="p">,</span><span class="s2">"WED"</span><span class="p">,</span><span class="s2">"THU"</span><span class="p">,</span><span class="s2">"FRI"</span><span class="p">],</span><span class="w">
+                </span><span class="s2">"open"</span><span class="p">:</span><span class="s2">"09:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"close"</span><span class="p">:</span><span class="s2">"18:00"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"site_texts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"overview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oh, Duda? Duda is a variation of </span><span class="se">\"</span><span class="s2">Dude</span><span class="se">\"</span><span class="s2">, who just happens to be the main character in one of our favorite movies of all time: The Big Lebowski. You should watch it some time. Look out for that ferret!"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"services"</span><span class="p">:</span><span class="w"> </span><span class="s2">"- Responsive Website Builder"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example CTA 2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THE WEB DESIGN PLATFORM FOR</span><span class="se">\n</span><span class="s2">Building Websites Faster"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example CTA 1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THE WEB DESIGN PLATFORM FOR Scaling Your Agency"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"about_us"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda is a leading website builder for web professionals and agencies of all sizes. Our website builder enables you to build amazing, feature-rich websites that are perfectly suited to desktop, tablet and mobile. Our mobile builder enables you to build mobile-only sites from scratch, or based on an existing desktop site or Facebook business page. Duda allows professionals and agencies to build high-converting, personalized websites at scale. Duda optimizes each and every site for Google PageSpeed."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"business_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Simple CURL to update business hours:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/57b6506a/content'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+    -d <span class="s1">'{"location_data": {"business_hours": [{"days": ["SAT","SUN","MON"],"open": "00:00","close": "00:00"},{"days":["TUE","WED","THU","FRI"],"open":"09:00","close":"17:30"}]}}'</span>
+</code></pre>
+<p>Update the content of the content that exists within the content library. This will update the data that exists within the content library and make it available during the site builds. For example, when adding a map, Duda will automatically populate the address from the content library. </p>
+
+<p>The data you can set is the exact same that you get from the content library API call.</p>
+<h3 id='method-and-path-20'>Method and path</h3>
+<p><code>POST /api/sites/multiscreen/{site_name}/content</code></p>
+<h3 id='parameters-12'>Parameters</h3>
+<ul>
+<li>site_name</li>
+</ul>
+
+<aside class="notice">We do not currently support updating of content for `additional_locations`.</aside>
 <h2 id='inject-content'>Inject content</h2>
 <blockquote>
 <p>Basic structure of inject content data</p>
@@ -1837,8 +2161,8 @@ Make sure to set the authorization header with your unique API username and API 
 </span></code></pre>
 <p>Content injection allows you to change a website via API (text, images, CSS, etc..) direclty on an existing website or template. You can update CSS values, InnerHTML of an elemnt or an attribute on an element. For the InnerHTML and Attr types, you must have the <code>data-inject=value</code> set on the element. For the CSS type, you must have a <code>data-inject:value</code> CSS property set within a declaration block. </p>
 
-<p>This feature primarily works by sending the <code>type</code> value to alter the markup or styling in multiple ways. Should pass Duda an array of JSON objects. For a full example of content injection, <a href="#NEEDS-LINK">please see this guide</a>.</p>
-<h3 id='method-and-path-20'>Method and path</h3>
+<p>This feature primarily works by sending the <code>type</code> value to alter the markup or styling in multiple ways. Should pass Duda an array of JSON objects. For a full example of content injection.</p>
+<h3 id='method-and-path-21'>Method and path</h3>
 <p><code>POST /api/sites/multiscreen/inject-content/{siteName}</code></p>
 <h3 id='types-of-injection'>Types of injection</h3>
 <p>Below you will see the three types of injection available: <code>CSS</code>, <code>DOMATTR</code>, and <code>INNERHTML</code> along with how Duda expects each one to be sent.</p>
@@ -1856,7 +2180,7 @@ Make sure to set the authorization header with your unique API username and API 
 <span class="c"># }</span>
 <span class="c">#</span>
 <span class="c"># And run this: </span>
-curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g'</span> <span class="se">\</span>
+curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/inject-content/b4ra2g'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
     -d <span class="s1">'[
@@ -1984,7 +2308,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <p>Example 1 of one button within the website that contains a data-inject=&quot;read-more-btn&quot; attribute assigned to it:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span> 
--X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g'</span> <span class="se">\</span>
+-X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/inject-content/b4ra2g'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
 <blockquote>
@@ -2032,7 +2356,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <p>Example 2, filtering for only the INNERHTML:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span> 
--X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/inject-content/b4ra2g?type=INNERHTML'</span> <span class="se">\</span>
+-X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/inject-content/b4ra2g?type=INNERHTML'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
 <blockquote>
@@ -2045,7 +2369,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
     </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">iconBg</span><span class="se">\"</span><span class="s2"> id=</span><span class="se">\"</span><span class="s2">1206527425</span><span class="se">\"</span><span class="s2"> duda_id=</span><span class="se">\"</span><span class="s2">1206527425</span><span class="se">\"</span><span class="s2">&gt; &lt;span class=</span><span class="se">\"</span><span class="s2">icon hasFontIcon icon-star</span><span class="se">\"</span><span class="s2"> id=</span><span class="se">\"</span><span class="s2">1686467387</span><span class="se">\"</span><span class="s2"> duda_id=</span><span class="se">\"</span><span class="s2">1686467387</span><span class="se">\"</span><span class="s2">&gt; &lt;/span&gt;&lt;/span&gt;&lt;span class=</span><span class="se">\"</span><span class="s2">text</span><span class="se">\"</span><span class="s2"> id=</span><span class="se">\"</span><span class="s2">1307805474</span><span class="se">\"</span><span class="s2"> localization_key=</span><span class="se">\"</span><span class="s2">templates.custom.197</span><span class="se">\"</span><span class="s2"> duda_id=</span><span class="se">\"</span><span class="s2">1307805474</span><span class="se">\"</span><span class="s2">&gt;Read More&lt;/span&gt;"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='method-and-path-21'>Method and path</h3>
+</span></code></pre><h3 id='method-and-path-22'>Method and path</h3>
 <p><code>GET /api/sites/multiscreen/inject-content/{site_name}</code></p>
 <h3 id='optional-query-parameters'>Optional query parameters</h3>
 <p>You can append the following query parameters to filter the results of what will be returned:</p>
@@ -2079,7 +2403,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <p>Upload resources to the website from an external source. Today, this only supports images, but might be extended in the future for other types of media. This will upload the resource to the CDN that Duda uses and make it available to anyone building the website. This API is commonly used in conjunction with the <a href="#inject-content">inject content API</a> to insert new images directly into the website.</p>
 
 <aside class="warning">Please make sure files you upload have the correct extension. For example, PNG images should have .png and JPEG should have .jpg or .jpeg.</aside>
-<h3 id='method-and-path-22'>Method and path</h3>
+<h3 id='method-and-path-23'>Method and path</h3>
 <p><code>POST /api/sites/multiscreen/resources/{site_name}/upload</code></p>
 
 <blockquote>
@@ -2123,7 +2447,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <blockquote>
 <p>Example</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/published?lastDays=30'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/published?lastDays=30'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
     -d <span class="s1">'[{"src":"http://www.dudasupport.com/test/beach.jpg","recource_type": "IMAGE"},{"src": "http://www.dudasupport.com/test/field.jpeg","recource_type": "IMAGE"}]'</span>
@@ -2188,7 +2512,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <p>Get a list of recently published websites in your account, for a specific amount of days. This returns results of all sites that have been published recently, either for an ongoing website update or for the first time. This can be used in conjunction with the get site to see the status of the website for billing reasons. You can call this API to get recently published websites, then get the actual status of the website by calling the get site to see if it is published, unpublished or has never been published.</p>
 
 <p>If you do not pass a lastDays value, then Duda will return results for the last 7 days by default.</p>
-<h3 id='method-and-path-23'>Method and path</h3>
+<h3 id='method-and-path-24'>Method and path</h3>
 <p><code>GET /sites/multiscreen/published</code></p>
 
 <blockquote>
@@ -2208,7 +2532,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/published?lastDays=30'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/published?lastDays=30'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre><h2 id='get-recently-unpublished-sites'>Get recently unpublished sites</h2>
@@ -2223,7 +2547,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </span><span class="s2">"a75b4ddc"</span><span class="p">,</span><span class="w"> 
 </span><span class="s2">"d2f8eded"</span><span class="w"> 
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='method-and-path-24'>Method and path</h3>
+</span></code></pre><h3 id='method-and-path-25'>Method and path</h3>
 <p><code>GET /sites/multiscreen/unpublished</code></p>
 <h3 id='uri-parameters-4'>URI Parameters:</h3>
 <ul>
@@ -2233,11 +2557,62 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/unpublished?lastDays=30'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/unpublished?lastDays=30'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre><h3 id='response-5'>Response</h3>
 <p>Duda will return a <code>200 OK</code> response code along with an array of strings that are Duda Site_name values. </p>
+<h2 id='get-sites-created-between'>Get sites created between</h2>
+<p>Will return an array of site names created during the given time period. If no from parameter is specified, sites created in the past 7 days will be returned. Will return an array of site names. Please see the section about <a href="#dates">handling dates, above.</a></p>
+<h3 id='method-and-path-26'>Method and path</h3>
+<p><code>GET /sites/multiscreen/created?from=2016-03-01&amp;to=2016-03-31</code></p>
+
+<blockquote>
+<p>JSON Return:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+   </span><span class="s2">"c27cdebf"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"1aadcb7c"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"0c2b5c42"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"83729462"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"287185af"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"ff82ddc4"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"a6119858"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"57b6506a"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"5876c248"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"6f45aed8"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='url-query-parameters'>URL Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Query String</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>Date</td>
+<td>Optional</td>
+<td>Start date to query sites for. If not supllied, defaults to 7 days ago, from the current time.</td>
+</tr>
+<tr>
+<td>to</td>
+<td>Date</td>
+<td>Optional</td>
+<td>End date of when to search for. If not supplied, will default to today.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>CURL Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/created?from=2016-03-01&amp;to=2016-03-09'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span> 
+</code></pre><h3 id='return-21'>Return</h3>
+<p>You can expect a <code>200 OK</code> HTTP code along with an array of site names to be returned for the specified time frame. </p>
 <h2 id='get-contact-form-data'>Get contact form data</h2>
 <p>Get all the contact form submissions that happened on this site. This call will return an array of each contact form submission.</p>
 
@@ -2270,7 +2645,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
       </span><span class="s2">"date"</span><span class="p">:</span><span class="s2">"2014-05-08T22:34:50"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='method-and-path-25'>Method and path</h3>
+</span></code></pre><h3 id='method-and-path-27'>Method and path</h3>
 <p><code>GET /sites/multiscreen/get-forms/{site_name}</code></p>
 <h3 id='required-parameters-2'>Required Parameters:</h3>
 <ul>
@@ -2280,42 +2655,42 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <p>You can add on additional <em>to</em> or <em>from</em> URL parameters onto the full URL to decide which date range you would like to get contact form details from. These should be in <a href="#dates">standard date format</a>.</p>
 
 <aside class="notice">Duda will return all contact form messages that have been submitted to the site. Each form on the site has a *form title*, controlled in the Duda Editor, which will allow you to tell which contact form on the site this is from.</aside>
-<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/get-forms/b4ra2g?from=2017-01-01&amp;to=2017-01-30'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/get-forms/b4ra2g?from=2017-01-01&amp;to=2017-01-30'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre><h2 id='generate-ssl-certificate'>Generate SSL Certificate</h2>
 <p>Generate a SSL certificate for a specific website. This will enable a HTTPS connection between site visitors and the Duda platform. It usually takes 15-30 minutes to successfully generate a SSL certificate for a website. You can get the status of the SSL certificate by calling the <a href="#get-site">GET site API</a> and checking the certificate_status parameter. Once the certificate is successfully generated, all website visitors will be redirected to the HTTPS connection. This can be disabled on by updating the site force_https value to false. You do not need to worry about renewing the certificate, as Duda will do this automatically.</p>
-<h3 id='method-and-path-26'>Method and path</h3>
+<h3 id='method-and-path-28'>Method and path</h3>
 <p><code>POST /sites/multiscreen/{site_name}/certificate</code></p>
 
 <p>URI Parameter:
 - site_name</p>
-<h3 id='return-21'>Return</h3>
+<h3 id='return-22'>Return</h3>
 <p>Upon success, Duda will return a <code>204 No Content</code> HTTP code.</p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/b4ra2g/certificate'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/b4ra2g/certificate'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre>
 <aside class="warning">Before sending this API call, it's important that the domain is successfully pointed to Duda's servers. We only currently offer Domain Verified (DV) certificates. As part of the API call, Duda will verify that the domain is correctly pointing at the platform. If it is not, Duda will return an error.</aside>
 <h2 id='delete-ssl-certificate'>Delete SSL Certificate</h2>
 <p>Delete a certificate that has been generated for a website. This will ensure that the website is served over only an HTTP (insecure) connection and will delete the generated certificate.</p>
-<h3 id='method-and-path-27'>Method and path</h3>
+<h3 id='method-and-path-29'>Method and path</h3>
 <p><code>DELETE /sites/multiscreen/{site_name}/certificate</code></p>
 
 <p>URI Parameter:
 - site_name</p>
-<h3 id='return-22'>Return</h3>
+<h3 id='return-23'>Return</h3>
 <p>Upon success, Duda will return a <code>204 No Content</code> HTTP code.</p>
-<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/b4ra2g/certificate'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/b4ra2g/certificate'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre><h2 id='create-site-backup'>Create site backup</h2>
 <p>Create a new backup of a site. This is used for saving the existing state of a site. Good for saving a restore point before a user starts to edit a site or after work has been completed.</p>
 
 <aside class="notice">Each site can have a maximum of 10 manually created backup versions and 20 that are automatically created upon each publish of the site (30 in total). Backups that are automatically created will have a name such as: sitename_Auto_4</aside>
-<h3 id='method-and-path-28'>Method and path</h3>
+<h3 id='method-and-path-30'>Method and path</h3>
 <p><code>POST /sites/multiscreen/backups/{site_name}/create</code></p>
-<h3 id='parameters-11'>Parameters</h3>
+<h3 id='parameters-13'>Parameters</h3>
 <ul>
 <li>site_name</li>
 </ul>
@@ -2348,7 +2723,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <blockquote>
 <p>Example</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/backups/b4ra2g'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
     -d <span class="s1">'{"name":"QA-Complete"}''
@@ -2361,7 +2736,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <aside class="warning">The name of the backup cannot contain a space.</aside>
-<h3 id='return-23'>Return</h3>
+<h3 id='return-24'>Return</h3>
 <p>Upon success, Duda will return a <code>200 OK</code> HTTP response code along with the backup_name of the created backup. </p>
 <h2 id='get-site-backups'>Get site backups</h2>
 <p>Get an array of existing site backups/versions. A backup can be created from inside of the editor (or by API) and is also automatically created every time the site is published. </p>
@@ -2395,7 +2770,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
       </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"ManualBackup_1"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='method-and-path-29'>Method and path</h3>
+</span></code></pre><h3 id='method-and-path-31'>Method and path</h3>
 <p><code>GET /sites/multiscreen/backups/{site_name}</code></p>
 <h3 id='uri-parameters-5'>URI Parameters:</h3>
 <ul>
@@ -2405,34 +2780,16 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g'</span> <span class="se">\</span>
-    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
-    -H <span class="s1">'Content-Type: application/json'</span>
-</code></pre><h3 id='return-24'>Return</h3>
-<p>Upon successful call, Duda will return a <code>200 OK</code> response code along with the array of data objects in the body. </p>
-<h2 id='restore-site'>Restore site</h2>
-<p>Restore a site from an existing backup. This will fully restore the site back to the state it was in at the time of the backup creation. When restoring a site, a backup is automatically made of the site before restoring the backup. You will be able to see the backup that is created via the Get Site Backups call.</p>
-<h3 id='method-and-path-30'>Method and path</h3>
-<p><code>POST /sites/multiscreen/backups/{site_name}/restore/{backup_name}</code></p>
-<h3 id='parameters-12'>Parameters</h3>
-<ul>
-<li>site_name</li>
-<li>backup_name - Obtained from the get backup name API call</li>
-</ul>
-
-<blockquote>
-<p>Example: </p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X GET -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/backups/b4ra2g'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre><h3 id='return-25'>Return</h3>
-<p>Upon success, Duda will return a <code>204 No Content</code> HTTP status code. </p>
-<h2 id='delete-site-backup'>Delete site backup</h2>
-<p>Permanently delete a site backup. There is no way to restore or gain access to deleted site backups.</p>
-<h3 id='method-and-path-31'>Method and path</h3>
-<p><code>DELETE /sites/multiscreen/backups/{site_name}/restore/{backup_name}</code></p>
-<h3 id='parameters-13'>Parameters</h3>
+<p>Upon successful call, Duda will return a <code>200 OK</code> response code along with the array of data objects in the body. </p>
+<h2 id='restore-site'>Restore site</h2>
+<p>Restore a site from an existing backup. This will fully restore the site back to the state it was in at the time of the backup creation. When restoring a site, a backup is automatically made of the site before restoring the backup. You will be able to see the backup that is created via the Get Site Backups call.</p>
+<h3 id='method-and-path-32'>Method and path</h3>
+<p><code>POST /sites/multiscreen/backups/{site_name}/restore/{backup_name}</code></p>
+<h3 id='parameters-14'>Parameters</h3>
 <ul>
 <li>site_name</li>
 <li>backup_name - Obtained from the get backup name API call</li>
@@ -2441,10 +2798,28 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <blockquote>
 <p>Example: </p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete'</span> <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span>
 </code></pre><h3 id='return-26'>Return</h3>
+<p>Upon success, Duda will return a <code>204 No Content</code> HTTP status code. </p>
+<h2 id='delete-site-backup'>Delete site backup</h2>
+<p>Permanently delete a site backup. There is no way to restore or gain access to deleted site backups.</p>
+<h3 id='method-and-path-33'>Method and path</h3>
+<p><code>DELETE /sites/multiscreen/backups/{site_name}/restore/{backup_name}</code></p>
+<h3 id='parameters-15'>Parameters</h3>
+<ul>
+<li>site_name</li>
+<li>backup_name - Obtained from the get backup name API call</li>
+</ul>
+
+<blockquote>
+<p>Example: </p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/backups/b4ra2g/restore/QA-Complete'</span> <span class="se">\</span>
+    -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
+    -H <span class="s1">'Content-Type: application/json'</span>
+</code></pre><h3 id='return-27'>Return</h3>
 <p>Upon success, Duda will return a <code>204 No Content</code> HTTP status code.</p>
 <h1 id='account'>Account</h1>
 <p>An account resource represents a single Staff or Customer account. There are three account types referenced below, master account, Staff account and Customer account. The master account is the Duda account that accesses the Duda API.</p>
@@ -2469,7 +2844,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <p>cURL Example</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
--X POST -i -k https://api.dudamobile.com/api/accounts/create <span class="se">\</span>
+-X POST -i -k https://api.duda.co/api/accounts/create <span class="se">\</span>
 -d <span class="s1">'{"account_name":"email@email.com", "first_name":"john", "last_name":"doe", "account_type":"CUSTOMER", "lang":"en"}'</span> 
 </code></pre><h3 id='parameters'>Parameters:</h3>
 <table><thead>
@@ -2538,7 +2913,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <blockquote>
 <p>CURL Example:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> -H <span class="s1">'Content-Type: application/json'</span> -X GET -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
+<pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> -H <span class="s1">'Content-Type: application/json'</span> -X GET -i -k https://api.duda.co/api/accounts/johnsmith@gmail.com
 </code></pre><h3 id='return-2'>Return:</h3>
 <p>Upon success, Duda will return a <code>200 OK</code> HTTP status code. A JSON object representing the Account will be returned with the following possible values:</p>
 
@@ -2589,7 +2964,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <p>Example:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
--X DELETE -i -k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com
+-X DELETE -i -k https://api.duda.co/api/accounts/johnsmith@gmail.com
 </code></pre><h3 id='parameters-3'>Parameters:</h3>
 <ul>
 <li>account_name - URL parameter - Account Name</li>
@@ -2607,7 +2982,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/update/johnsmith@gmail.com <span class="se">\</span>
+-k https://api.duda.co/api/accounts/update/johnsmith@gmail.com <span class="se">\</span>
 -d <span class="s1">'{"email": "jsmith@gmail.com"}'</span>
 </code></pre><h3 id='required-parameters'>Required Parameters:</h3>
 <ul>
@@ -2630,7 +3005,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/sso/johnsmith@gmail.com/link​?target<span class="o">=</span>STATS&amp;site_name<span class="o">=</span>146856ab
+-k https://api.duda.co/api/accounts/sso/johnsmith@gmail.com/link​?target<span class="o">=</span>STATS&amp;site_name<span class="o">=</span>146856ab
 </code></pre><h3 id='method-and-path-5'>Method and path</h3>
 <p><code>GET /accounts/sso/{account_name}/link?target=EDITOR&amp;site_name=h5de912a</code></p>
 <h3 id='paramters'>Paramters</h3>
@@ -2676,6 +3051,8 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <td>Send the user directly to the select new template / reset site page. Note that if the user does reset the site, all existing website edits will be lost and the site will be reset to a new template that is selected.</td>
 </tr>
 </tbody></table>
+
+<aside class="warning">SSO Links & Tokens should be generated on demand and should not be generated upon page load or be statically linked to. SSO Tokens are only valid for two minutes, so you need to verify in real time that the user is authenticated to your system, then generate the SSO link once they intend to enter the editor, dashboard, stats, etc..</aside>
 <h2 id='generate-single-sign-on-token'>Generate single sign-on token</h2>
 <blockquote>
 <p>cURL Example</p>
@@ -2683,7 +3060,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/sso/johnsmith@gmail.com/token​
+-k https://api.duda.co/api/accounts/sso/johnsmith@gmail.com/token​
 </code></pre>
 <aside class="notice">We recommend using the generate SSO Link API instead of the Generate SSO Token. It is easier to use.</aside>
 
@@ -2744,7 +3121,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions <span class="se">\</span>
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions <span class="se">\</span>
 -d <span class="s1">'{"permissions":["EDIT","DEV_MODE","STATS_TAB"]}'</span>
 </code></pre><h3 id='permission-options'>Permission options:</h3>
 <table><thead>
@@ -2852,7 +3229,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </span></code></pre><pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/permissions/multiscreen
+-k https://api.duda.co/api/accounts/permissions/multiscreen
 </code></pre><h2 id='get-site-permissions-for-a-customer'>Get site permissions for a customer</h2>
 <p>Get the permissions that a customer has been granted for a specific site. Each site that a customer is granted access to can have different permissions, so each association can potentially have different permissions. Permissions can be returned for either mobile or multiscreen websites.  </p>
 <h3 id='method-and-path-9'>Method and path</h3>
@@ -2878,7 +3255,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </span></code></pre><pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 </code></pre><h2 id='remove-customer-access-to-site'>Remove customer access to site</h2>
 <p>Remove/delete access that a customer has to a specific mobile or multiscreen site. </p>
 <h3 id='method-and-path-10'>Method and path</h3>
@@ -2886,7 +3263,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X DELETE <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 </code></pre><h3 id='uri-parameters'>URI Parameters:</h3>
 <ul>
 <li>account_name - An existing Duda account that exists under your account</li>
@@ -2897,7 +3274,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X DELETE <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/permissions
 </code></pre><h2 id='subscribe-customer-to-stats'>Subscribe customer to stats</h2>
 <p>Sign up customer or staff member for weekly or monthly statistics emails for a specific site. These emails will be automatically delivered by the Duda platform to your users. Monthly emails are sent on the 3rd of each month and weekly emails are sent every Tuesday. You can also perform the same API call to overwrite the existing frequency of customers already signed up.</p>
 
@@ -2907,7 +3284,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email <span class="se">\</span>
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email <span class="se">\</span>
 -d <span class="s1">'{"frequency":"WEEKLY"}'</span>
 </code></pre><h3 id='method-and-path-11'>Method and path</h3>
 <p><code>POST /accounts/{account_name}/sites/{site_name}/stats-email</code></p>
@@ -2936,7 +3313,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
 </code></pre><h3 id='parameters-6'>Parameters</h3>
 <ul>
 <li>account_name - URL parameter - Account name</li>
@@ -2949,7 +3326,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X DELETE <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
+-k https://api.duda.co/api/accounts/johnsmith@gmail.com/sites/146856ab/stats-email
 </code></pre><h3 id='response'>Response</h3>
 <p>You can expect a <code>200 OK</code> response code for a successful call.</p>
 <h2 id='unsubscribe-customer-stats-email'>Unsubscribe customer stats email</h2>
@@ -2987,7 +3364,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/grant-access/john@johnsmith.com/sites/multiscreen​
+-k https://api.duda.co/api/accounts/grant-access/john@johnsmith.com/sites/multiscreen​
 </code></pre><h3 id='method-and-path-14'>Method and path</h3>
 <p><code>GET /accounts/grant-access/{account_name}/sites/multiscreen</code></p>
 <h3 id='parameters-8'>Parameters:</h3>
@@ -3012,7 +3389,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST <span class="se">\</span>
--k https://api.dudamobile.com/api/accounts/reset-password/johnsmith@gmail.com
+-k https://api.duda.co/api/accounts/reset-password/johnsmith@gmail.com
 </code></pre><h3 id='method-and-path-15'>Method and path</h3>
 <p><code>POST /accounts/reset-password/{account_name}</code></p>
 <h3 id='return-9'>Return</h3>
@@ -3029,23 +3406,23 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
     </span><span class="s2">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"administrator"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rgb(253,113,34)"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"EDIT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CREATE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DUDA_PRO"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MANAGE_USERS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"STATS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"E_COMMERCE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MARKETING"</span><span class="p">,</span><span class="w"> </span><span class="s2">"REPUBLISH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PUBLISH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DEV_MODE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PURCHASE_IMAGES"</span><span class="p">,</span><span class="w"> </span><span class="err">SITE_CUSTOM_DOMAIN</span><span class="s2">"]
-}, {
-    "</span><span class="err">group_name</span><span class="s2">": "</span><span class="err">salesman</span><span class="s2">",
-    "</span><span class="err">color</span><span class="s2">": "</span><span class="err">rgb(</span><span class="mi">36</span><span class="p">,</span><span class="mi">206</span><span class="p">,</span><span class="mi">151</span><span class="err">)</span><span class="s2">",
-    "</span><span class="err">title</span><span class="s2">": "</span><span class="err">Sales</span><span class="s2">",
-    "</span><span class="err">permissions</span><span class="s2">": ["</span><span class="err">CREATE</span><span class="s2">", "</span><span class="err">MARKETING</span><span class="s2">", "</span><span class="err">STATS</span><span class="s2">", "</span><span class="err">REPUBLISH</span><span class="s2">", "</span><span class="err">EDIT</span><span class="s2">", "</span><span class="err">E_COMMERCE</span><span class="s2">"]
-}, {
-    "</span><span class="err">group_name</span><span class="s2">": "</span><span class="err">designer</span><span class="s2">",
-    "</span><span class="err">color</span><span class="s2">": "</span><span class="err">rgb(</span><span class="mi">21</span><span class="p">,</span><span class="mi">193</span><span class="p">,</span><span class="mi">191</span><span class="err">)</span><span class="s2">",
-    "</span><span class="err">title</span><span class="s2">": "</span><span class="err">Designer</span><span class="s2">",
-    "</span><span class="err">permissions</span><span class="s2">": ["</span><span class="err">CREATE</span><span class="s2">", "</span><span class="err">MARKETING</span><span class="s2">", "</span><span class="err">REPUBLISH</span><span class="s2">", "</span><span class="err">EDIT</span><span class="s2">", "</span><span class="err">E_COMMERCE</span><span class="s2">"]
-}, {
-    "</span><span class="err">group_name</span><span class="s2">": "</span><span class="err">storemanager</span><span class="s2">",
-    "</span><span class="err">color</span><span class="s2">": "</span><span class="err">rgb(</span><span class="mi">53</span><span class="p">,</span><span class="mi">188</span><span class="p">,</span><span class="mi">221</span><span class="err">)</span><span class="s2">",
-    "</span><span class="err">title</span><span class="s2">": "</span><span class="err">Store</span><span class="w"> </span><span class="err">Manager</span><span class="s2">",
-    "</span><span class="err">permissions</span><span class="s2">": ["</span><span class="err">E_COMMERCE</span><span class="s2">"]
-}]
+    </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"EDIT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CREATE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DUDA_PRO"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MANAGE_USERS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"STATS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"E_COMMERCE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MARKETING"</span><span class="p">,</span><span class="w"> </span><span class="s2">"REPUBLISH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PUBLISH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DEV_MODE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PURCHASE_IMAGES"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SITE_CUSTOM_DOMAIN"</span><span class="p">]</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"salesman"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rgb(36,206,151)"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sales"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"CREATE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MARKETING"</span><span class="p">,</span><span class="w"> </span><span class="s2">"STATS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"REPUBLISH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"EDIT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"E_COMMERCE"</span><span class="p">]</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"designer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rgb(21,193,191)"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Designer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"CREATE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MARKETING"</span><span class="p">,</span><span class="w"> </span><span class="s2">"REPUBLISH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"EDIT"</span><span class="p">,</span><span class="w"> </span><span class="s2">"E_COMMERCE"</span><span class="p">]</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"storemanager"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rgb(53,188,221)"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Store Manager"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"E_COMMERCE"</span><span class="p">]</span><span class="w">
+</span><span class="p">}]</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Example:</p>
@@ -3053,7 +3430,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/permission-groups/default
+-k https://api.duda.co/api/permission-groups/default
 </code></pre><h3 id='method-and-path'>Method and path</h3>
 <p><code>GET /permission-groups/default</code></p>
 <h3 id='response'>Response</h3>
@@ -3076,7 +3453,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST <span class="se">\</span>
--k https://api.dudamobile.com/api/permission-groups/create <span class="se">\</span>
+-k https://api.duda.co/api/permission-groups/create <span class="se">\</span>
 -d <span class="s1">'{"group_name": "Mzc0MQ","color": "rgb(27,245,71)","title": "Outside Sales","permissions":["STATS", "CREATE", "REPUBLISH", "EDIT"]}'</span> 
 </code></pre>
 <blockquote>
@@ -3139,7 +3516,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </span></code></pre><pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/permission-groups/custom
+-k https://api.duda.co/api/permission-groups/custom
 </code></pre><h3 id='method-and-path-3'>Method and path</h3>
 <p><code>GET /permission-groups/custom</code></p>
 <h3 id='response-2'>Response</h3>
@@ -3175,7 +3552,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST <span class="se">\</span>
--k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/update <span class="se">\</span>
+-k https://api.duda.co/api/permission-groups/Mzc0MQ/update <span class="se">\</span>
 -d <span class="s1">'{"color": "rgb(27,245,71)","title": "Outside Sales","permissions":["STATS", "CREATE", "REPUBLISH", "EDIT","CREATE_SITES"]}'</span>
 </code></pre><h3 id='method-and-path-4'>Method and path</h3>
 <p><code>POST /permission-groups/{group_name}/update</code></p>
@@ -3189,7 +3566,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
--X GET -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ
+-X GET -k https://api.duda.co/api/permission-groups/Mzc0MQ
 </code></pre>
 <blockquote>
 <p>Example response body:</p>
@@ -3232,7 +3609,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
--X DELETE -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ 
+-X DELETE -k https://api.duda.co/api/permission-groups/Mzc0MQ 
 </code></pre><h3 id='parameters-3'>Parameters</h3>
 <ul>
 <li>group_name - The uniquie name of the group. </li>
@@ -3247,7 +3624,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
--X POST -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
+-X POST -k https://api.duda.co/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
 </code></pre><h3 id='method-and-path-7'>Method and path</h3>
 <p><code>POST /permission-groups/{group_name}/accounts/{account_name}/add</code></p>
 <h3 id='parameters-4'>Parameters</h3>
@@ -3265,7 +3642,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
--X POST -k https://api.dudamobile.com/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
+-X POST -k https://api.duda.co/api/permission-groups/Mzc0MQ/accounts/john-smith@gmail.com/add
 </code></pre><h3 id='method-and-path-8'>Method and path</h3>
 <p><code>DELETE /permission-groups/{group_name}/accounts/{account_name}</code></p>
 <h3 id='parameters-5'>Parameters</h3>
@@ -3460,7 +3837,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/widgets/list
+-k https://api.duda.co/api/widgets/list
 </code></pre>
 <blockquote>
 <p>JSON Response</p>
@@ -3518,7 +3895,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/widgets/<span class="o">{</span>widgetId<span class="o">}</span>/strings/scan
+-k https://api.duda.co/api/widgets/<span class="o">{</span>widgetId<span class="o">}</span>/strings/scan
 </code></pre>
 <blockquote>
 <p>JSON Response:</p>
@@ -3543,7 +3920,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/en_gb
+-k https://api.duda.co/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/en_gb
 </code></pre>
 <blockquote>
 <p>JSON Response:</p>
@@ -3580,7 +3957,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST <span class="se">\</span>
--k https://api.dudamobile.com/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/es
+-k https://api.duda.co/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/es
 -d <span class="s1">'{
     "Widget.FAQ.Label":"FAQ Artículos",
     "Widget.FAQ.Tooltip":"Introduzca cada título, descripción, etc.",
@@ -3612,7 +3989,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X POST <span class="se">\</span>
--k https://api.dudamobile.com/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/[publish
+-k https://api.duda.co/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/[publish
 </code></pre><h3 id='method-and-path-5'>Method and path</h3>
 <p><code>POST /widgets/{widgetId}/strings/publish</code></p>
 <h3 id='response-5'>Response</h3>
@@ -3626,7 +4003,7 @@ curl -X POST -k <span class="s1">'https://api.dudamobile.com/api/sites/multiscre
 <pre class="highlight shell tab-shell"><code>curl -S -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 -X GET <span class="se">\</span>
--k https://api.dudamobile.com/api/widgets/locales
+-k https://api.duda.co/api/widgets/locales
 </code></pre>
 <blockquote>
 <p>JSON Response:</p>
