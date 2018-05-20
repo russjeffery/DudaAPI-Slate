@@ -385,7 +385,7 @@ curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/b4ra2g/content/locati
 }
 ```
 
-Create a new location for this website. This location will be apart of the `additiona_locations` data that is returned from the Get Content Library API call. If you are aligning your location management system with this website, we recommend storing both the site name & the UUID of the location in your database.
+Create a new location for this website. This location will be apart of the `additional_locations` data that is returned from the Get Content Library API call. If you are aligning your location management system with this website, we recommend storing both the site name & the UUID of the location in your database.
 
 ### Method and path
 `POST /api/sites/multiscreen/{site_name}/content/location`
