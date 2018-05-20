@@ -177,7 +177,7 @@ Publish all the custom locale strings that have been added to the widget. This w
 curl -S -u 'APIusername:APIpassword' \
 -H 'Content-Type: application/json' \
 -X POST \
--k https://api.duda.co/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/[publish
+-k https://api.duda.co/api/widgets/f3e1efc5fb2e44d185c9a41643d11945/strings/publish
 ```
 
 ### Method and path

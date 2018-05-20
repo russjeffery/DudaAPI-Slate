@@ -12,6 +12,12 @@ toc_footers:
 includes:
   - intro
   - responsive
+  - responsive_templates
+  - responsive_pages
+  - responsive_content
+  - responsive_reporting
+  - responsive_ssl
+  - responsive_backups
   - accounts
   - permissions
   - analytics

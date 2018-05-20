@@ -233,7 +233,6 @@ html, body {
 
 .toc-link, .toc-footer li {
   @extend %toc-font;
-  padding: 0 $nav-padding 0 $nav-padding;
   display: block;
   overflow-x: hidden;
   white-space: nowrap;
@@ -655,12 +654,15 @@ html, body {
   a::before{
     font-size: 14px;
     font-weight: 300;
-    color: #909090;
+    color: #6d6d6d;
     padding: 5px 0 5px 20px;
     background-color: #fff;
     display: block;
-    margin-left:-30px;
-    margin-top:-5px;
+    height: 30px;
+    left: -30px;
+    position: relative;
+    top: -5px;
+    width: 230px;
   }
   a[href='#get-all-templates']::before {
     content:"Templates";
@@ -682,9 +684,6 @@ html, body {
   }
   a[href='#get-content-library-data']::before {
     content:"Content";
-  }
-  a[href='#create-account']::before {
-    content:"Account Management";
   }
   a[href='#generate-sso-link']::before {
     content:"Single Sign-On";
