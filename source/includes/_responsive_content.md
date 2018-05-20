@@ -262,8 +262,6 @@ The data you can set is the exact same that you get from the content library API
 
 ## Create additional location
 
-Create a new location for this website. This location will be apart of the `additiona_locations` data that is returned from the Get Content Library API call. If you are aligning your location management system with this website, we recommend storing both the site name & the UUID of the location in your database.
-
 > JSON Body to send:
 
 ```json
@@ -386,6 +384,8 @@ curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/b4ra2g/content/locati
     ]
 }
 ```
+
+Create a new location for this website. This location will be apart of the `additiona_locations` data that is returned from the Get Content Library API call. If you are aligning your location management system with this website, we recommend storing both the site name & the UUID of the location in your database.
 
 ### Method and path
 `POST /api/sites/multiscreen/{site_name}/content/location`
@@ -514,6 +514,9 @@ curl -X DELETE -k 'https://api.duda.co/api/sites/multiscreen/b4ra2g/content/loca
 	-u 'APIusername:APIpassword' \ 
 	-H 'Content-Type: application/json' \
 ```
+
+### Method and path
+`DELETE /api/sites/multiscreen/{site_name}/content/location/{uuid}`
 
 ### Data parameters
 - In the URI, you need to set the `site_name` and `uuid` of this location. 
