@@ -44,8 +44,13 @@
         "address": {
             "streetAddress": "577 College Ave",
             "postalCode": "94306",
+            "region":"CA",
             "city": "Palo Alto",
             "country": "US"
+        },
+        "geo": {
+            "longitude": "-122.4757527166",
+            "latitude": "37.502439189002"
         },
         "logo_url": "https://du-cdn.multiscreensite.com/duda_website/img/home/agencies.svg",
         "business_hours": [
@@ -108,12 +113,12 @@
     },
     "business_data": {
         "name": "Duda",
-        "logo_url": "https"
+        "logo_url": "https://www.duda.co/developers/REST-API-Reference/images/duda.svg"
     }
 }
 ```
 
-Get the data that exists within the content library of a website. The content library is a central data stores of the website that stores structured information. This information can be used to help assist in the site build by providing accurate information that is available within the website builder directly. 
+Get the data that exists within the content library of a website. The content library is the central data store of the website. This data can be used to help assist in the site build by providing accurate information that is available within the website builder directly.
 
 ### Method and path
 `GET /api/sites/multiscreen/{site_name}/content`
@@ -129,11 +134,12 @@ Below is the list of possible location specific data that will be returned via t
 Property | Type | Description
 ---------- | ---------- | ----------
 location_data | object | Represents the primary location of this business. It contains all location specific data points and should be used for all cases exepct where there is more than one location for this business/website. 
-phones | Array of objects | Contains phone numbers for this location. The object allows for a friendly label name and the actual phone number. Max 80 characters each.
+phones | Array of objects | Contains phone numbers for this location. The object allows for a friendly label name and the actual phone number. Note that there is no specific requirement for phone, Duda will display this in the same format you submit it in. Max 80 characters each.
 emails | Array of objects | Contains all email addresses associated with this location. The object allows for a friendly label name and the acutal email address. Max 80 characters each.
 label | String | A simple name for this location. This is displayed in the Duda Content Library UI related to this location. Max 80 characters.
 social_accounts | Object | The profile name of this locations social networks. You must pass only the profile name/ID. Do not pass the full URL (e.g. https://wwwfacebook.com/duda). We support the following social networks: Facebook, Twitter, Yelp, Foursquare, Google Plus, Instagram, Youtube, Linkedin, Pinterest, Vimeo, RSS, Reddit, Trip Advisor & Snapchat. 
 address | Object | Contains all fields required to display an address: streetAddress, postalCode, region, city, country. 
+geo | object | An object containing the LAT and LON of the address. Duda will return this if we've identified an address in the editor for this location, but we will not automatically generate it. You can pass this if you know the exact LAT/LON.
 logo_url | String | A URL directly referencing the logo of this location. Must be a public URL and be served over HTTPS. 
 business_hours | Array of Objects | An array containing each day of the week and the hours that the location opens and closes. For each set of hours, you can pass an array of days: MON, TUE, WED, THU, FRI, SAT, SUN that apply to those hours. Open and close hours must be in 24HH:MM format. So, for example, 7:30 am would be: 07:30 and 5 pm would be 17:00. 
 
@@ -200,9 +206,13 @@ You can expect a `200 OK` HTTP code upon success.
         "address": {
         	"streetAddress":"577 College Ave",
         	"postalCode":"94306",
-        	"region":"",
+        	"region":"CA",
         	"city":"Palo Alto",
         	"country":"US"
+        },
+        "geo": {
+            "longitude": "-122.4757527166",
+            "latitude": "37.502439189002"
         },
         "logo_url": "https://du-cdn.multiscreensite.com/duda_website/img/home/agencies.svg",
         "business_hours": [
@@ -249,7 +259,7 @@ curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/57b6506a/content' \
     -d '{"location_data": {"business_hours": [{"days": ["SAT","SUN","MON"],"open": "00:00","close": "00:00"},{"days":["TUE","WED","THU","FRI"],"open":"09:00","close":"17:30"}]}}'
 ```
 
-Update the content of the content that exists within the content library. This will update the data that exists within the content library and make it available during the site builds. For example, when adding a map, Duda will automatically populate the address from the content library. 
+Update the data that exists within the content library. Once updated the data is ready for immediate use within the editor. For example, when adding a map, Duda will automatically populate the address from the content library. 
 
 The data you can set is the exact same that you get from the content library API call.
 
@@ -259,6 +269,8 @@ The data you can set is the exact same that you get from the content library API
 ### Parameters
 
 - site_name
+
+<aside class="warning">The primary location of a business is only managed through the content library API (above). All additional/child locations are managed by the locations API (below).</aside>
 
 ## Create additional location
 
@@ -356,6 +368,7 @@ curl -X POST -k 'https://api.duda.co/api/sites/multiscreen/b4ra2g/content/locati
     "address": {
         "streetAddress": "197 S 104th St C",
         "postalCode": "80027",
+        "region":"CO",
         "city": "Louisville",
         "country": "USA"
     },
@@ -469,7 +482,7 @@ curl -X GET -k 'https://api.duda.co/api/sites/multiscreen/b4ra2g/content/locatio
     ]
 }
 ```
-Get a specific locations data. To get a specific locations details, you need the UUID of that location. You can find the location `uuid` in the Get Content Library Data or after you've created a location. Note that you can only update `additional_locations` via this API Call.
+Get data for a specific location. To get data for a specific location you need the UUID of that location. You can find the location `uuid` in the Get Content Library Data or after you've created a location. Note that you can only update `additional_locations` via this API Call.
 
 ### Method and path
 `GET /api/sites/multiscreen/{site_name}/content/location/{uuid}`
