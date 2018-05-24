@@ -1883,8 +1883,13 @@ Make sure to set the authorization header with your unique API username and API 
         </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"streetAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"577 College Ave"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94306"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"region"</span><span class="p">:</span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Palo Alto"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-122.4757527166"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.502439189002"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://du-cdn.multiscreensite.com/duda_website/img/home/agencies.svg"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"business_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1947,11 +1952,11 @@ Make sure to set the authorization header with your unique API username and API 
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"business_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Duda"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https"</span><span class="w">
+        </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.duda.co/developers/REST-API-Reference/images/duda.svg"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Get the data that exists within the content library of a website. The content library is a central data stores of the website that stores structured information. This information can be used to help assist in the site build by providing accurate information that is available within the website builder directly. </p>
+<p>Get the data that exists within the content library of a website. The content library is the central data store of the website. This data can be used to help assist in the site build by providing accurate information that is available within the website builder directly.</p>
 <h3 id='method-and-path'>Method and path</h3>
 <p><code>GET /api/sites/multiscreen/{site_name}/content</code></p>
 <h3 id='parameters'>Parameters</h3>
@@ -1976,7 +1981,7 @@ Make sure to set the authorization header with your unique API username and API 
 <tr>
 <td>phones</td>
 <td>Array of objects</td>
-<td>Contains phone numbers for this location. The object allows for a friendly label name and the actual phone number. Max 80 characters each.</td>
+<td>Contains phone numbers for this location. The object allows for a friendly label name and the actual phone number. Note that there is no specific requirement for phone, Duda will display this in the same format you submit it in. Max 80 characters each.</td>
 </tr>
 <tr>
 <td>emails</td>
@@ -1997,6 +2002,11 @@ Make sure to set the authorization header with your unique API username and API 
 <td>address</td>
 <td>Object</td>
 <td>Contains all fields required to display an address: streetAddress, postalCode, region, city, country.</td>
+</tr>
+<tr>
+<td>geo</td>
+<td>object</td>
+<td>An object containing the LAT and LON of the address. Duda will return this if we&#39;ve identified an address in the editor for this location, but we will not automatically generate it. You can pass this if you know the exact LAT/LON.</td>
 </tr>
 <tr>
 <td>logo_url</td>
@@ -2085,9 +2095,13 @@ Make sure to set the authorization header with your unique API username and API 
         </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"streetAddress"</span><span class="p">:</span><span class="s2">"577 College Ave"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="s2">"94306"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"region"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"region"</span><span class="p">:</span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Palo Alto"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-122.4757527166"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37.502439189002"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"logo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://du-cdn.multiscreensite.com/duda_website/img/home/agencies.svg"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"business_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -2132,7 +2146,7 @@ Make sure to set the authorization header with your unique API username and API 
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
     -d <span class="s1">'{"location_data": {"business_hours": [{"days": ["SAT","SUN","MON"],"open": "00:00","close": "00:00"},{"days":["TUE","WED","THU","FRI"],"open":"09:00","close":"17:30"}]}}'</span>
 </code></pre>
-<p>Update the content of the content that exists within the content library. This will update the data that exists within the content library and make it available during the site builds. For example, when adding a map, Duda will automatically populate the address from the content library. </p>
+<p>Update the data that exists within the content library. Once updated the data is ready for immediate use within the editor. For example, when adding a map, Duda will automatically populate the address from the content library. </p>
 
 <p>The data you can set is the exact same that you get from the content library API call.</p>
 <h3 id='method-and-path-2'>Method and path</h3>
@@ -2141,9 +2155,9 @@ Make sure to set the authorization header with your unique API username and API 
 <ul>
 <li>site_name</li>
 </ul>
-<h2 id='create-additional-location'>Create additional location</h2>
-<p>Create a new location for this website. This location will be apart of the <code>additiona_locations</code> data that is returned from the Get Content Library API call. If you are aligning your location management system with this website, we recommend storing both the site name &amp; the UUID of the location in your database.</p>
 
+<aside class="warning">The primary location of a business is only managed through the content library API (above). All additional/child locations are managed by the locations API (below).</aside>
+<h2 id='create-additional-location'>Create additional location</h2>
 <blockquote>
 <p>JSON Body to send:</p>
 </blockquote>
@@ -2236,6 +2250,7 @@ Make sure to set the authorization header with your unique API username and API 
     </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"streetAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"197 S 104th St C"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80027"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"region"</span><span class="p">:</span><span class="s2">"CO"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Louisville"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -2263,7 +2278,9 @@ Make sure to set the authorization header with your unique API username and API 
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='method-and-path-3'>Method and path</h3>
+</span></code></pre>
+<p>Create a new location for this website. This location will be apart of the <code>additional_locations</code> data that is returned from the Get Content Library API call. If you are aligning your location management system with this website, we recommend storing both the site name &amp; the UUID of the location in your database.</p>
+<h3 id='method-and-path-3'>Method and path</h3>
 <p><code>POST /api/sites/multiscreen/{site_name}/content/location</code></p>
 <h3 id='uri-parameters'>URI Parameters</h3>
 <ul>
@@ -2343,7 +2360,7 @@ Make sure to set the authorization header with your unique API username and API 
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Get a specific locations data. To get a specific locations details, you need the UUID of that location. You can find the location <code>uuid</code> in the Get Content Library Data or after you&#39;ve created a location. Note that you can only update <code>additional_locations</code> via this API Call.</p>
+<p>Get data for a specific location. To get data for a specific location you need the UUID of that location. You can find the location <code>uuid</code> in the Get Content Library Data or after you&#39;ve created a location. Note that you can only update <code>additional_locations</code> via this API Call.</p>
 <h3 id='method-and-path-4'>Method and path</h3>
 <p><code>GET /api/sites/multiscreen/{site_name}/content/location/{uuid}</code></p>
 <h3 id='parameters-3'>Parameters</h3>
@@ -2382,7 +2399,9 @@ Make sure to set the authorization header with your unique API username and API 
 <pre class="highlight shell tab-shell"><code>curl -X DELETE -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/b4ra2g/content/location/367163873'</span> <span class="se">\</span>
     -u <span class="s1">'APIusername:APIpassword'</span> <span class="se">\ </span>
     -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
-</code></pre><h3 id='data-parameters-2'>Data parameters</h3>
+</code></pre><h3 id='method-and-path-6'>Method and path</h3>
+<p><code>DELETE /api/sites/multiscreen/{site_name}/content/location/{uuid}</code></p>
+<h3 id='data-parameters-2'>Data parameters</h3>
 <ul>
 <li>In the URI, you need to set the <code>site_name</code> and <code>uuid</code> of this location. </li>
 </ul>
@@ -2419,7 +2438,7 @@ Make sure to set the authorization header with your unique API username and API 
 <p>Content injection allows you to change a website via API (text, images, CSS, etc..) direclty on an existing website or template. You can update CSS values, InnerHTML of an elemnt or an attribute on an element. For the InnerHTML and Attr types, you must have the <code>data-inject=value</code> set on the element. For the CSS type, you must have a <code>data-inject:value</code> CSS property set within a declaration block. </p>
 
 <p>This feature primarily works by sending the <code>type</code> value to alter the markup or styling in multiple ways. Should pass Duda an array of JSON objects. For a full example of content injection.</p>
-<h3 id='method-and-path-6'>Method and path</h3>
+<h3 id='method-and-path-7'>Method and path</h3>
 <p><code>POST /api/sites/multiscreen/inject-content/{siteName}</code></p>
 <h3 id='types-of-injection'>Types of injection</h3>
 <p>Below you will see the three types of injection available: <code>CSS</code>, <code>DOMATTR</code>, and <code>INNERHTML</code> along with how Duda expects each one to be sent.</p>
@@ -2626,7 +2645,7 @@ curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/inje
     </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;span class=</span><span class="se">\"</span><span class="s2">iconBg</span><span class="se">\"</span><span class="s2"> id=</span><span class="se">\"</span><span class="s2">1206527425</span><span class="se">\"</span><span class="s2"> duda_id=</span><span class="se">\"</span><span class="s2">1206527425</span><span class="se">\"</span><span class="s2">&gt; &lt;span class=</span><span class="se">\"</span><span class="s2">icon hasFontIcon icon-star</span><span class="se">\"</span><span class="s2"> id=</span><span class="se">\"</span><span class="s2">1686467387</span><span class="se">\"</span><span class="s2"> duda_id=</span><span class="se">\"</span><span class="s2">1686467387</span><span class="se">\"</span><span class="s2">&gt; &lt;/span&gt;&lt;/span&gt;&lt;span class=</span><span class="se">\"</span><span class="s2">text</span><span class="se">\"</span><span class="s2"> id=</span><span class="se">\"</span><span class="s2">1307805474</span><span class="se">\"</span><span class="s2"> localization_key=</span><span class="se">\"</span><span class="s2">templates.custom.197</span><span class="se">\"</span><span class="s2"> duda_id=</span><span class="se">\"</span><span class="s2">1307805474</span><span class="se">\"</span><span class="s2">&gt;Read More&lt;/span&gt;"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='method-and-path-7'>Method and path</h3>
+</span></code></pre><h3 id='method-and-path-8'>Method and path</h3>
 <p><code>GET /api/sites/multiscreen/inject-content/{site_name}</code></p>
 <h3 id='optional-query-parameters'>Optional query parameters</h3>
 <p>You can append the following query parameters to filter the results of what will be returned:</p>
@@ -2660,7 +2679,7 @@ curl -X POST -k <span class="s1">'https://api.duda.co/api/sites/multiscreen/inje
 <p>Upload resources to the website from an external source. Today, this only supports images, but might be extended in the future for other types of media. This will upload the resource to the CDN that Duda uses and make it available to anyone building the website. This API is commonly used in conjunction with the <a href="#inject-content">inject content API</a> to insert new images directly into the website.</p>
 
 <aside class="warning">Please make sure files you upload have the correct extension. For example, PNG images should have .png and JPEG should have .jpg or .jpeg.</aside>
-<h3 id='method-and-path-8'>Method and path</h3>
+<h3 id='method-and-path-9'>Method and path</h3>
 <p><code>POST /api/sites/multiscreen/resources/{site_name}/upload</code></p>
 
 <blockquote>
